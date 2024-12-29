@@ -1,0 +1,14 @@
+<div>
+  <% @worlds.each do |world| %>
+    <p><strong>Title: </strong><%= world.title %></p>
+    <p><strong>Category: </strong><%= world.category %></p>
+    <p><strong>Place: </strong><%= world.place %></p>
+    <p><strong>Price: </strong><%= world.price %></p>
+    <p><strong>Description: </strong><%= world.description %></p>
+    <p><strong>Capacity: </strong><%= world.capacity %></p>
+    <p><strong>Latitude: </strong><%= world.latitude %></p>
+    <p><strong>Longitude: </strong><%= world.longitude %></p>
+    <br>
+    <br>
+  <% end %>
+</div>
