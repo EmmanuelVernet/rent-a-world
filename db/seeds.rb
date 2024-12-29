@@ -28,7 +28,7 @@ World.destroy_all
 puts "data destroyed"
 
 # TAGS
-puts "creating tags"
+puts "creating tags..."
 
 tag_list = [ "fantasy", "horror", "space", "video game", "magical realm", "sky", "ruins", "time travel", "shadow" ]
 
@@ -36,30 +36,21 @@ tag_list.each do |tag|
   Tag.create!(name: tag)
 end
 
-puts "created #{Tag.count} tags"
+puts "created #{Tag.count} tags!"
 
 # USERS
+puts "creating users..."
+
 user1 = User.create!(email: "test1@test.com", password: "123456")
 user2 = User.create!(email: "test2@test.com", password: "123456")
 user3 = User.create!(email: "test3@test.com", password: "123456")
 user4 = User.create!(email: "test4@test.com", password: "123456")
 user5 = User.create!(email: "test5@test.com", password: "123456")
 
+puts "created #{User.count} users!"
 
-# create_table "worlds", force: :cascade do |t|
-#   t.bigint "user_id", null: false
-#   t.string "title"
-#   t.string "category"
-#   t.string "place"
-#   t.float "price"
-#   t.text "description"
-#   t.integer "capacity"
-#   t.float "latitude"
-#   t.float "longitude"
-#   t.datetime "created_at", null: false
-#   t.datetime "updated_at", null: false
-#   t.index ["user_id"], name: "index_worlds_on_user_id"
-# end
+# Create worlds
+puts "creating worlds..."
 
 worlds = [
   {
@@ -118,7 +109,9 @@ worlds = [
     longitude: 31.1342
   }
 ]
-# Create worlds
+
 worlds.each do |world|
   World.create!(world)
 end
+
+puts "#{World.count} worlds created!"
