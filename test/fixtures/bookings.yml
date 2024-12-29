@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: one
+  wold_id: one
+  status: MyString
+  start_date: 2024-12-29
+  end_date: 2024-12-29
+
+two:
+  user_id: two
+  wold_id: two
+  status: MyString
+  start_date: 2024-12-29
+  end_date: 2024-12-29

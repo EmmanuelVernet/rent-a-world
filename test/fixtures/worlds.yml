@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: one
+  title: MyString
+  category: MyString
+  place: MyString
+  price: 1.5
+  description: MyText
+  capacity: 1
+  latitude: 1.5
+  longitude: 1.5
+
+two:
+  user_id: two
+  title: MyString
+  category: MyString
+  place: MyString
+  price: 1.5
+  description: MyText
+  capacity: 1
+  latitude: 1.5
+  longitude: 1.5
