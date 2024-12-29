@@ -9,6 +9,9 @@
     <p><strong>Latitude: </strong><%= world.latitude %></p>
     <p><strong>Longitude: </strong><%= world.longitude %></p>
     <br>
+    <%= link_to "See all worlds available", world_path(world), class: "px-4 py-2 font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm" %>
+    <br>
     <br>
   <% end %>
+
 </div>

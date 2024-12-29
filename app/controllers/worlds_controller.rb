@@ -10,6 +10,7 @@ class WorldsController < ApplicationController
   end
 
   def show
+    @world = World.find(params[:id])
   end
 
   def edit
@@ -19,5 +20,11 @@ class WorldsController < ApplicationController
   end
 
   def delete
+  end
+
+  private
+
+  def world_params
+    params.require(:world).permit(:title, :category, :place, :price, :description, :capacity, :latitude, :longitude)
   end
 end
