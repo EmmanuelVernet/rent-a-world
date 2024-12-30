@@ -1,14 +1,18 @@
-<div class= "container mx-auto px-4">
-  <% @worlds.each do |world| %>
-    <p><strong>Title: </strong><%= world.title %></p>
-    <p><strong>Category: </strong><%= world.category %></p>
-    <p><strong>Place: </strong><%= world.place %></p>
-    <p><strong>Price: </strong><%= world.price %></p>
-    <p><strong>Description: </strong><%= world.description %></p>
-    <p><strong>Capacity: </strong><%= world.capacity %></p>
-    <br>
-    <%= link_to "See world details", world_path(world), class: "rounded-md bg-blue-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-none active:bg-blue-700 hover:bg-blue-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2" %>
-    <br>
-    <br>
-  <% end %>
+<div class= "container">
+  <%= render "components/navbar" %>
+  <br>
+    <div class= "container mx-auto px-4">
+      <% @worlds.each do |world| %>
+        <p><strong>Title: </strong><%= world.title %></p>
+        <p><strong>Category: </strong><%= world.category %></p>
+        <p><strong>Place: </strong><%= world.place %></p>
+        <p><strong>Price: </strong><%= world.price %></p>
+        <p><strong>Description: </strong><%= world.description %></p>
+        <p><strong>Capacity: </strong><%= world.capacity %></p>
+        <br>
+        <%= link_to "See world details", world_path(world), class: "rounded-md bg-blue-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-none active:bg-blue-700 hover:bg-blue-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2" %>
+        <br>
+        <br>
+      <% end %>
+    </div>
 </div>
