@@ -111,9 +111,6 @@ GEM
       responders
       warden (~> 1.2.3)
     dotenv (3.1.4)
-    dotenv-rails (3.1.4)
-      dotenv (= 3.1.4)
-      railties (>= 6.1)
     drb (2.2.1)
     ed25519 (1.3.0)
     erubi (1.13.1)
@@ -299,9 +296,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    simple_form (5.3.1)
-      actionpack (>= 5.2)
-      activemodel (>= 5.2)
     solid_cable (3.0.5)
       actioncable (>= 7.2)
       activejob (>= 7.2)
@@ -386,7 +380,6 @@ DEPENDENCIES
   capybara
   debug
   devise
-  dotenv-rails
   importmap-rails
   jbuilder
   kamal
@@ -396,7 +389,6 @@ DEPENDENCIES
   rails (~> 8.0.1)
   rubocop-rails-omakase
   selenium-webdriver
-  simple_form
   solid_cable
   solid_cache
   solid_queue
