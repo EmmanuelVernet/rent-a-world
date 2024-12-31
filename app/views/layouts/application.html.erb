@@ -25,10 +25,9 @@
 
   <body class="bg-gray-600 text-slate-200">
     <%= render "components/navbar" %>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main class="container mx-auto mt-28 px-5 flex flex-col">
+      <%= render "shared/flashes" %>
       <%= yield %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
     </main>
   </body>
 </html>
