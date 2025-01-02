@@ -1,0 +1,17 @@
+<section id="banner" class="relative">
+  <!-- Sticky Background -->
+  <div class="sticky top-0 w-full bg-cover bg-center" style="height:40rem; background-image: url(<%= asset_path('banner_rentel.webp') %>);">
+    <!-- Overlay for better text visibility -->
+    <div class="absolute inset-0 bg-gray-900 bg-opacity-50"></div>
+  </div>
+  <!-- Foreground Content -->
+  <div class="absolute inset-0 flex items-center justify-center text-center">
+    <div class="text-white">
+      <h1 class="text-4xl font-bold">Welcome to Your Fantasy World</h1>
+      <p class="text-xl mt-4">Discover and rent magical worlds today!</p>
+      <%= link_to "Explore Now", worlds_path, class: "mt-6 inline-block bg-blue-600 text-white py-3 px-6 rounded-md shadow-lg hover:bg-blue-700 transition-all" %>
+    </div>
+  </div>
+</section>
+
+

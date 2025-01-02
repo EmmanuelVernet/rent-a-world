@@ -2,7 +2,7 @@
     <h1 class="font-bold text-xl text-center mb-14">Our worlds to rent</h1>
     <div class= "container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
       <% @worlds.each do |world| %>
-        <div class="max-w-sm rounded overflow-hidden shadow-xl bg-slate-800">
+        <div class="max-w-sm rounded-lg overflow-hidden shadow-xl bg-slate-800">
           <%= image_tag "fantasy_castle.webp", class: "w-full", alt: "fanstasy castle" %>
           <div class="px-6 py-4">
             <div class="font-bold text-xl mb-2">
@@ -19,9 +19,9 @@
             <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
             <br><br>  
             <%= link_to "See world details", world_path(world), class: "rounded-md bg-blue-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-none active:bg-blue-700 hover:bg-blue-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2" %>
+            <%= link_to "Book it!", worlds_path, class: "rounded-md bg-pink-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-none active:bg-blue-700 hover:bg-indigo-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2" %>
           </div>
         </div>
-        
       <% end %>
     </div>
 </div>
