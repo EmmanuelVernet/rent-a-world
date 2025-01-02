@@ -1,13 +1,17 @@
 <div class="container mx-auto px-6 justify-center">
   <h1>Show world details</h1>
-  <p><strong>Title: </strong><%= @world.title %></p>
-  <p><strong>Category: </strong><%= @world.category %></p>
-  <p><strong>Place: </strong><%= @world.place %></p>
-  <p><strong>Price: </strong><%= @world.price %> $</p>
-  <p><strong>Description: </strong><%= @world.description %></p>
-  <p><strong>Capacity: </strong><%= @world.capacity %></p>
-  <p><strong>Latitude: </strong><%= @world.latitude %></p>
-  <p><strong>Longitude: </strong><%= @world.longitude %></p>
-  <br>
-  <%= link_to "See all worlds", worlds_path, class: "rounded-md bg-blue-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-none active:bg-blue-700 hover:bg-blue-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2" %>
+    <div class="bg-slate-800 rounded-md py-10 px-10">
+      <%= image_tag "fantasy_castle.webp", class: "w-full py-4", alt: "Sunset in the mountains" %>
+      <p><strong>Title: </strong><%= @world.title %></p>
+      <p><strong>Category: </strong><%= @world.category %></p>
+      <p><strong>Place: </strong><%= @world.place %></p>
+      <p><strong>Description: </strong><%= @world.description %></p>
+      <p><strong>Price: </strong><%= @world.price %> $</p>
+      <p><strong>Capacity: </strong><%= @world.capacity %></p>
+      <p><strong>Latitude: </strong><%= @world.latitude %></p>
+      <p><strong>Longitude: </strong><%= @world.longitude %></p>
+      <br>
+      <%= link_to "See all worlds", worlds_path, class: "rounded-md bg-blue-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-none active:bg-blue-700 hover:bg-blue-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2" %>
+      <%= link_to "Book it!", worlds_path, class: "rounded-md bg-pink-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-none active:bg-blue-700 hover:bg-indigo-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2" %>
+    </div>
 </div>
