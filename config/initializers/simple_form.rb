@@ -55,8 +55,13 @@ SimpleForm.setup do |config|
     ## Inputs
     # b.use :input, class: 'input', error_class: 'is-invalid', valid_class: 'is-valid'
     b.use :label_input
-    b.use :hint,  wrap_with: { tag: :span, class: :hint }
-    b.use :error, wrap_with: { tag: :span, class: :error }
+    b.use :label, class: "mb-2 text-sm font-medium text-gray-700"
+    # b.use :hint,  wrap_with: { tag: :span, class: :hint }
+    b.use :hint, wrap_with: { tag: "p", class: "text-sm text-gray-500 mt-1" }
+    # b.use :error, wrap_with: { tag: :span, class: :error }
+    b.use :error, wrap_with: { tag: "p", class: "text-sm text-red-500 mt-2" }
+    b.use :input, class: "px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+
 
     ## full_messages_for
     # If you want to display the full error message for the attribute, you can
@@ -66,7 +71,6 @@ SimpleForm.setup do |config|
   end
 
   # The default wrapper to be used by the FormBuilder.
-  # config.default_wrapper = :default
   config.default_wrapper = :tailwind
 
   # Define the way to render check boxes / radio buttons with labels.
