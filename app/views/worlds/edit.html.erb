@@ -1,4 +1,14 @@
 <div>
   <h1>Edit world</h1>
   <%# TO DO: Edit only for user that puts world to rent %>
+  <%= simple_form_for @world do |f| %>
+    <%= f.input :title %>
+    <%= f.input :category %>
+    <%= f.input :place %>
+    <%= f.input :price %>
+    <%= f.input :description %>
+    <%= f.input :capacity %>
+    <%= f.button :submit, "Save Changes", class: "rounded-full bg-blue-600 py-2 px-4" %>
+<% end %>
+
 </div>
