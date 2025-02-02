@@ -1,7 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+@import "tailwindcss";
+@import "https://cdn.jsdelivr.net/npm/daisyui@beta/daisyui.css";
 /*
 
 @layer components {
