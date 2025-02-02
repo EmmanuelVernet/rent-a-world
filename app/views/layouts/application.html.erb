@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="acid">
   <head>
     <title><%= content_for(:title) || "Rent A World" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -22,10 +22,13 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%# include via CDN for turbo support %>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.turbo.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5.0.0-beta.6/daisyui.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5.0.0-beta.6/themes.css" rel="stylesheet" type="text/css" />
+
   </head>
 
-  <body class="bg-gray-600 text-slate-200">
+  <body>
     <%= render "components/navbar" %>
     <main class="container mx-auto mt-4 px-2 flex flex-col">
       <%= render "shared/flashes" %>
