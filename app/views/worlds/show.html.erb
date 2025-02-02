@@ -1,6 +1,5 @@
 <div class="container mx-auto px-6 justify-center pb-6">
-  
-<div class="card bg-base-100 shadow-xl w-full">
+  <div class="card bg-base-100 shadow-2xl w-full">
         <figure>
           <%= image_tag "fantasy_castle.webp", class: "rounded-lg mt-4", alt: "fanstasy castle" %>
         </figure>
@@ -28,11 +27,11 @@
             <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
             <br><br>  
             <div id="map" class="py-4">
-      <h1>Placeholder for mapbox</h1>
-    </div>
-    <div id="renter-info" class="py-4">
-      <h1>Placeholder for renter info. Ex: Van Helsing</h1>
-    </div>
+              <h1>Placeholder for mapbox</h1>
+            </div>
+            <div id="renter-info" class="py-4">
+              <h1>Placeholder for renter info. Ex: Van Helsing</h1>
+            </div>
             <%= link_to "See world details", world_path(@world), class: "rounded-md bg-blue-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-none active:bg-blue-700 hover:bg-blue-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2" %>
             <%= link_to "Book it!", world_path(@world), class: "rounded-md bg-pink-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-none active:bg-blue-700 hover:bg-indigo-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2" %>
           </div>

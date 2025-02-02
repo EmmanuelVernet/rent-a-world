@@ -1,15 +1,40 @@
 <div>
   <h1>Edit world</h1>
   <%# TO DO: Edit only for user that puts world to rent %>
-  <%= render "components/sidebar" %>
-  <%= simple_form_for @world do |f| %>
-    <%= f.input :title %>
-    <%= f.input :category %>
-    <%= f.input :place %>
-    <%= f.input :price %>
-    <%= f.input :description %>
-    <%= f.input :capacity %>
-    <%= f.button :submit, "Save Changes", class: "rounded-full bg-blue-600 py-2 px-4" %>
-<% end %>
+  <%= form_with model: @world, class: "space-y-4" do |f| %>
+  <div class="flex flex-col">
+    <%= f.label :title, class: "font-medium text-gray-700" %>
+    <%= f.text_field :title, class: "mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
 
+  <div class="flex flex-col">
+    <%= f.label :category, class: "font-medium text-gray-700" %>
+    <%= f.text_field :category, class: "mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+
+  <div class="flex flex-col">
+    <%= f.label :place, class: "font-medium text-gray-700" %>
+    <%= f.text_field :place, class: "mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+
+  <div class="flex flex-col">
+    <%= f.label :price, class: "font-medium text-gray-700" %>
+    <%= f.number_field :price, class: "mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+
+  <div class="flex flex-col">
+    <%= f.label :description, class: "font-medium text-gray-700" %>
+    <%= f.text_area :description, rows: 5, class: "mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+
+  <div class="flex flex-col">
+    <%= f.label :capacity, class: "font-medium text-gray-700" %>
+    <%= f.number_field :capacity, class: "mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+
+  <div>
+    <%= f.submit "Save Changes", class: "rounded-full bg-blue-600 py-2 px-4 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    <%= link_to "All worlds", worlds_path(@world), class: "rounded-full bg-blue-600 py-2 px-4 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+<% end %>
 </div>
