@@ -11,5 +11,34 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "home#index"
+  root "pages#home"
+
+  # APP ROUTES
+
+  # User routes (optional, if you need user-specific actions)
+  # resources :users, only: [ :show ] do
+  # Nested routes for user-specific bookings and reviews
+  # resources :bookings, only: [ :index ]
+  # resources :reviews, only: [ :index ]
+  # end
+
+  # World routes (main resource)
+  resources :worlds do
+    # Nested routes for bookings, reviews, and tags
+    resources :bookings, only: [ :create, :index, :show ]
+    resources :reviews, only: [ :create, :index ]
+    resources :tags, only: [ :index ] # To fetch tags for a specific world
+  end
+
+  # Tags routes (if you need a global tags index or CRUD)
+  # resources :tags, only: [ :index ]
+
+  # WorldTag routes (for managing associations between worlds and tags)
+  # resources :world_tags, only: [ :create, :destroy ]
+
+  # Bookings routes (for global access, e.g., admin panel)
+  # resources :bookings, only: [ :index, :show, :update, :destroy ]
+
+  # Reviews routes (for global access or management)
+  # resources :reviews, only: [ :index, :show, :destroy ]
 end

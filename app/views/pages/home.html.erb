@@ -1,0 +1,33 @@
+<div class= "container mx-auto px-4">
+    <%= render "components/banner"%>
+      <div class= "container mx-auto px-4">
+        <div class= "container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 py-20">
+          <% @worlds.each do |world| %>
+            <div class="card bg-base-100 w-96 shadow-xl">
+              <figure>
+                <%= image_tag "fantasy_castle.webp", class: "w-full", alt: "fanstasy castle" %>
+              </figure>
+              <div class="card-body">
+                <h2 class="card-title">
+                  <%= world.title %>
+                </h2>
+                <div class="badge badge-secondary"><%= world.category %></div>
+                <%= world.description %>
+                <div class="card-actions justify-end">
+                  <div class="badge badge-primary">Fashion</div>
+                  <div class="badge badge-accent">Products</div>
+                </div>
+                <div class="px-6 pt-4 pb-2 mb-4"> <%# TO DO: add dynamic tags, check seed %>
+                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+                  <br><br>  
+                  <%= link_to "See world details", world_path(world), class: "rounded-md bg-blue-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-none active:bg-blue-700 hover:bg-blue-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2" %>
+                  <%= link_to "Book it!", world_path(world), class: "rounded-md bg-pink-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-none active:bg-blue-700 hover:bg-indigo-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+</div>

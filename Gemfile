@@ -15,7 +15,8 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
-gem "tailwindcss-rails"
+gem "tailwindcss-rails", "~> 4.0" # which transitively pins tailwindcss-ruby to v4
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
@@ -45,9 +46,19 @@ gem "thruster", require: false
 # Authentication with devise
 gem "devise"
 
+# Forms with simple form
+gem "simple_form"
+
+# LSP Gems
+# gem "sorbet", group: :development
+# gem "sorbet-runtime"
+# gem "tapioca", require: false, group: [ :development, :test ]
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+
+  gem "dotenv-rails"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
