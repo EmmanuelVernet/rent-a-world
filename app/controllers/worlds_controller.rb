@@ -3,7 +3,7 @@ class WorldsController < ApplicationController
   before_action :set_world, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @worlds = World.all # TO DO: add later filtering for indexing all worlds for optimization
+    @worlds = World.all # TO DO: add later filtering for indexing all worlds for optimization to avoid N+1 queries
   end
 
   def new
