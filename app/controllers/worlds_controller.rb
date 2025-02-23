@@ -11,7 +11,7 @@ class WorldsController < ApplicationController
   end
 
   def create
-    @world = World.new(world_params)
+    @world = World.new(world_params) # TO DO: scope to current user
     if @world.save
       redirect_to world_path(@world), notice: "World was successfully created."
     else
@@ -21,6 +21,7 @@ class WorldsController < ApplicationController
 
   def show
     # defined with set_world
+    # instanciate activities & amenities since they have a many to many relationship
   end
 
   def edit
