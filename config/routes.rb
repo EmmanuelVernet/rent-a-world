@@ -30,13 +30,13 @@ Rails.application.routes.draw do
     resources :tags, only: [ :index ] # To fetch tags for a specific world
   end
 
-  # Tags routes (if you need a global tags index or CRUD)
+  # Tags routes (for global tags index or CRUD)
   # resources :tags, only: [ :index ]
 
   # WorldTag routes (for managing associations between worlds and tags)
   # resources :world_tags, only: [ :create, :destroy ]
 
-  # Bookings routes (for global access, e.g., admin panel)
+  # Bookings routes
   # resources :bookings, only: [ :index, :show, :update, :destroy ]
 
   # Reviews routes (for global access or management)
