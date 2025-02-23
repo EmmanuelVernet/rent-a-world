@@ -1,4 +1,101 @@
-<div>
-  <h1>New world</h1>
-  <%# TO DO: New is only for user that puts world to rent %>
+<div class="pt-4 pb-32">
+  <%= form_with(model: @world, local: true,  class: "space-y-4 p-6 bg-white shadow-lg rounded-lg max-w-lg mx-auto") do |form| %>
+  <h1>Create a new world</h1>
+  <% if @world.errors.any? %>
+  <div class="alert alert-error">
+    <ul>
+      <% @world.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <fieldset class="fieldset">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: "input input-bordered input-primary w-full" %>
+      <% if @world.errors[:title].any? %>
+    <p class="text-red-500 text-sm"><%= @world.errors[:title].first %></p>
+  <% end %>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <%= form.label :category %>
+    <%= form.text_field :category, class: "input input-bordered input-primary w-full" %>
+    <small class="text-gray-500">Enter a category name</small>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <%= form.label :place %>
+    <%= form.text_field :place, class: "input input-bordered input-primary w-full" %>
+    <small class="text-gray-500">Enter the world's location name</small>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <%= form.label :price %>
+    <%= form.number_field :price, class: "input input-bordered input-primary w-full" %>
+    <small class="text-gray-500">Enter the price in EUR/USD</small>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <%= form.label :description %>
+    <%= form.number_field :description, class: "input input-bordered input-primary w-full" %>
+    <small class="text-gray-500">Enter a nice description</small>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <%= form.label :capacity %>
+    <%= form.number_field :capacity, class: "input input-bordered input-primary w-full" %>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <%= form.label :latitude %>
+    <%= form.text_field :latitude, class: "input input-bordered input-primary w-full" %>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <%= form.label :longitude %>
+    <%= form.text_field :longitude, class: "input input-bordered input-primary w-full" %>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-title">Select Activities</legend>
+    <div class="flex flex-wrap gap-2">
+      <%= form.collection_check_boxes :activity_ids, Activity.all, :id, :name do |cb| %>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <%= cb.check_box(class: "checkbox checkbox-secondary") %>
+          <span class="label-text"><%= cb.text %></span>
+        </label>
+      <% end %>
+    </div>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-title">Select Amenities</legend>
+    <div class="flex flex-wrap gap-2">
+      <%= form.collection_check_boxes :amenity_ids, Amenity.all, :id, :name do |cb| %>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <%= cb.check_box(class: "checkbox checkbox-accent") %>
+          <span class="label-text"><%= cb.text %></span>
+        </label>
+      <% end %>
+    </div>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-title">Select Amenities</legend>
+    <div class="flex flex-wrap gap-2">
+      <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |cb| %>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <%= cb.check_box(class: "checkbox checkbox-primary") %>
+          <span class="label-text"><%= cb.text %></span>
+        </label>
+      <% end %>
+    </div>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <%= form.submit "Create World", class: "btn btn-soft" %>
+  </fieldset>
+<% end %>
 </div>
