@@ -1,6 +1,6 @@
 class WorldsController < ApplicationController
   before_action :authenticate_user!, except: [ :index, :show ]
-  before_action :set_world, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_world, only: [ :show, :new, :edit, :create, :update, :destroy ]
 
   def index
     @worlds = World.all # TO DO: add later filtering for indexing all worlds for optimization to avoid N+1 queries
@@ -24,6 +24,7 @@ class WorldsController < ApplicationController
   end
 
   def edit
+    # defined with set_world
   end
 
   def update
@@ -45,7 +46,7 @@ class WorldsController < ApplicationController
   private
 
   def world_params
-    params.require(:world).permit(:title, :category, :place, :price, :description, :capacity, :latitude, :longitude)
+    params.expect(:world).permit(:title, :category, :place, :price, :description, :capacity, :latitude, :longitude)
   end
 
   def set_world
