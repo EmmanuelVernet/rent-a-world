@@ -12,10 +12,11 @@ class World < ApplicationRecord
   has_many :world_tags, dependent: :destroy
   has_many :tags, through: :world_tags
 
-  validates :title, presence: true, uniqueness: true
+  validates :title, presence: true
   validates :category, presence: true
   validates :place, presence: true
-  validates :price, numericality: { greater_than_or_equal_to: 0 }
+  validates :price, numericality: { greater_than: 0 }
+  validates :description, presence: true
   validates :capacity, numericality: { only_integer: true, greater_than: 0 }
   validates :latitude, :longitude, numericality: true, allow_nil: true
 end
