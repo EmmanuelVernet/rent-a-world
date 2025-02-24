@@ -22,10 +22,10 @@
 # end
 puts "destroying seeded data"
 Tag.destroy_all
-User.destroy_all
-World.destroy_all
 Activity.destroy_all
 Amenity.destroy_all
+User.destroy_all
+World.destroy_all
 
 puts "data destroyed"
 
@@ -215,6 +215,116 @@ worlds = [
     capacity: 12,
     latitude: -19.9131,
     longitude: -43.9415
+  },
+  {
+    user: user1,
+    title: "Mystic Sky Gardens",
+    category: "Floating Gardens",
+    place: "Cloudhaven",
+    price: 170.0,
+    description: "Explore the floating gardens suspended in the sky, where rare plants bloom and creatures of the air guide your journey.",
+    capacity: 8,
+    latitude: 51.1657,
+    longitude: 10.4515
+  },
+  {
+    user: user2,
+    title: "Vampire’s Castle Adventure",
+    category: "Haunted Mansion",
+    place: "Bloodthorn Keep",
+    price: 210.0,
+    description: "Step into a gothic castle ruled by a mysterious vampire lord. Uncover dark secrets while avoiding deadly traps.",
+    capacity: 6,
+    latitude: 47.6062,
+    longitude: -122.3321
+  },
+  {
+    user: user3,
+    title: "Misty Marsh Expedition",
+    category: "Swamp Realm",
+    place: "Whispering Bog",
+    price: 130.0,
+    description: "Venture through the misty swamps filled with mysterious creatures and ancient ruins. Uncover hidden treasures while braving the fog.",
+    capacity: 10,
+    latitude: 45.4215,
+    longitude: -75.6972
+  },
+  {
+    user: user5,
+    title: "Celestial Harvest Festival",
+    category: "Festival",
+    place: "Starlight Meadows",
+    price: 100.0,
+    description: "Join the celestial harvest festival under the stars. Celebrate with otherworldly creatures, magical music, and feasts from the sky.",
+    capacity: 20,
+    latitude: 39.9042,
+    longitude: 116.4074
+  },
+  {
+    user: user5,
+    title: "Elemental Trials",
+    category: "Elemental Realms",
+    place: "Elementis",
+    price: 250.0,
+    description: "Test your strength across the four elemental realms—fire, water, earth, and air—each offering unique challenges and untold riches.",
+    capacity: 5,
+    latitude: 34.0522,
+    longitude: -118.2437
+  },
+  {
+    user: user1,
+    title: "Frozen Enclave",
+    category: "Ice Kingdom",
+    place: "Glacier Hold",
+    price: 190.0,
+    description: "Journey through the ice-covered realm of Glacier Hold. Meet frost giants, explore hidden ice caves, and discover the frozen treasures of old.",
+    capacity: 12,
+    latitude: 64.9631,
+    longitude: -19.0208
+  },
+  {
+    user: user2,
+    title: "The Phantom Islands",
+    category: "Ghostly Isles",
+    place: "Isles of the Lost",
+    price: 220.0,
+    description: "Explore the mysterious Phantom Islands, where the spirits of ancient sailors roam. Encounter ghostly apparitions and uncover forgotten shipwrecks.",
+    capacity: 7,
+    latitude: 35.6895,
+    longitude: 139.6917
+  },
+  {
+    user: user3,
+    title: "Witch’s Hollow Mystery",
+    category: "Dark Forest",
+    place: "Hallowbrook",
+    price: 150.0,
+    description: "Wander through the eerie woods of Hallowbrook, solving ancient mysteries and encountering dark witches that wield strange magics.",
+    capacity: 10,
+    latitude: 38.9072,
+    longitude: -77.0369
+  },
+  {
+    user: user4,
+    title: "Crystal Cavern Adventure",
+    category: "Gemstone Realm",
+    place: "Glimmerstone Caverns",
+    price: 180.0,
+    description: "Venture deep into the Glimmerstone Caverns, where the walls shine with hidden gems. Seek out ancient relics and explore breathtaking crystal formations.",
+    capacity: 6,
+    latitude: 42.3601,
+    longitude: -71.0589
+  },
+  {
+    user: user5,
+    title: "Thunderstorm Safari",
+    category: "Storm Plains",
+    place: "Vortex Plains",
+    price: 160.0,
+    description: "Witness the raw power of nature in the Vortex Plains, where storms rage constantly. Chase thunderclouds and discover storm-chasing beasts.",
+    capacity: 9,
+    latitude: -22.9068,
+    longitude: -43.1729
   }
 ]
 
