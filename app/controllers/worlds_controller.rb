@@ -4,6 +4,7 @@ class WorldsController < ApplicationController
 
   def index
     @worlds = World.all # TO DO: add later filtering for indexing all worlds for optimization to avoid N+1 queries
+    @tags = Tag.all
   end
 
   def new
