@@ -5,7 +5,7 @@
         <h1>Newly Featured</h1>
       </div>
         <div class= "container mx-auto px-4 overflow-x-auto text-wrap flex gap-6 py-15">
-          <% @worlds[6..-1].each do |world| %>
+          <% @worlds.last(6).each do |world| %>
             <div class="card bg-base-100 w-96 shadow-xl shrink-0">
               <figure>
                 <%= image_tag "fantasy_castle.webp", class: "w-full", alt: "fanstasy castle" %>
@@ -36,7 +36,7 @@
         <h1>Other listings</h1>
       </div>
         <div class= "container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 py-20">
-          <% @worlds[0..-5].each do |world| %>
+          <% @worlds.each do |world| %>
             <div class="card bg-base-100 w-96 shadow-xl">
               <figure>
                 <%= image_tag "fantasy_castle.webp", class: "w-full", alt: "fanstasy castle" %>
