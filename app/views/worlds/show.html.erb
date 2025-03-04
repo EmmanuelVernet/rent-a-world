@@ -1,33 +1,103 @@
-<%= render "components/banner" %>
-<div class="flex items-center px-5 pt-6">
-  <div class="mr-4">
-    <h2 class="text-xl font-semibold"><%= @world.title %></h2>
-    <p class="text-sm text-gray-600"><%= @world.description %></p>
+<%# <%= render "components/banner" %>
+<!-- Background Section Spanning Two Grid Columns -->
+  <div class="bg-gray-200 p-4 col-span-2" id="background-section" 
+       style="height: 20rem; 
+              background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(<%= asset_path('fantasy_castle.webp') %>);
+              background-size: 100%;
+              background-position: center;
+              background-repeat: no-repeat;">
+    <div class="flex flex-col items-center text-center py-10">
+      <h2 class="text-5xl font-bold text-emerald-100 pb-10"><%= @world.title %></h2>
+      <p class="text-lg text-gray-300 pb-5"><%= @world.description %></p>
+      <%= link_to "Book it!", world_path(@world), class: "rounded-md bg-pink-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-none active:bg-blue-700 hover:bg-indigo-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" %>
+    </div>
   </div>
-  <%= link_to "Book it!", world_path(@world), class: "rounded-md bg-pink-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-none active:bg-blue-700 hover:bg-indigo-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" %>
-</div>
+
 <div class="grid grid-cols-2 gap-4 px-5 pt-5">
-  <div class="bg-gray-200 rounded-lg p-4" id="details">
-    Details
-    <p><strong>Category: </strong><%= @world.category %></p>
-    <p><strong>Place: </strong><%= @world.place %></p>
-    <p><strong>Description: </strong><%= @world.description %></p>
-    <p><strong>Price: </strong><%= @world.price %> $</p>
-    <p><strong>Capacity: </strong><%= @world.capacity %></p>
+  <%# World details %>
+  <div class="bg-gray-200 rounded-lg p-4 shadow-lg border border-gray-200 w-253 h-90 overflow-y-auto" id="details">
+    <h3 class="text-2xl font-semibold text-gray-800 mb-4">World Details</h3>
+    <div class="space-y-4">
+      <p class="badge badge-primary"><strong class="text-gray-900"> </strong><%= @world.category %></p>
+      <p class="text-lg text-gray-700"><strong class="text-gray-900">Where is it? </strong><br><%= @world.place %></p> <%# TO DO: add a link to a modal to open the map %>
+      <p class="text-lg text-gray-700"><strong class="text-gray-900">What you'll find in this world</strong><br><%= @world.description %></p>
+      <p class="text-lg text-gray-700"><strong class="text-gray-900">Rate per night</strong><br>For the modest price of <%= @world.price %> $ per night, enjoy enough space for </strong><%= @world.capacity %> people, heroes or partners in your party!</p>
+      <p class="text-sm italic text-blue-300">**Additional information on demand. Please contact the renter directly</p>
+    </div>
+  </div>
+
+  <%# World Amenities %>
+  <div class="bg-gray-200 rounded-lg p-4 shadow-lg border border-gray-200 w-253 h-90 overflow-y-auto" id="amenities">
+    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Amenities</h3>
+    <% @amenities.each do |amenity| %>
+      <li class="text-lg text-gray-700"><%= amenity.name %></li>
+      <li class="text-lg text-gray-700"><%= amenity.description %></li>
+    <% end %>
+  
+  </div>
+
+  <%# World Activities %>
+  <div class="bg-gray-200 rounded-lg p-4 shadow-lg border border-gray-200 w-253 h-90 overflow-y-auto" id="reviews">
+    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Activities</h3>
+    <% @activities.each do |activity| %> <%# TO DO: link to a show page of the activity ID for more details %>
+      <div class="collapse collapse-plus bg-base-100 border border-base-300">
+        <input type="radio" name="my-accordion-3" checked="checked" />
+        <div class="collapse-title font-semibold"><%= activity.name %></div>
+        <div class="collapse-content text-sm">
+          <p>Description: <%= activity.description %></p>
+          <p>Time to complete: <%= activity.duration %> hours</p>
+          <p>Cost: <%= activity.price %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%# World renter details %>
+  <div class="bg-gray-200 rounded-lg p-4 shadow-lg border border-gray-200 w-253 h-90 overflow-y-auto" id="Activities">
+    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Renter Information</h3>
+  </div>
+
+  <%# World reviews %>
+  <div class="bg-gray-200 rounded-lg p-4 shadow-lg border border-gray-200 w-253 h-90 overflow-y-auto" id="Renter Information">
+    <h3 class="text-2xl font-semibold text-gray-800 mb-4">User Reviews</h3>
+    <div class="bg-gray-100 p-6 rounded-lg">
+
+  <div class="space-y-4">
+    
+      <div class="card bg-white shadow-lg p-4 rounded-lg border border-gray-200">
+        <div class="flex items-center mb-2">
+          <div class="flex-shrink-0">
+            <img class="w-12 h-12 rounded-full" src="" alt="">
+          </div>
+          <div class="ml-4">
+            <p class="text-lg font-semibold text-gray-900">Review user name</p>
+            <div class="text-sm text-gray-600">Created at</div>
+          </div>
+        </div>
+        
+        <p class="text-gray-700 mt-2">Review content</p>
+        <div class="flex items-center mb-2">
+          <!-- Rating component -->
+          <div class="rating gap-1">
+            <input type="radio" name="rating-3" class="mask mask-heart bg-red-400" aria-label="1 star" />
+            <input type="radio" name="rating-3" class="mask mask-heart bg-orange-400" aria-label="2 star" checked="checked" />
+            <input type="radio" name="rating-3" class="mask mask-heart bg-yellow-400" aria-label="3 star" />
+            <input type="radio" name="rating-3" class="mask mask-heart bg-lime-400" aria-label="4 star" />
+            <input type="radio" name="rating-3" class="mask mask-heart bg-green-400" aria-label="5 star" />
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+  </div>
+
+  <%# World Map %>
+  <div class="bg-gray-200 rounded-lg p-4 shadow-lg border border-gray-200 w-253 h-90 overflow-y-auto" id="Renter Information">
+    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Map placeholder</h3>
+    <p><strong>Location: </strong><%= @world.place %></p>
     <p><strong>Latitude: </strong><%= @world.latitude %></p>
     <p><strong>Longitude: </strong><%= @world.longitude %></p>
-  </div>
-  <div class="bg-gray-200 rounded-lg p-4" id="amenities">
-    Amenities
-  </div>
-  <div class="bg-gray-200 rounded-lg p-4" id="reviews">
-    Reviews
-  </div>
-  <div class="bg-gray-200 rounded-lg p-4" id="Activities">
-    Activities
-  </div>
-  <div class="bg-gray-200 rounded-lg p-4" id="Renter Information">
-    Renter Information
   </div>
 </div>
 <div class="pt-5 px-3 pb-25">

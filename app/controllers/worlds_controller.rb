@@ -26,6 +26,9 @@ class WorldsController < ApplicationController
   def show
     # defined with set_world
     # instanciate activities & amenities since they have a many to many relationship
+    # @world = World.includes(:activities).find(params[:id])  # Eager loading activities
+    @activities = @world.activities
+    @amenities = @world.amenities
   end
 
   def edit
