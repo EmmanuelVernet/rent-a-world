@@ -333,3 +333,61 @@ worlds.each do |world|
 end
 
 puts "#{World.count} worlds created!"
+
+puts "assigning activities to worlds..."
+
+worlds = World.all
+activities = Activity.all
+
+# Assign random activities (between 1 to 5 activities) to each world
+worlds.each do |world|
+  random_activities = activities.sample(rand(2..4)) # Randomly pick between 1 and 5 activities
+  random_activities.each do |activity|
+    # join table for activities and worlds
+    world.activities << activity unless world.activities.include?(activity)
+  end
+end
+
+puts "#{worlds.sum { |world| world.activities.count }} activities assigned to worlds!"
+
+puts "assigning amenities to worlds..."
+
+worlds = World.all
+amenities = Amenity.all
+
+# Assign random amenities (between 1 to 5 amenities) to each world
+worlds.each do |world|
+  random_amenities = amenities.sample(rand(2..3)) # Randomly pick amenities
+  random_amenities.each do |amenitiy|
+    # join table for amenities and worlds
+    world.amenities << amenitiy unless world.amenities.include?(amenitiy)
+  end
+end
+
+puts "#{worlds.sum { |world| world.amenities.count }} amenities assigned to worlds!"
+
+# puts "creating bookings..."
+
+# Add some random bookings for users in random worlds
+# users = User.all
+# worlds = World.all
+
+# users.each do |user|
+#   rand(1..3).times do # each user can have between 1 to 3 bookings
+#     world = worlds.sample # randomly pick a world
+#     Booking.create!(user: user, world: world, start_date: Faker::Date.forward(days: 30), end_date: Faker::Date.forward(days: 60), status: ["booked", "pending", "cancelled"].sample)
+#   end
+# end
+
+# puts "#{Booking.count} bookings created!"
+
+# puts "creating reviews..."
+
+# # Add some random reviews for users in random worlds
+# users.each do |user|
+#   worlds.sample(3).each do |world| # each user can review up to 3 worlds
+#     Review.create!(user: user, world: world, stars: rand(1..5), comment: Faker::Lorem.sentence)
+#   end
+# end
+
+# puts "#{Review.count} reviews created!"
