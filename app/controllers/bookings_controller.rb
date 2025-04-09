@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
 
 
   def index
-    @bookings = @world.bookings
+    @bookings = current_user.bookings.order(created_at: :desc).all
   end
 
   def new
@@ -36,11 +36,11 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:user_id, :world_id, :status, :start_date, :end_date, :total_price)
   end
 
-  def set_world
-    @world = World.find(params[:id])
-  end
-
   def set_booking
     @booking = Booking.find(params[:id])
+  end
+
+  def set_world
+    @world = World.find(params[:world_id])
   end
 end
