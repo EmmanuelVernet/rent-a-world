@@ -49,6 +49,12 @@ gem "devise"
 # Forms with simple form
 gem "simple_form"
 
+# Faker for fake Data
+gem "faker"
+
+# PG Search for search
+gem "pg_search"
+
 # LSP Gems
 # gem "sorbet", group: :development
 # gem "sorbet-runtime"
