@@ -43,11 +43,65 @@ puts "created #{Tag.count} tags!"
 # USERS
 puts "creating users..."
 
-user1 = User.create!(email: "test1@test.com", password: "123456")
-user2 = User.create!(email: "test2@test.com", password: "123456")
-user3 = User.create!(email: "test3@test.com", password: "123456")
-user4 = User.create!(email: "test4@test.com", password: "123456")
-user5 = User.create!(email: "test5@test.com", password: "123456")
+admin = User.find_or_create_by!(email: "test@test.com") do |user|
+  user.first_name = "Benevolent"
+  user.last_name = "Dictator"
+  user.role = :admin # Or :admin if he manages listings
+  user.address = "Carfax Abbey, Room 7, Paris" # A bit ironic ;)
+  user.phone = "+33 22 6666 0000"
+  user.user_description = "Renowned benevolent dictator of this app. Seeking to build battle station for cheap."
+  user.password = "123456" # Consider a more secure default in production
+end
+# More interesting users for the fantasy world
+user1 = User.find_or_create_by!(email: "van.helsing@monsterhunter.net") do |user|
+  user.first_name = "Abraham"
+  user.last_name = "Van Helsing"
+  user.role = :renter # Or :admin if he manages listings
+  user.address = "Carfax Abbey, Room 7, London" # A bit ironic ;)
+  user.phone = "+44 20 7946 0000"
+  user.user_description = "Renowned vampire hunter, expert in ancient lore and supernatural threats. Seeking temporary lodgings between expeditions."
+  user.password = "stakesandgarlic" # Consider a more secure default in production
+end
+
+user2 = User.find_or_create_by!(email: "merlin@camelot.gov.uk") do |user|
+  user.first_name = "Merlin"
+  user.last_name = "Ambrosius"
+  user.role = :renter # Perhaps Merlin manages magical locations
+  user.address = "The Crystal Cave, Avalon"
+  user.phone = "+44 163 200 0001" # A mystical sounding number
+  user.user_description = "Legendary sorcerer and advisor. Occasionally requires a quiet retreat for arcane research and contemplation. Familiar with various enchanted realms."
+  user.password = "enchantment123"
+end
+
+user3 = User.find_or_create_by!(email: "ciri@witchermail.net") do |user|
+  user.first_name = "Cirilla"
+  user.last_name = "Fiona Elen Riannon"
+  user.role = :renter # A traveler seeking temporary stays
+  user.address = "Currently traversing the Continent" # More fitting for her
+  user.phone = "N/A (magical communication only)"
+  user.user_description = "Witcher trainee with Elder Blood. Possesses unique abilities and knowledge of various dimensions. Needs secure and discreet lodging."
+  user.password = "swallow123"
+end
+
+user4 = User.find_or_create_by!(email: "smaug@lonelymountain.com") do |user|
+  user.first_name = "Smaug"
+  user.last_name = "The Golden"
+  user.role = :renter # Could potentially rent out his hoard...
+  user.address = "The Lonely Mountain, Erebor"
+  user.phone = "(+Middle Earth) 011-789-DRAGON" # A bit whimsical
+  user.user_description = "Magnificent and powerful dragon with a vast hoard of treasure. Seeking secure storage or temporary relocation options for said hoard. Fireproof accommodations preferred."
+  user.password = "goldenscales"
+end
+
+user5 = User.find_or_create_by!(email: "galadriel@lothlorien.el") do |user|
+  user.first_name = "Galadriel"
+  user.last_name = "of Lothlórien"
+  user.role = :renter # Might manage elven sanctuaries
+  user.address = "Caras Galadhon, Lothlórien"
+  user.phone = "(+Middle Earth) 011-353-MIRROR"
+  user.user_description = "Lady of the Galadhrim, possessor of Nenya. Offers wisdom and occasionally seeks serene locations for reflection and foresight."
+  user.password = "elvenwisdom"
+end
 
 puts "created #{User.count} users!"
 
