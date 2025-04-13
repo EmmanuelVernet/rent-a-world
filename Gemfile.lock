@@ -118,6 +118,8 @@ GEM
     erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
+    faker (3.5.1)
+      i18n (>= 1.8.11, < 2)
     fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
@@ -191,6 +193,9 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.9)
+    pg_search (2.3.7)
+      activerecord (>= 6.1)
+      activesupport (>= 6.1)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -364,10 +369,12 @@ DEPENDENCIES
   debug
   devise
   dotenv-rails
+  faker
   importmap-rails
   jbuilder
   kamal
   pg (~> 1.1)
+  pg_search
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.1)
