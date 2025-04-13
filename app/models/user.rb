@@ -7,5 +7,5 @@ class User < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
-  enum role: { rentee: 0, renter: 1, admin: 2 }
+  enum :role, %i[rentee renter admin]
 end
