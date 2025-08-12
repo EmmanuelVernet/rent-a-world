@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
   # before_action :set_world
   # before_action :set_booking, only: [ :index, :show, :edit, :update, :accept, :decline ]
 
+  # TODO: Create seperate namespaced controller for handling bookings like Admin::BookingsController, BookingsController handles both renter & rentee + adapt routes?
 
   def index
     if current_user.admin?
@@ -13,7 +14,11 @@ class BookingsController < ApplicationController
   end
 
   def new
-    @booking = Booking.new
+    if current_user.admin?
+      @booking = Booking.new
+    else
+      @booking = @world.bookings.new
+    end
   end
 
   def create
