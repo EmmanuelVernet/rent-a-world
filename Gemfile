@@ -55,6 +55,18 @@ gem "faker"
 # PG Search for search
 gem "pg_search"
 
+# CDN
+# gem "cloudinary"
+
+# Icons
+# gem "font-awesome-sass"
+
+# LLM
+# gem "ruby-llm"
+
+# Notifications
+# gem "noticed"
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -73,6 +85,16 @@ group :development, :test do
   # ge\m "sorbet", group: :development
   # gem "sorbet-runtime"
   # gem "tapioca", require: false, group: [ :development, :test ]
+
+  # ERB formatter
+  gem "htmlbeautifier"
+
+  # Hot reload page
+  # gem "hotwire-spark"
+
+  # N+1 Query
+  # gem "bullet"
+
 end
 
 group :development do
