@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   # resources :world_tags, only: [ :create, :destroy ]
 
   # Bookings routes
-  # resources :bookings, only: [ :index, :show, :update, :destroy ]
+  resources :bookings #, only: [ :index, :show, :update, :destroy ]
 
   # Reviews routes (for global access or management)
   # resources :reviews, only: [ :index, :show, :destroy ]

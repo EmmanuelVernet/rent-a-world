@@ -1,0 +1,16 @@
+<div class="md:container md:mx-auto">
+  <% @bookings.each do |booking| %>
+    <div id="rentee-information" class="py-3">
+      <h1><strong>Rentee information</strong></h1>
+      <%= booking.user.first_name %>
+      <%= booking.user.last_name %>
+    </div>
+    <div id="world-information" class="py-3">
+      <h1><strong>World information</strong></h1>
+      <%= booking.world.title %>
+      <%= booking.world.category %>
+      <%= booking.world.description %>
+      <%= booking.world.place%>
+    </div>
+  <% end %>
+</div>

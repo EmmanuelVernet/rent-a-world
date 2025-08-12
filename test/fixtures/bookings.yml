@@ -2,14 +2,14 @@
 
 one:
   user_id: one
-  wold_id: one
+  world_id: one
   status: MyString
   start_date: 2024-12-29
   end_date: 2024-12-29
 
 two:
   user_id: two
-  wold_id: two
+  world_id: two
   status: MyString
   start_date: 2024-12-29
   end_date: 2024-12-29
