@@ -422,6 +422,15 @@ puts "#{worlds.sum { |world| world.amenities.count }} amenities assigned to worl
 
 # puts "creating bookings..."
 
+# Example
+# Booking.new(
+# rent-a-world(dev)*   user_id: 7,
+# rent-a-world(dev)*   world_id: 21,
+# rent-a-world(dev)*   status: "pending",
+# rent-a-world(dev)*   start_date: Date.new(2025, 6, 1),
+# rent-a-world(dev)*   end_date: Date.new(2025, 12, 1)
+# rent-a-world(dev)> )
+
 # Add some random bookings for users in random worlds
 # users = User.all
 # worlds = World.all
