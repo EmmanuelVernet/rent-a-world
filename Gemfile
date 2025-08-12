@@ -55,22 +55,24 @@ gem "faker"
 # PG Search for search
 gem "pg_search"
 
-# LSP Gems
-# gem "sorbet", group: :development
-# gem "sorbet-runtime"
-# gem "tapioca", require: false, group: [ :development, :test ]
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
-
+  
   gem "dotenv-rails"
-
+  
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
-
+  
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  
+  # LSP Gems
+  gem "ruby-lsp"
+  # ge\m "sorbet", group: :development
+  # gem "sorbet-runtime"
+  # gem "tapioca", require: false, group: [ :development, :test ]
 end
 
 group :development do
