@@ -7,5 +7,5 @@ class User < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
-  enum :role, %i[rentee renter admin]
+  enum :role, %i[rentee renter admin] # allows for current_user.admin?
 end
