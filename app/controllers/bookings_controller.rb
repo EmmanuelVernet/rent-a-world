@@ -22,6 +22,7 @@ class BookingsController < ApplicationController
     @world.user = current_user
     @booking = Booking.new
     @capacity = @world.capacity
+    # @booking_days = params[:end_date].to_date-params[:start_date].to_date
     # raise
     # @total_price = @world.price * @capacity * @booking_days
   end
