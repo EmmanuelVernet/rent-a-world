@@ -21,6 +21,9 @@ class BookingsController < ApplicationController
     # end
     @world.user = current_user
     @booking = Booking.new
+    @capacity = @world.capacity
+    # raise
+    # @total_price = @world.price * @capacity * @booking_days
   end
 
   def create
