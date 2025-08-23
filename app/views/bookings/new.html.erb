@@ -35,26 +35,33 @@
       <% end %>
     </div>
 
-    <button type="button" popovertarget="cally-popover" 
-            class="input input-border" 
-            id="cally-trigger" 
-            style="anchor-name:--cally-trigger">
-      <%= @booking.start_date || "Pick a date" %>
-    </button>
-
-    <div popover id="cally-popover" class="dropdown bg-base-100 rounded-box shadow-lg" style="position-anchor:--cally-trigger">
-      <calendar-range range class="cally bg-base-100 border border-base-300 shadow-lg rounded-box" onchange="document.getElementById('cally-trigger').innerText = this.value">
-        <svg aria-label="Previous" class="fill-current size-4" slot="previous" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M15.75 19.5 8.25 12l7.5-7.5"></path>
-        </svg>
-        <svg aria-label="Next" class="fill-current size-4" slot="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
-        </svg>
-        <calendar-month></calendar-month>
-      </calendar-range>
+    <div>
+      Pick your booking days
     </div>
+    <div data-controller="booking-price">
+      <button type="button" popovertarget="cally-popover" 
+              class="input input-border" 
+              id="cally-trigger" 
+              style="anchor-name:--cally-trigger">
 
-    <div id="booking-price" data-controller="booking-price">
+        <%= @booking.start_date || "Select dates" %>
+      </button>
+
+      <div popover id="cally-popover" class="dropdown bg-base-100 rounded-box shadow-lg" style="position-anchor:--cally-trigger">
+        <calendar-range range class="cally bg-base-100 border border-base-300 shadow-lg rounded-box" onchange="document.getElementById('cally-trigger').innerText = this.value" data-action="change->booking-price#bookingDates">
+        <input type="hidden" name="start_date" data-booking-price-target="startDate">
+        <input type="hidden" name="end_date" data-booking-price-target="endDate">
+          <svg aria-label="Previous" class="fill-current size-4" slot="previous" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M15.75 19.5 8.25 12l7.5-7.5"></path>
+          </svg>
+          <svg aria-label="Next" class="fill-current size-4" slot="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
+          </svg>
+          <calendar-month></calendar-month>
+        </calendar-range>
+      </div>
+    </div>
+    <div id="booking-price">
       TEST
     </div>
 
