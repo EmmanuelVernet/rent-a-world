@@ -4,7 +4,8 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["startDate", "endDate", "bookingPrice"]
   static values = {
-    price: Number
+    price: Number,
+    capacity: Number
   }
 
   connect() {
@@ -24,7 +25,7 @@ export default class extends Controller {
     const start = new Date(startDate)
     const end = new Date(endDate)
     const bookingNights = (end - start) / (1000 * 60 * 60 * 24) // milliseconds timedelta conversion
-    const bookingPrice = bookingNights * this.priceValue
+    const bookingPrice = bookingNights * this.priceValue * this.capacityValue
     this.bookingPriceTarget.innerText = `Booking price for ${bookingNights} nights → ${bookingPrice} €`
   }
 }
