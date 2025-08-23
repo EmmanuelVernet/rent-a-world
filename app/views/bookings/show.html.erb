@@ -1,0 +1,28 @@
+<div class="md:container md:mx-auto">
+    <div id="rentee-information" class="py-3">
+      <h1><strong>Rentee information</strong></h1>
+      <%= @booking.user.first_name %>
+      <%= @booking.user.last_name %>
+    </div>
+    <div id="renter-information" class="py-3">
+      <h1><strong>Renter information</strong></h1>
+      <%= @world.user.first_name %>
+      <%= @world.user.last_name %>
+    </div>
+    <div id="world-information" class="py-3">
+      <h1><strong>World information</strong></h1>
+      <%= @booking.world.title %>
+      <%= @booking.world.category %>
+      <%= @booking.world.description %>
+      <%= @booking.world.place%>
+    </div>
+    <div id="booking-information" class="py-3">
+      <h1><strong>Your booking information</strong></h1>
+      <div class="grid grid-cols-2 gap-4">
+        <div>Total price <%= @booking.total_price %></div>
+        <div>Capacity <%= @booking.world.capacity %></div>
+        <div>Beginning of your journey <%= @booking.start_date %></div>
+        <div>End of your adventure <%= @booking.end_date %></div>
+      </div>
+    </div>
+</div>
