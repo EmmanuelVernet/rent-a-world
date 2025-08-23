@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_world
+  before_action :set_world, only: [:new, :create]
   # before_action :set_booking, only: [ :index, :show, :edit, :update, :accept, :decline ]
 
   # TODO: Create seperate namespaced controller for handling bookings like Admin::BookingsController, BookingsController handles both renter & rentee + adapt routes?
@@ -14,26 +14,35 @@ class BookingsController < ApplicationController
   end
 
   def new
-    # if current_user.admin?
-    #   @booking = Booking.new
-    # else
-    #   @booking = @world.bookings.new
-    # end
-    @world.user = current_user
+    @owner = @world.user
+    # raise
     @booking = Booking.new
     @capacity = @world.capacity
     @world_price = @world.price
     # @booking_days = params[:end_date].to_date-params[:start_date].to_date
-    # raise
     # @total_price = @world.price * @capacity * @booking_days
   end
 
   def create
-    @booking.user = current_user
+    @booking = Booking.new(booking_params)
+    @booking.user = current_user # assign booking to current user
+    @booking.world = @world
+    @booking.status ||= "pending"
+
+    # Calculate total price
+    if @booking.start_date && @booking.end_date
+      nights = (@booking.end_date - @booking.start_date).to_i
+      @booking.total_price = nights * @world.price * @world.capacity
+    end
+
     if @booking.save
-      redirect_to world_booking_path(@booking)
+      redirect_to world_booking_path(@world, @booking), notice: "Booking created!"
     else
-      redirect_to booking_path(@booking), status: :unprocessable_entity
+      # make values available again for view
+      @owner = @world.user
+      @capacity = @world.capacity
+      @world_price = @world.price
+      render :new, status: :unprocessable_entity
     end
   end
 
