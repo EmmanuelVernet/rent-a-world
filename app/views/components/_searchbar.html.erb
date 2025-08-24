@@ -1,0 +1,9 @@
+<div>
+<%= form_with url: worlds_path, method: :get, html: { class: ''} do |f| %>
+    <%= f.text_field :query,
+                     class: "input input-bordered w-24 md:w-auto",
+                     placeholder: 'Type a world title',
+                     value: params[:query]
+                    %>
+  <% end %>
+</div>
