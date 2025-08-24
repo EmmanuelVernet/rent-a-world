@@ -19,4 +19,17 @@ class World < ApplicationRecord
   validates :description, presence: true
   validates :capacity, numericality: { only_integer: true, greater_than: 0 }
   validates :latitude, :longitude, numericality: true, allow_nil: true
+
+  # PG SEARCH
+  include PgSearch::Model
+
+  pg_search_scope :search_by_fields,
+    against: [:title, :category, :place, :price, :capacity],
+    using: { tsearch: { prefix: true } }
+    
+  # TODO: next search iteration: add a global search controller instead with multisearchable
+  multisearchable against: [:title, :category, :place, :price, :capacity],
+   using: {
+      tsearch: { prefix: true } # prefix: true = partial matches
+    }
 end

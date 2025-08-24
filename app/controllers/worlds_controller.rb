@@ -3,8 +3,15 @@ class WorldsController < ApplicationController
   before_action :set_world, only: [ :show, :edit, :update, :destroy ] # only allow for resources using params[:id]
 
   def index
-    @worlds = World.all # TO DO: add later filtering for indexing all worlds for optimization to avoid N+1 queries
     @tags = Tag.all
+
+    # World search querying
+    if params[:query].present?
+      # search_by_fields method in World model
+      @worlds = World.search_by_fields(params[:query])
+    else
+      @worlds = World.all # TO DO: add later filtering for indexing all worlds for optimization to avoid N+1 queries
+    end
   end
 
   def new
