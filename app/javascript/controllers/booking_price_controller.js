@@ -17,7 +17,7 @@ export default class extends Controller {
     })
   }
     
-  bookingDates(event) {
+  bookingDates(event) { // change event
     const [startDate, endDate] = event.currentTarget.value.split("/")
     this.startDateTarget.value = startDate
     this.endDateTarget.value = endDate
@@ -26,6 +26,7 @@ export default class extends Controller {
     const end = new Date(endDate)
     const bookingNights = (end - start) / (1000 * 60 * 60 * 24) // milliseconds timedelta conversion
     const bookingPrice = bookingNights * this.priceValue * this.capacityValue
-    this.bookingPriceTarget.innerText = `Booking price for ${bookingNights} nights → ${bookingPrice} €`
+    this.bookingPriceTarget.innerText = `Booking price for a party of 
+    ${this.capacityValue} for ${bookingNights} nights → ${bookingPrice} €`
   }
 }
