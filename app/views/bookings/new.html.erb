@@ -29,6 +29,7 @@
       Pick your booking days
     </div>
     <div data-controller="booking-price" data-booking-price-price-value="<%= @world_price %>" data-booking-price-capacity-value="<%= @capacity %>">
+    <%# hidden fields to pass params to POST %>
     <%= form.hidden_field :start_date, data: { booking_price_target: "startDate" } %>
     <%= form.hidden_field :end_date, data: { booking_price_target: "endDate" } %>
       <button type="button" popovertarget="cally-popover" 
