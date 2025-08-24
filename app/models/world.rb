@@ -25,6 +25,9 @@ class World < ApplicationRecord
 
   pg_search_scope :search_by_fields,
     against: [:title, :category, :place, :price, :capacity],
+    associated_against: {
+      tags: [:name] # include tags from model association
+    },
     using: { tsearch: { prefix: true } }
     
   # TODO: next search iteration: add a global search controller instead with multisearchable

@@ -420,6 +420,22 @@ end
 
 puts "#{worlds.sum { |world| world.amenities.count }} amenities assigned to worlds!"
 
+puts "assigning tags to worlds..."
+
+worlds = World.all
+tags = Tag.all
+
+# Assign random tags (between 1 to 5 tags) to each world
+worlds.each do |world|
+  random_tags = tags.sample(rand(2..3)) # Randomly pick tags
+  random_tags.each do |tag|
+    # join table for tags and worlds
+    world.tags << tag unless world.tags.include?(tag)
+  end
+end
+
+puts "#{worlds.sum { |world| world.tags.count }} tags assigned to worlds!"
+
 # puts "creating bookings..."
 
 # Example
