@@ -1,0 +1,123 @@
+/* Gradient Definitions */
+.mystic-forest {
+  background: linear-gradient(
+    135deg,
+    #1a4b3a 0%,
+    #2d5a4f 25%,
+    #4a7c59 50%,
+    #6b9b37 75%,
+    #8bc34a 100%
+  );
+}
+
+.dragon-fire {
+  background: linear-gradient(
+    135deg,
+    #1a0000 0%,
+    #4a0e0e 20%,
+    #8b1538 40%,
+    #d2691e 60%,
+    #ffa500 80%,
+    #ffff00 100%
+  );
+}
+
+.celestial-magic {
+  background: linear-gradient(
+    135deg,
+    #0f0f23 0%,
+    #1a1a3a 25%,
+    #2e2e5e 50%,
+    #4169e1 75%,
+    #9370db 90%,
+    #dda0dd 100%
+  );
+}
+
+.enchanted-twilight {
+  background: linear-gradient(
+    135deg,
+    #2c1810 0%,
+    #4a2c2a 30%,
+    #6a4c93 60%,
+    #9b59b6 85%,
+    #f39c12 100%
+  );
+}
+
+.arctic-crystal {
+  background: linear-gradient(
+    135deg,
+    #0f2027 0%,
+    #203a43 25%,
+    #2c5364 50%,
+    #4facfe 75%,
+    #00f2fe 100%
+  );
+}
+
+.shadow-realm {
+  background: linear-gradient(
+    135deg,
+    #0c0c0c 0%,
+    #1a1a1a 20%,
+    #2d1b69 40%,
+    #11998e 70%,
+    #38ef7d 100%
+  );
+}
+
+.ember-glow {
+  background: radial-gradient(
+    ellipse at center,
+    #ff6b35 0%,
+    #d2691e 30%,
+    #8b0000 60%,
+    #2f1b14 100%
+  );
+}
+
+.ocean-depths {
+  background: linear-gradient(135deg, #020024 0%, #090979 35%, #00d4aa 100%);
+}
+
+/* Dark Gradient Definitions */
+.shadow-depths {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+}
+
+.midnight-purple {
+  background: linear-gradient(135deg, #0d0b14 0%, #1a0d26 100%);
+}
+
+.blood-moon {
+  background: linear-gradient(135deg, #1a0a0a 0%, #2d0f0f 100%);
+}
+
+.dark-forest {
+  background: linear-gradient(135deg, #0f1a0f 0%, #1a2b1a 100%);
+}
+
+.void-blue {
+  background: linear-gradient(135deg, #0a0a1a 0%, #0f1533 100%);
+}
+
+.charcoal-mist {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.ember-shadow {
+  background: linear-gradient(135deg, #1a0f0a 0%, #331a0a 100%);
+}
+
+.deep-ocean {
+  background: linear-gradient(135deg, #0a1a1a 0%, #0f2626 100%);
+}
+
+.phantom-grey {
+  background: linear-gradient(135deg, #0d0d0d 0%, #262626 100%);
+}
+
+.cursed-violet {
+  background: linear-gradient(135deg, #0f0a1a 0%, #1f1533 100%);
+}
