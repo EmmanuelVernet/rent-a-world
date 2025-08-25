@@ -5,7 +5,7 @@ class WorldsController < ApplicationController
   def index
     @tags = Tag.all
 
-    # World search querying
+    # World pg_search querying
     if params[:query].present?
       # search_by_fields method in World model
       @worlds = World.search_by_fields(params[:query])
