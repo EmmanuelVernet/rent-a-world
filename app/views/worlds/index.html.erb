@@ -3,6 +3,8 @@
     <%= render "worlds/world_tags" %>
   </div>
   <div class= "container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 pt-5 pb-20">
-    <%= render "worlds/world_card" %>
+    <% @worlds.each do |world| %>
+      <%= render "worlds/world_card", world: world %>
+    <% end %>
   </div>
 </div>
