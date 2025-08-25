@@ -1,9 +1,6 @@
 <div class= "container mx-auto px-4">
   <div class="flex flex-wrap justify-center gap-2 pt-5">
-    <% @tags.each do |tag|  %>
-      <%# TO DO: wrap them into search button with PG search %>
-      <span class="badge badge-outline badge-info"><%= tag.name %></span>
-    <% end %>
+    <%= render "worlds/world_tags" %>
   </div>
   <div class= "container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 pt-5 pb-20">
     <% @worlds.each do |world| %>
