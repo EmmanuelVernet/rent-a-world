@@ -1,11 +1,15 @@
-<% @bookings.each do |booking| %>
+<% @my_requests.each do |request| %>
   <div class="divider"></div>
     <div class="card bg-neutral text-neutral-content w-96">
     <div class="card-body items-center text-center">
-      <h2 class="card-title">Cookies!</h2>
-      <p>We are using cookies for no reason.</p>
+      <h2 class="card-title">Booking #<%= request.id %></h2>
+      <p>World: <%= request.world.title %></p>
+      <p>Renter: <%= request.user.full_name %></p>
+      <p>Owner: <%= request.world.user.full_name %></p>
+      <p>Reservation dates: from <%= request.start_date %> to <%= request.end_date %></p>
+      <p>Price: <%= request.total_price %></p>
       <div class="card-actions justify-end">
-        <button class="badge badge-primary">Status: <%= booking.status %></button>
+        Status: <button class="badge badge-primary"><%= request.status %></button>
       </div>
     </div>
   </div>

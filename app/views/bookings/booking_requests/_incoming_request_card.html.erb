@@ -1,11 +1,17 @@
-<div class="divider"></div>
-  <div class="card bg-neutral text-neutral-content w-96">
-  <div class="card-body items-center text-center">
-    <h2 class="card-title">Cookies!</h2>
-    <p>We are using cookies for no reason.</p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary">Accept</button>
-      <button class="btn btn-ghost">Deny</button>
+<% if @incoming_requests.empty? %>
+  Currently no reservations for your listed worlds
+<% else %>
+  <% @incoming_requests.each do |request| %>
+    <div class="divider"></div>
+      <div class="card bg-neutral text-neutral-content w-96">
+      <div class="card-body items-center text-center">
+        <h2 class="card-title">Cookies!</h2>
+        <p>We are using cookies for no reason.</p>
+        <div class="card-actions justify-end">
+          <%= button_to "Accept", accept_booking_path, class: "btn btn-primary" %>
+          <%= button_to "Decline", decline_booking_path, class: "btn btn-ghost" %>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  <% end %>
+<% end %>
