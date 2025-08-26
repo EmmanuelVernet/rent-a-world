@@ -37,7 +37,12 @@ Rails.application.routes.draw do
   # resources :world_tags, only: [ :create, :destroy ]
 
   # Bookings routes
-  resources :bookings #, only: [ :index, :show, :update, :destroy ] # for rentee’s list & admin CRUD
+  resources :bookings do #, only: [ :index, :show, :update, :destroy ] # for rentee’s list & admin CRUD
+    member do
+      patch :accept
+      patch :decline
+    end
+  end
 
   # Reviews routes (for global access or management)
   # resources :reviews, only: [ :index, :show, :destroy ]

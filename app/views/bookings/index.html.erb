@@ -1,4 +1,9 @@
 <div class="md:container md:mx-auto">
+  <% if current_user.admin? %>
+    <h1><strong>All app bookings</strong></h1>
+  <% else %>
+    <h1>My Booking requests</h1>
+  <% end %>
   <% @bookings.each do |booking| %>
     <div id="rentee-information" class="py-3">
       <h1><strong>Rentee information</strong></h1>
@@ -13,4 +18,15 @@
       <%= booking.world.place%>
     </div>
   <% end %>
+  <div class="divider"></div>
+  <div class="card bg-neutral text-neutral-content w-96">
+  <div class="card-body items-center text-center">
+    <h2 class="card-title">Cookies!</h2>
+    <p>We are using cookies for no reason.</p>
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary">Accept</button>
+      <button class="btn btn-ghost">Deny</button>
+    </div>
+  </div>
+</div>
 </div>
