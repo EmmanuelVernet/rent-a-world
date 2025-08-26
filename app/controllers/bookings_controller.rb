@@ -12,10 +12,10 @@ class BookingsController < ApplicationController
 
     # 2. Bookings requested as a guest
     @my_requests = current_user.bookings.includes(:world)
-
-    # 3. Admin vs normal user
+# raise
+    # 3. Admin vs normal user: list all booking types
     @bookings = if current_user.admin?
-      Booking.all
+      Booking.all.order(created_at: :desc)
     else
       current_user.bookings.order(created_at: :desc)
     end

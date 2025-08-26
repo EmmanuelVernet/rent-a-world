@@ -8,4 +8,9 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
 
   enum :role, %i[rentee renter admin] # allows for current_user.admin?
+
+  # Model methods
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
