@@ -6,10 +6,18 @@ class BookingsController < ApplicationController
   # TODO: Create seperate namespaced controller for handling bookings like Admin::BookingsController, BookingsController handles both renter & rentee + adapt routes?
 
   def index
-    if current_user.admin?
-      @bookings = Booking.all
+    # 1. Worlds owned with incoming booking requests
+    @incoming_requests = Booking.joins(:world).where(worlds: { user_id: current_user.id }, status: "pending")
+    # joins Model where (table name) => singular then plural
+
+    # 2. Bookings requested as a guest
+    @my_requests = current_user.bookings.includes(:world)
+
+    # 3. Admin vs normal user
+    @bookings = if current_user.admin?
+      Booking.all
     else
-      @bookings = current_user.bookings.order(created_at: :desc).all
+      current_user.bookings.order(created_at: :desc)
     end
   end
 

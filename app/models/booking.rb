@@ -6,7 +6,7 @@ class Booking < ApplicationRecord
   validates :start_date, presence: true
   validates :end_date, presence: true
 
-  # Accept & Decline booking
+  # Accept & Decline booking => updates Booking.id DB status
   def accept!
     update!(status: "confirmed") 
   end
