@@ -12,7 +12,7 @@ class BookingsController < ApplicationController
 
     # 2. Bookings requested as a guest
     @my_requests = current_user.bookings.includes(:world)
-# raise
+
     # 3. Admin vs normal user: list all booking types
     @bookings = if current_user.admin?
       Booking.all.order(created_at: :desc)
@@ -54,7 +54,8 @@ class BookingsController < ApplicationController
     end
   end
 
-  def show    
+  def show
+    @world = @booking.world
   end
 
   def edit
@@ -87,6 +88,6 @@ class BookingsController < ApplicationController
   end
 
   def set_world
-    @world = World.find(params[:world_id])
+    @world = World.find(params[:world_id]) if params[:world_id]
   end
 end
