@@ -1,10 +1,10 @@
 <div class="divider"></div>
-<% if @my_requests.empty? %>
-  You have no ongoing reservations
+<% if @all_requests.empty? %>
+  No bookings available
 <% else %>
-  <% @my_requests.each do |request| %>
-    <%= link_to booking_path(request.id) do %>
-        <div class="card bg-neutral text-neutral-content w-96">
+  <% @all_requests.each do |request| %>
+    <div class="card bg-neutral text-neutral-content w-96">
+      <%= link_to booking_path(request.id) do %>
         <div class="card-body items-center text-center">
           <h2 class="card-title">Booking #<%= request.id %></h2>
           <p>World: <%= request.world.title %></p>

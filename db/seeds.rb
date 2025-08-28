@@ -1,25 +1,3 @@
-# create_table "bookings", force: :cascade do |t|
-#   t.bigint "user_id", null: false
-#   t.bigint "world_id", null: false
-#   t.string "status"
-#   t.date "start_date"
-#   t.date "end_date"
-#   t.datetime "created_at", null: false
-#   t.datetime "updated_at", null: false
-#   t.index ["user_id"], name: "index_bookings_on_user_id"
-#   t.index ["world_id"], name: "index_bookings_on_world_id"
-# end
-
-# create_table "reviews", force: :cascade do |t|
-#   t.bigint "user_id", null: false
-#   t.bigint "world_id", null: false
-#   t.text "comment"
-#   t.integer "stars", default: 0
-#   t.datetime "created_at", null: false
-#   t.datetime "updated_at", null: false
-#   t.index ["user_id"], name: "index_reviews_on_user_id"
-#   t.index ["world_id"], name: "index_reviews_on_world_id"
-# end
 puts "destroying seeded data"
 Tag.destroy_all
 Activity.destroy_all

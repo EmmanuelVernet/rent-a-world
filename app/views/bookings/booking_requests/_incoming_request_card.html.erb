@@ -1,15 +1,20 @@
+<div class="divider"></div>
 <% if @incoming_requests.empty? %>
   Currently no reservations for your listed worlds
 <% else %>
   <% @incoming_requests.each do |request| %>
-    <div class="divider"></div>
       <div class="card bg-neutral text-neutral-content w-96">
       <div class="card-body items-center text-center">
-        <h2 class="card-title">Cookies!</h2>
-        <p>We are using cookies for no reason.</p>
+        <h2 class="card-title">Booking #<%= request.id %></h2>
+        <p>World: <%= request.world.title %></p>
+        <p>Renter: <%= request.user.full_name %></p>
+        <p>Owner: <%= request.world.user.full_name %></p>
+        <p>Reservation dates: from <%= request.start_date.strftime("%d/%m/%Y") %> to <%= request.end_date.strftime("%d/%m/%Y") %></p>
+        <p>Price: <%= request.total_price %> €</p>
+        <p>Status: <button class="badge badge-primary"><%= request.status %></button></p>
         <div class="card-actions justify-end">
-          <%= button_to "Accept", accept_booking_path, class: "btn btn-primary" %>
-          <%= button_to "Decline", decline_booking_path, class: "btn btn-ghost" %>
+          <%= button_to "Accept", accept_booking_path(request.id), class: "btn btn-primary" %>
+          <%= button_to "Decline", decline_booking_path(request), class: "btn btn-ghost" %>
         </div>
       </div>
     </div>
