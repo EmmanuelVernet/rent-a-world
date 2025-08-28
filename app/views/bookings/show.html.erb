@@ -1,81 +1,87 @@
-<div class="mt-4 mb-3 max-h-[80vh] overflow-y-auto">
+<div class="mt-4 mb-3 max-h-[84vh] overflow-y-auto">
   <div class="md:container md:mx-auto pb-4 max-w-2xl px-4">
-    <figure class="mb-6">
-      <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-            alt="Destination"
-            class="w-full h-64 object-cover rounded-lg" />
-    </figure>
-    <div id="world-information" class="mb-8">
-      <div class="flex items-start justify-between mb-4">
-        <h1 class="text-3xl font-bold text-gray-900">
-          <%= @booking.world.title %>
-        </h1>
-        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
-          <%= @booking.world.category %>
-        </span>
-      </div>
-      <p class="text-gray-600 text-lg mb-4">
-        <%= @booking.world.description %>
-      </p>
-      <div class="flex items-center text-blue-600 mb-4">
-        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"></circle>
-          <path d="m12,17v-5.5c0-.276-.224-.5-.5-.5h-1.5" fill="none" stroke="currentColor" stroke-width="2"></path>
-          <circle cx="12" cy="7.25" r="1.25" fill="currentColor"></circle>
-        </svg>
-        <%= @booking.world.place %>
-      </div>
-      <div class="flex flex-wrap gap-2">
-        <% @booking.world.tags.each do |tag| %>
-          <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-            <%= tag.name %>
+    <div id="show-card">
+      <figure class="mb-6">
+        <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+              alt="Destination"
+              class="w-full h-64 object-cover rounded-lg" />
+      </figure>
+      <div id="world-information" class="mb-8">
+        <div class="flex items-start justify-between mb-4">
+          <h1 class="text-3xl font-bold text-gray-900">
+            <%= @booking.world.title %>
+          </h1>
+          <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
+            <%= @booking.world.category %>
           </span>
-        <% end %>
-      </div>
-    </div>
-    <hr class="my-8 border-gray-200">
-    <div class="space-y-6">
-      <div id="rentee-information">
-        <h2 class="text-xl font-semibold text-gray-900 mb-2">Guest</h2>
-        <p class="text-gray-700">
-          <%= @booking.user.first_name %> <%= @booking.user.last_name %>
+        </div>
+        <p class="text-gray-600 text-lg mb-4">
+          <%= @booking.world.description %>
         </p>
+        <div class="flex items-center text-blue-600 mb-4">
+          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"></circle>
+            <path d="m12,17v-5.5c0-.276-.224-.5-.5-.5h-1.5" fill="none" stroke="currentColor" stroke-width="2"></path>
+            <circle cx="12" cy="7.25" r="1.25" fill="currentColor"></circle>
+          </svg>
+          <%= @booking.world.place %>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <% @booking.world.tags.each do |tag| %>
+            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+              <%= tag.name %>
+            </span>
+          <% end %>
+        </div>
       </div>
-      <div id="renter-information">
-        <h2 class="text-xl font-semibold text-gray-900 mb-2">Host</h2>
-        <p class="text-gray-700">
-          <%= @world.user.first_name %> <%= @world.user.last_name %>
-        </p>
-      </div>
-      <div id="booking-information">
-        <h2 class="text-xl font-semibold text-gray-900 mb-4">Booking Details</h2>
-        <div class="grid grid-cols-2 gap-6">
-          <div>
-            <span class="text-gray-500 text-sm">Total Price</span>
-            <div class="text-2xl font-bold text-gray-900">
-              $<%= @booking.total_price %>
+      <div class="divider"></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-5 pt-5 space-y-6">
+        <div id="rentee-information">
+          <h2 class="text-xl font-semibold text-gray-900 mb-2">Guest</h2>
+          <p class="text-gray-700">
+            <%= @booking.user.first_name %> <%= @booking.user.last_name %>
+          </p>
+        </div>
+        <div id="renter-information">
+          <h2 class="text-xl font-semibold text-gray-900 mb-2">Host</h2>
+          <p class="text-gray-700">
+            <%= @world.user.first_name %> <%= @world.user.last_name %>
+          </p>
+        </div>
+        <div id="booking-information">
+          <h2 class="text-xl font-semibold text-gray-900 mb-4">Booking Details</h2>
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <span class="text-gray-500 text-sm">Total Price</span>
+              <div class="text-2xl font-bold text-gray-900">
+                $<%= @booking.total_price %>
+              </div>
             </div>
-          </div>
-          <div>
-            <span class="text-gray-500 text-sm">Capacity</span>
-            <div class="text-2xl font-bold text-gray-900">
-              <%= @booking.world.capacity %> guests
+            <div>
+              <span class="text-gray-500 text-sm">Capacity</span>
+              <div class="text-2xl font-bold text-gray-900">
+                <%= @booking.world.capacity %> guests
+              </div>
             </div>
-          </div>
-          <div>
-            <span class="text-gray-500 text-sm">Check-in</span>
-            <div class="text-lg font-semibold text-gray-900">
-              <%= @booking.start_date %>
+            <div>
+              <span class="text-gray-500 text-sm">Check-in</span>
+              <div class="text-lg font-semibold text-gray-900">
+                <%= @booking.start_date %>
+              </div>
             </div>
-          </div>
-          <div>
-            <span class="text-gray-500 text-sm">Check-out</span>
-            <div class="text-lg font-semibold text-gray-900">
-              <%= @booking.end_date %>
+            <div>
+              <span class="text-gray-500 text-sm">Check-out</span>
+              <div class="text-lg font-semibold text-gray-900">
+                <%= @booking.end_date %>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="divider"></div>
+    <div>
+      <%= link_to " Back to Bookings", bookings_path, class:"btn btn-primary w-full" %>
     </div>
   </div>
 </div>
