@@ -68,12 +68,12 @@ class BookingsController < ApplicationController
   end
 
   def accept
-    booking.accept! # method in model
+    @booking.accept! # method in model
     redirect_to booking_path(@booking), notice: "Booking confirmed."
   end
 
   def decline
-    booking.decline!
+    @booking.decline!
     redirect_to bookings_path, notice: "Booking declined."
   end
 
