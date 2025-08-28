@@ -13,12 +13,16 @@ class BookingsController < ApplicationController
     # 2. Bookings requested as a guest
     @my_requests = current_user.bookings.includes(:world)
 
-    # 3. Admin vs normal user: list all booking types
+    # 3. All relevant bookings (as renter OR rentee)
+    @all_requests = Booking.joins(:world).where("worlds.user_id = :id OR bookings.user_id = :id", id: current_user.id)
+
+    # 4. Admin vs normal user: list all booking types
     @bookings = if current_user.admin?
       Booking.all.order(created_at: :desc)
     else
       current_user.bookings.order(created_at: :desc)
     end
+    
   end
 
   def new
