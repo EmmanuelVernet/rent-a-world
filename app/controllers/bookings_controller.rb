@@ -22,7 +22,6 @@ class BookingsController < ApplicationController
     else
       current_user.bookings.order(created_at: :desc)
     end
-    
   end
 
   def new
