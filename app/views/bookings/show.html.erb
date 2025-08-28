@@ -77,6 +77,25 @@
             </div>
           </div>
         </div>
+        <div id="map-information">
+          <h2 class="text-xl font-semibold text-gray-900 mb-2">Map</h2>
+          <p class="text-gray-700">
+            MAP PLACEHOLDER
+          </p>
+        </div>
+        <div id="amenities-information">
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">Amenities</h3>
+          <ul>
+            <% @booking.world.amenities.each do |amenity| %>
+              <li class="text-lg text-gray-700"><%= amenity.name %></li>
+              <% if amenity.description.present? %>
+                <li class="text-sm text-gray-500 italic"><%= amenity.description %></li>
+              <% else %>
+                <li>No Amenities available</li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="divider"></div>
