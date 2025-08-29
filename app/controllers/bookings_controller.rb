@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_world, only: [:show, :new, :create]
-  before_action :set_booking, only: [:show, :accept, :decline]
+  before_action :set_booking, only: [:show, :edit, :accept, :decline]
 
   # TODO: Create seperate namespaced controller for handling bookings like Admin::BookingsController, BookingsController handles both renter & rentee + adapt routes?
 
@@ -62,6 +62,8 @@ class BookingsController < ApplicationController
   end
 
   def edit
+    @world = @booking.world
+    @owner = @booking.world.user
   end
 
   def update
