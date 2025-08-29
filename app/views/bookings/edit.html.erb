@@ -1,0 +1,68 @@
+<div class="pt-4 pb-32">
+  <%= form_with(model: [@world, @booking], local: true,  class: "space-y-4 p-6 bg-white shadow-lg rounded-lg max-w-lg mx-auto") do |form| %>
+    <h1>Book <%= @world.title %></h1>
+    <% if @booking.errors.any? %>
+      <div class="alert alert-error">
+        <ul>
+          <% @booking.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div id="world-owner">
+      <h1>World owner</h1>
+      <%= @owner.first_name %> <%= @owner.last_name %>
+    </div>
+
+    <div id="world-availability">
+      <h1>Availability</h1>
+      <% if @booking.status %>
+        <%= @booking.status %>
+      <% else %>
+        Pending
+      <% end %>
+    </div>
+
+    <div>
+      Pick your booking days
+    </div>
+    <div data-controller="booking-price" data-booking-price-price-value="<%= @world_price %>" data-booking-price-capacity-value="<%= @capacity %>">
+    <%# hidden fields to pass params to POST %>
+    <%= form.hidden_field :start_date, data: { booking_price_target: "startDate" } %>
+    <%= form.hidden_field :end_date, data: { booking_price_target: "endDate" } %>
+      <button type="button" popovertarget="cally-popover" 
+              class="input input-border" 
+              id="cally-trigger" 
+              style="anchor-name:--cally-trigger">
+
+        <%= @booking.start_date || "Select dates" %>
+      </button>
+
+      <div popover id="cally-popover" class="dropdown bg-base-100 rounded-box shadow-lg" style="position-anchor:--cally-trigger">
+        <calendar-range range class="cally bg-base-100 border border-base-300 shadow-lg rounded-box" onchange="document.getElementById('cally-trigger').innerText = this.value" data-action="change->booking-price#bookingDates">
+        <%# <input type="hidden" name="start_date" data-booking-price-target="startDate">
+        <input type="hidden" name="end_date" data-booking-price-target="endDate"> %>
+          <svg aria-label="Previous" class="fill-current size-4" slot="previous" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M15.75 19.5 8.25 12l7.5-7.5"></path>
+          </svg>
+          <svg aria-label="Next" class="fill-current size-4" slot="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
+          </svg>
+          <calendar-month></calendar-month>
+        </calendar-range>
+      </div>
+      <div id="booking-price" 
+          data-booking-price-target="bookingPrice" 
+          class="mt-5 text-lg font-semibold text-gray-900 bg-gray-100 p-4 rounded-lg shadow-sm text-center">
+          Booking price for
+      </div>
+    </div>
+
+    <fieldset class="fieldset relative">
+      <%= form.submit "Secure booking", class: "btn btn-primary w-full" %>
+      <span class="loading loading-spinner absolute inset-y-0 left-20 m-auto" id="form-spinner"></span>
+    </fieldset>
+  <% end %>
+</div>
