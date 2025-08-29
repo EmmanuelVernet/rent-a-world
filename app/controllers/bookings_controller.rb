@@ -62,14 +62,20 @@ class BookingsController < ApplicationController
   end
 
   def edit
-    @world = @booking.world
-    @owner = @booking.world.user
+    if @booking.user == current_user
+      @world = @booking.world
+      @owner = @booking.world.user
+    else
+      redirect_to booking_path(@booking), notice: "Only the guest can edit the booking request"
+    end
   end
 
   def update
+    raise
     if @booking.update(booking_params)
       redirect_to booking_path(@booking), notice: "Booking updated!"
     else
+      flash.now[:alert] = "Your booking couldn't be updated"
       render :edit, status: :unprocessable_entity
     end
   end
