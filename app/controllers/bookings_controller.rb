@@ -75,6 +75,11 @@ class BookingsController < ApplicationController
   end
 
   def destroy
+    if @booking.destroy
+      redirect_to bookings_path, notice: "Booking destroyed!"
+    else
+      redirect_to booking_path(@booking), notice: "Booking can't be deleted!"
+    end
   end
 
   def accept
