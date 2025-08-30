@@ -39,12 +39,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user # assign booking to current user
     @booking.world = @world
     @booking.status ||= "pending"
-
-    # Calculate total price
-    if @booking.start_date && @booking.end_date
-      nights = (@booking.end_date - @booking.start_date).to_i
-      @booking.total_price = nights * @world.price * @world.capacity
-    end
+    # Total price calculated in model
 
     if @booking.save
       redirect_to world_booking_path(@world, @booking), notice: "Booking created!"
@@ -74,6 +69,7 @@ class BookingsController < ApplicationController
 
   def update
     if @booking.update(booking_params)
+      # new total price calculated in model
       redirect_to booking_path(@booking), notice: "Booking updated!"
     else
       flash.now[:alert] = "Your booking couldn't be updated"
