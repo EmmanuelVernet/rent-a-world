@@ -62,5 +62,6 @@
       <%= form.submit "Update booking", class: "btn btn-primary w-full" %>
       <span class="loading loading-spinner absolute inset-y-0 left-20 m-auto" id="form-spinner"></span>
     </fieldset>
+    <%= link_to "Back to booking", booking_path(@booking), class: "btn btn-secondary w-full" %>
   <% end %>
 </div>
