@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_world, only: [:show, :new, :create]
-  before_action :set_booking, only: [:show, :edit, :accept, :decline]
+  before_action :set_world, only: [:show, :new, :edit, :create]
+  before_action :set_booking, only: [:show, :edit, :update, :accept, :decline]
 
   # TODO: Create seperate namespaced controller for handling bookings like Admin::BookingsController, BookingsController handles both renter & rentee + adapt routes?
 
@@ -65,13 +65,14 @@ class BookingsController < ApplicationController
     if @booking.user == current_user
       @world = @booking.world
       @owner = @booking.world.user
+      @capacity = @world.capacity
+      @world_price = @world.price
     else
       redirect_to booking_path(@booking), notice: "Only the guest can edit the booking request"
     end
   end
 
   def update
-    raise
     if @booking.update(booking_params)
       redirect_to booking_path(@booking), notice: "Booking updated!"
     else

@@ -42,8 +42,6 @@
 
       <div popover id="cally-popover" class="dropdown bg-base-100 rounded-box shadow-lg" style="position-anchor:--cally-trigger">
         <calendar-range range class="cally bg-base-100 border border-base-300 shadow-lg rounded-box" onchange="document.getElementById('cally-trigger').innerText = this.value" data-action="change->booking-price#bookingDates">
-        <%# <input type="hidden" name="start_date" data-booking-price-target="startDate">
-        <input type="hidden" name="end_date" data-booking-price-target="endDate"> %>
           <svg aria-label="Previous" class="fill-current size-4" slot="previous" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M15.75 19.5 8.25 12l7.5-7.5"></path>
           </svg>
@@ -61,7 +59,7 @@
     </div>
 
     <fieldset class="fieldset relative">
-      <%= form.submit "Secure booking", class: "btn btn-primary w-full" %>
+      <%= form.submit "Update booking", class: "btn btn-primary w-full" %>
       <span class="loading loading-spinner absolute inset-y-0 left-20 m-auto" id="form-spinner"></span>
     </fieldset>
   <% end %>
