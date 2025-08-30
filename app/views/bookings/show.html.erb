@@ -54,7 +54,7 @@
             <div>
               <span class="text-gray-500 text-sm">Total Price</span>
               <div class="text-2xl font-bold text-gray-900">
-                $<%= @booking.total_price %>
+                <%= @booking.total_price %> €
               </div>
             </div>
             <div>
@@ -100,7 +100,10 @@
     </div>
     <div class="divider"></div>
     <div>
-      <%= link_to " Back to Bookings", bookings_path, class:"btn btn-primary w-full" %>
+      <%= link_to "Back to Bookings", bookings_path, class:"btn btn-primary w-full mb-2" %>
+      <% if @booking.user == current_user %>
+        <%= link_to "Edit my request", edit_booking_path(@booking), class:"btn btn-info w-full" %>
+      <% end %>
     </div>
   </div>
 </div>
