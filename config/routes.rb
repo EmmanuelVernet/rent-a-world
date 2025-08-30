@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   # World routes (main resource)
   resources :worlds do
     # Nested routes for bookings, reviews, and tags
-    resources :bookings, only: [ :new, :create, :index, :show ] # for renter + rentee per world
+    resources :bookings, only: [ :index, :new, :create, :edit, :update, :show ] # for renter + rentee per world
     resources :reviews, only: [ :create, :index ]
     resources :tags, only: [ :index ] # To fetch tags for a specific world
   end
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   resources :bookings do #, only: [ :index, :show, :update, :destroy ] # for rentee’s list & admin CRUD
     member do
       post :accept
-      post :decline
+      post :cancel
     end
   end
 

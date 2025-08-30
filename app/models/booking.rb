@@ -2,17 +2,32 @@ class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :world
 
-  validates :status, presence: true, inclusion: { in: %w[pending confirmed canceled] }
+  ## Validations
+  validates :status, presence: true, inclusion: { in: %w[pending confirmed canceled] } #=> this should ideally be an enum to get pending? confirmed? methods
   validates :start_date, presence: true
   validates :end_date, presence: true
 
-  # Accept & Decline booking => updates Booking.id DB status
+  ## Model methods
+  before_save :calculate_total_price
+  # Accept & Cancel booking => updates Booking.id DB status
   def accept!
     update!(status: "confirmed") 
   end
 
-  def decline!
+  def cancel!
     update!(status: "canceled")   
   end
 
+  def canceled?
+    status == "canceled"
+  end
+
+  private
+
+  def calculate_total_price
+    if start_date && end_date
+      nights = (end_date - start_date).to_i
+      self.total_price = nights * world.price * world.capacity
+    end
+  end
 end

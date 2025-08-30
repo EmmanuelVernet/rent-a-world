@@ -4,7 +4,7 @@
 <% else %>
   <% @my_requests.each do |request| %>
     <%= link_to booking_path(request.id) do %>
-        <div class="card bg-neutral text-neutral-content w-96">
+        <div class="card bg-primary text-neutral-content w-96">
         <div class="card-body items-center text-center">
           <h2 class="card-title">Booking #<%= request.id %></h2>
           <p>World: <%= request.world.title %></p>
@@ -13,7 +13,7 @@
           <p>Reservation dates: from <%= request.start_date.strftime("%d/%m/%Y") %> to <%= request.end_date.strftime("%d/%m/%Y") %></p>
           <p>Price: <%= request.total_price %> €</p>
           <div class="card-actions justify-end">
-            Status: <button class="badge badge-primary"><%= request.status %></button>
+            Status: <button class="badge badge-info"><%= request.status %></button>
           </div>
         </div>
       </div>

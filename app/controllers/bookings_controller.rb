@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_world, only: [:show, :new, :create]
-  before_action :set_booking, only: [:show, :edit, :accept, :decline]
+  before_action :set_world, only: [:show, :new, :edit, :create]
+  before_action :set_booking, only: [:show, :edit, :update, :accept, :cancel]
 
   # TODO: Create seperate namespaced controller for handling bookings like Admin::BookingsController, BookingsController handles both renter & rentee + adapt routes?
 
@@ -39,12 +39,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user # assign booking to current user
     @booking.world = @world
     @booking.status ||= "pending"
-
-    # Calculate total price
-    if @booking.start_date && @booking.end_date
-      nights = (@booking.end_date - @booking.start_date).to_i
-      @booking.total_price = nights * @world.price * @world.capacity
-    end
+    # Total price calculated in model
 
     if @booking.save
       redirect_to world_booking_path(@world, @booking), notice: "Booking created!"
@@ -65,21 +60,24 @@ class BookingsController < ApplicationController
     if @booking.user == current_user
       @world = @booking.world
       @owner = @booking.world.user
+      @capacity = @world.capacity
+      @world_price = @world.price
     else
       redirect_to booking_path(@booking), notice: "Only the guest can edit the booking request"
     end
   end
-
+  
   def update
-    raise
+    @booking.status = "pending" # edition re-sets booking as pending
     if @booking.update(booking_params)
+      # new total price calculated in model
       redirect_to booking_path(@booking), notice: "Booking updated!"
     else
       flash.now[:alert] = "Your booking couldn't be updated"
       render :edit, status: :unprocessable_entity
     end
   end
-
+  
   def destroy
     if @booking.destroy
       redirect_to bookings_path, notice: "Booking destroyed!"
@@ -93,9 +91,9 @@ class BookingsController < ApplicationController
     redirect_to booking_path(@booking), notice: "Booking confirmed."
   end
 
-  def decline
-    @booking.decline!
-    redirect_to bookings_path, notice: "Booking declined."
+  def cancel
+    @booking.cancel!
+    redirect_to bookings_path, notice: "Booking cancelled."
   end
 
   private

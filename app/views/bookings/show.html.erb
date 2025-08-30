@@ -1,4 +1,4 @@
-<div class="mt-4 mb-3 max-h-[84vh] overflow-y-auto">
+<div class="container-sm mx-auto mt-4 mb-3 max-h-[84vh] overflow-y-auto">
   <div class="md:container md:mx-auto pb-4 max-w-2xl px-4">
     <div id="show-card">
       <figure class="mb-6">
@@ -54,7 +54,7 @@
             <div>
               <span class="text-gray-500 text-sm">Total Price</span>
               <div class="text-2xl font-bold text-gray-900">
-                $<%= @booking.total_price %>
+                <%= @booking.total_price %> €
               </div>
             </div>
             <div>
@@ -100,7 +100,14 @@
     </div>
     <div class="divider"></div>
     <div>
-      <%= link_to " Back to Bookings", bookings_path, class:"btn btn-primary w-full" %>
+      <%= link_to "Back to Bookings", bookings_path, class:"btn btn-primary w-full mb-2" %>
+      <% if @booking.user == current_user %>
+        <%= link_to "Edit my request", edit_booking_path(@booking), class:"btn btn-info w-full mb-2" %>
+      <% end %>
+      <% unless @booking.canceled? %>
+        <%= button_to "Cancel booking", cancel_booking_path(@booking), 
+        method: :post, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-warning w-full" %>
+      <% end %>
     </div>
   </div>
 </div>
