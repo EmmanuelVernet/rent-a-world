@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_world, only: [:show, :new, :edit, :create]
-  before_action :set_booking, only: [:show, :edit, :update, :accept, :decline]
+  before_action :set_booking, only: [:show, :edit, :update, :accept, :cancel]
 
   # TODO: Create seperate namespaced controller for handling bookings like Admin::BookingsController, BookingsController handles both renter & rentee + adapt routes?
 
@@ -66,8 +66,9 @@ class BookingsController < ApplicationController
       redirect_to booking_path(@booking), notice: "Only the guest can edit the booking request"
     end
   end
-
+  
   def update
+    @booking.status = "pending" # edition re-sets booking as pending
     if @booking.update(booking_params)
       # new total price calculated in model
       redirect_to booking_path(@booking), notice: "Booking updated!"
@@ -76,7 +77,7 @@ class BookingsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
-
+  
   def destroy
     if @booking.destroy
       redirect_to bookings_path, notice: "Booking destroyed!"
@@ -90,9 +91,9 @@ class BookingsController < ApplicationController
     redirect_to booking_path(@booking), notice: "Booking confirmed."
   end
 
-  def decline
-    @booking.decline!
-    redirect_to bookings_path, notice: "Booking declined."
+  def cancel
+    @booking.cancel!
+    redirect_to bookings_path, notice: "Booking cancelled."
   end
 
   private

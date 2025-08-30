@@ -14,7 +14,7 @@
         <p>Status: <button class="badge badge-info"><%= request.status %></button></p>
         <div class="card-actions justify-end">
           <%= button_to "Accept", accept_booking_path(request.id), class: "btn btn-primary" %>
-          <%= button_to "Decline", decline_booking_path(request), class: "btn btn-ghost" %>
+          <%= button_to "Decline", cancel_booking_path(request), class: "btn btn-ghost" %>
         </div>
       </div>
     </div>

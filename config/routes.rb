@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   resources :bookings do #, only: [ :index, :show, :update, :destroy ] # for rentee’s list & admin CRUD
     member do
       post :accept
-      post :decline
+      post :cancel
     end
   end
 

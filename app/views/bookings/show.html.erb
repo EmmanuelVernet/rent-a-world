@@ -102,7 +102,11 @@
     <div>
       <%= link_to "Back to Bookings", bookings_path, class:"btn btn-primary w-full mb-2" %>
       <% if @booking.user == current_user %>
-        <%= link_to "Edit my request", edit_booking_path(@booking), class:"btn btn-info w-full" %>
+        <%= link_to "Edit my request", edit_booking_path(@booking), class:"btn btn-info w-full mb-2" %>
+      <% end %>
+      <% unless @booking.canceled? %>
+        <%= button_to "Cancel booking", cancel_booking_path(@booking), 
+        method: :post, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-warning w-full" %>
       <% end %>
     </div>
   </div>
