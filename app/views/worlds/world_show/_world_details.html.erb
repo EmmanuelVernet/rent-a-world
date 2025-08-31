@@ -1,0 +1,14 @@
+<div class="bg-gray-200 rounded-lg p-4 shadow-lg border border-gray-200 overflow-y-auto" id="details">
+  <h3 class="text-2xl font-semibold text-gray-800 mb-4">World Details</h3>
+  <div class="space-y-4">
+    <p class="badge badge-primary"><strong class="text-gray-900"> </strong><%= @world.category %></p>
+    <p class="text-lg text-gray-700"><strong class="text-gray-900">Where is it? </strong><br>
+      <%= @world.place %></p>
+ <%# TO DO: add a link to a modal to open the map %>
+    <p class="text-lg text-gray-700"><strong class="text-gray-900">What you'll find in this world</strong><br>
+      <%= @world.description %></p>
+    <p class="text-lg text-gray-700"><strong class="text-gray-900">Rate per night</strong><br>
+      For the modest price of <%= @world.price %> $ per night, enjoy enough space for </strong><%= @world.capacity %> people, heroes or partners in your party!</p>
+  <p class="text-sm italic text-blue-300">**Additional information on demand. Please contact the renter directly</p>
+</div>
+</div>

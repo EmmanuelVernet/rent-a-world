@@ -15,98 +15,23 @@
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-5 pt-5">
     <%# World details %>
-    <div class="bg-gray-200 rounded-lg p-4 shadow-lg border border-gray-200 overflow-y-auto" id="details">
-      <h3 class="text-2xl font-semibold text-gray-800 mb-4">World Details</h3>
-      <div class="space-y-4">
-        <p class="badge badge-primary"><strong class="text-gray-900"> </strong><%= @world.category %></p>
-        <p class="text-lg text-gray-700"><strong class="text-gray-900">Where is it? </strong><br><%= @world.place %></p> <%# TO DO: add a link to a modal to open the map %>
-        <p class="text-lg text-gray-700"><strong class="text-gray-900">What you'll find in this world</strong><br><%= @world.description %></p>
-        <p class="text-lg text-gray-700"><strong class="text-gray-900">Rate per night</strong><br>For the modest price of <%= @world.price %> $ per night, enjoy enough space for </strong><%= @world.capacity %> people, heroes or partners in your party!</p>
-        <p class="text-sm italic text-blue-300">**Additional information on demand. Please contact the renter directly</p>
-      </div>
-    </div>
+    <%= render "worlds/world_show/world_details" %>
 
     <%# World Amenities %>
-    <div class="bg-gray-200 rounded-lg p-4 shadow-lg border border-gray-200 overflow-y-auto" id="amenities">
-      <h3 class="text-2xl font-semibold text-gray-800 mb-4">Amenities</h3>
-      <ul>
-        <% @amenities.each do |amenity| %>
-          <li class="text-lg text-gray-700"><%= amenity.name %></li>
-          <% if amenity.description.present? %>
-            <li class="text-sm text-gray-500 italic"><%= amenity.description %></li>
-          <% end %>
-        <% end %>
-      </ul>
-    </div>
+    <%= render "worlds/world_show/amenities" %>
 
     <%# World Activities %>
-    <div class="bg-gray-200 rounded-lg p-4 shadow-lg border border-gray-200 overflow-y-auto" id="activities">
-      <h3 class="text-2xl font-semibold text-gray-800 mb-4">Activities</h3>
-      <% @activities.each do |activity| %> <%# TO DO: link to a show page of the activity ID for more details %>
-        <div class="collapse collapse-plus bg-base-100 border border-base-300 mb-2">
-          <input type="radio" name="my-accordion-3" <%= "checked" if activity == @activities.first %> />
-          <div class="collapse-title font-semibold"><%= activity.name %></div>
-          <div class="collapse-content text-sm">
-            <p>Description: <%= activity.description %></p>
-            <p>Time to complete: <%= activity.duration %> hours</p>
-            <p>Cost: <%= activity.price %></p>
-          </div>
-        </div>
-      <% end %>
-    </div>
+    <%= render "worlds/world_show/activities" %>
 
-    <%# World renter details %>
-    <div class="bg-gray-200 rounded-lg p-4 shadow-lg border border-gray-200 overflow-y-auto" id="renter-details">
-      <h3 class="text-2xl font-semibold text-gray-800 mb-4">Renter Information</h3>
-      <p class="text-lg text-gray-700 pb-2"><%= @world.user.first_name %> <%= @world.user.last_name %></p>
-      <p class="text-lg text-gray-700 pb-2"><%= @world.user.user_description %></p>
-      <p class="text-lg text-gray-700 pb-2"><%= @world.user.address %></p>
-      <p class="text-lg text-gray-700 pb-2"><%= @world.user.phone %></p>
-      <%# You can add renter information here, like name, contact details, etc. %>
-    </div>
+    <%# World host details %>
+    <%= render "worlds/world_show/host_info" %>
 
     <%# World reviews %>
-    <div class="bg-gray-200 rounded-lg p-4 shadow-lg border border-gray-200 overflow-y-auto" id="user-reviews">
-      <h3 class="text-2xl font-semibold text-gray-800 mb-4">User Reviews</h3>
-      <div class="bg-gray-100 p-6 rounded-lg">
-        <div class="space-y-4">
-          <%# Example review - you'll likely loop through @reviews here %>
-          <div class="card bg-white shadow-lg p-4 rounded-lg border border-gray-200">
-            <div class="flex items-center mb-2">
-              <div class="flex-shrink-0">
-                <img class="w-12 h-12 rounded-full" src="https://via.placeholder.com/150" alt="Review user avatar">
-              </div>
-              <div class="ml-4">
-                <p class="text-lg font-semibold text-gray-900">Review user name</p>
-                <div class="text-sm text-gray-600">Created at [Date]</div>
-              </div>
-            </div>
-
-            <p class="text-gray-700 pb-2 mt-2">Review content goes here. This is an example of what a user might say about their experience in this world.</p>
-            <div class="flex items-center mt-2">
-              <div class="rating gap-1">
-                <input type="radio" name="rating-3" class="mask mask-heart bg-red-400" aria-label="1 star" />
-                <input type="radio" name="rating-3" class="mask mask-heart bg-orange-400" aria-label="2 star" />
-                <input type="radio" name="rating-3" class="mask mask-heart bg-yellow-400" aria-label="3 star" checked />
-                <input type="radio" name="rating-3" class="mask mask-heart bg-lime-400" aria-label="4 star" />
-                <input type="radio" name="rating-3" class="mask mask-heart bg-green-400" aria-label="5 star" />
-              </div>
-            </div>
-          </div>
-          <%# End example review %>
-          <%# Loop through your actual reviews here %>
-        </div>
-      </div>
-    </div>
+    <%= render "worlds/world_show/reviews" %>
 
     <%# World Map %>
-    <div class="bg-gray-200 rounded-lg p-4 shadow-lg border border-gray-200 overflow-y-auto" id="world-map">
-      <h3 class="text-2xl font-semibold text-gray-800 mb-4">Map placeholder</h3>
-      <p><strong>Location: </strong><%= @world.place %></p>
-      <p><strong>Latitude: </strong><%= @world.latitude %></p>
-      <p><strong>Longitude: </strong><%= @world.longitude %></p>
-      <%# TO DO: Embed a map here or provide a link to open a map modal %>
-    </div>
+    <%= render "worlds/world_show/world_map" %>
+
   </div>
 <div class="pt-5 px-3 pb-25">
   <%= link_to "Back to worlds", worlds_path, class: "rounded-md bg-blue-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-none active:bg-blue-700 hover:bg-blue-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2" %>
