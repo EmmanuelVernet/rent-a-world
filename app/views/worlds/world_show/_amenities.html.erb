@@ -1,11 +1,21 @@
-<div class="bg-gray-200 rounded-lg p-4 shadow-lg border border-gray-200 overflow-y-auto" id="amenities">
-  <h3 class="text-2xl font-semibold text-gray-800 mb-4">Amenities</h3>
-  <ul>
-    <% @amenities.each do |amenity| %>
-      <li class="text-lg text-gray-700"><%= amenity.name %></li>
-      <% if amenity.description.present? %>
-        <li class="text-sm text-gray-500 italic"><%= amenity.description %></li>
+<div class="card bg-base-100 shadow border border-base-200 overflow-y-auto" id="amenities">
+  <div class="card-body p-6">
+    <h3 class="text-3xl font-bold text-center text-primary mb-2">Amenities</h3>
+    <div class="divider divider-primary my-0"></div>
+    <div class="space-y-4">
+      <% @amenities.each do |amenity| %>
+        <div class="card border border-base-300 shadow-md hover:shadow-lg transition-shadow">
+          <div class="card-body p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <h4 class="card-title text-lg text-base-content"><%= amenity.name %></h4>
+            </div>
+            <div class="divider my-0"></div>
+            <% if amenity.description.present? %>
+              <div class="text-sm text-base-content/60 italic mt-1 leading-relaxed"><%= amenity.description %></div>
+            <% end %>
+          </div>
+        </div>
       <% end %>
-    <% end %>
-  </ul>
+    </div>
+  </div>
 </div>
