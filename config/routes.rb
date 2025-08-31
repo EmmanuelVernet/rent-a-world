@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     collection do
       get :my_worlds
     end
+    
     resources :bookings, only: [ :index, :new, :create, :edit, :update, :show ] # for renter + rentee per world
     resources :reviews, only: [ :create, :index ]
     resources :tags, only: [ :index ] # To fetch tags for a specific world
