@@ -1,9 +1,32 @@
-    
-<div class="bg-gray-200 rounded-lg p-4 shadow-lg border border-gray-200 overflow-y-auto" id="renter-details">
-  <h3 class="text-2xl font-semibold text-gray-800 mb-4">Renter Information</h3>
-  <p class="text-lg text-gray-700 pb-2"><%= @world.user.first_name %> <%= @world.user.last_name %></p>
-  <p class="text-lg text-gray-700 pb-2"><%= @world.user.user_description %></p>
-  <p class="text-lg text-gray-700 pb-2"><%= @world.user.address %></p>
-  <p class="text-lg text-gray-700 pb-2"><%= @world.user.phone %></p>
-  <%# You can add renter information here, like name, contact details, etc. %>
+<div class="card shadow border border-base-200" id="host-details">
+  <div class="card-body">
+    <h3 class="text-3xl font-bold text-center text-primary">Host Information</h3>
+    <div class="divider divider-primary my-0"></div>
+    <div class="card bg-base-50 border border-base-300 shadow-md hover:shadow-lg transition-all duration-300">
+      <div class="card-body p-8 text-center">
+        <div id="avatar-picture">
+          <div class="mask mask-squircle h-12 w-12">
+            <img src="https://img.daisyui.com/images/profile/demo/5@94.webp"
+              alt="Avatar Tailwind CSS Component" />
+          </div>
+        </div>
+        <h4 class="text-2xl font-bold text-base-content mb-4"><%= @world.user.first_name %> <%= @world.user.last_name %></h4>
+        <div class="card bg-base-100 shadow-sm border border-base-200 mb-6">
+          <div class="card-body p-4">
+            <p class="text-base-content/80 leading-relaxed text-left"><%= @world.user.user_description %></p>
+          </div>
+        </div>
+        <div class="stats stats-vertical shadow border border-base-300">
+          <div class="stat">
+            <div class="stat-title text-xs">Location</div>
+            <div class="stat-value text-sm text-base-content/80 font-normal"><%= @world.user.address %></div>
+          </div>
+          <div class="stat">
+            <div class="stat-title text-xs">Contact</div>
+            <div class="stat-value text-sm text-base-content/80 font-normal"><%= @world.user.phone %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
