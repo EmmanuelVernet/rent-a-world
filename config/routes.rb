@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   # World routes (main resource)
   resources :worlds do
     # Nested routes for bookings, reviews, and tags
+    collection do
+      get :my_worlds
+    end
     resources :bookings, only: [ :index, :new, :create, :edit, :update, :show ] # for renter + rentee per world
     resources :reviews, only: [ :create, :index ]
     resources :tags, only: [ :index ] # To fetch tags for a specific world

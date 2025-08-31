@@ -14,6 +14,11 @@ class WorldsController < ApplicationController
     end
   end
 
+  def my_worlds
+    @worlds = current_user.worlds
+    @tags = Tag.all
+  end
+
   def new
     @world = World.new
   end
