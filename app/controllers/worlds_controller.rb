@@ -57,9 +57,9 @@ class WorldsController < ApplicationController
 
   def destroy
     if @world.destroy
-      redirect_to worlds_path, notice: "World deleted!"
+      redirect_to my_worlds_worlds_path, notice: "World deleted!"
     else
-      redirect_to worlds_path, alert: "Impossible to delete world"
+      redirect_to my_worlds_worlds_path, alert: "Impossible to delete world"
     end
   end
 
