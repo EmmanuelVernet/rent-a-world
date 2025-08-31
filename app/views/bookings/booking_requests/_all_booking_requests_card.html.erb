@@ -3,7 +3,7 @@
   No bookings available
 <% else %>
   <% @all_requests.each do |request| %>
-    <div class="card <%= request.user == current_user ? "bg-primary" : "bg-neutral" %> text-neutral-content w-96">
+    <div class="card <%= request.user == current_user ? "bg-primary" : "bg-neutral" %> text-neutral-content w-96 mt-4">
       <%= link_to booking_path(request.id) do %>
         <div class="card-body items-center text-center">
           <h2 class="card-title">Booking #<%= request.id %></h2>

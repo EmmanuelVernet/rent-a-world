@@ -1,0 +1,17 @@
+<div class= "container mx-auto px-4">
+  <div class="flex flex-wrap justify-center gap-2 pt-5">
+    <%= render "worlds/world_tags" %>
+  </div>
+  <div class= "container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 pt-5 pb-20">
+    <% if @worlds.any? %>
+      <% @worlds.each do |world| %>
+        <%= render "worlds/world_card", world: world %>
+      <% end %>
+    <% else %>
+    <div class="justify-center pt-5">
+      <h2>You have not listed any worlds yet</h2>
+      <%= link_to "Create a listing", new_world_path, class:"btn btn-primary mt-2" %>
+    </div>
+    <% end %>
+  </div>
+</div>
