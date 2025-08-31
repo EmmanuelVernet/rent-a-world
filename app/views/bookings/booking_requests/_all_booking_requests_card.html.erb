@@ -15,6 +15,12 @@
           <div class="card-actions justify-end">
             Status: <button class="badge badge-info"><%= request.status %></button>
           </div>
+          <% unless request.user == current_user %>
+            <div class="card-actions justify-end">
+              <%= button_to "Accept", accept_booking_path(request.id), class: "btn btn-primary" %>
+              <%= button_to "Decline", cancel_booking_path(request), class: "btn btn-ghost" %>
+            </div>
+          <% end %>
         </div>
       </div>
     <% end %>
