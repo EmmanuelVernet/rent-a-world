@@ -1,39 +1,41 @@
-<div class="card bg-base-100 w-96 shadow-xl flex flex-col">
-  <figure>
-    <%= image_tag "fantasy_castle.webp", class: "w-full", alt: "fantasy castle" %>
-  </figure>
-  <div class="card-body flex flex-col flex-1">
-    <!-- Title + Category badge -->
-    <h2 class="card-title flex flex-wrap items-center gap-2">
-      <%= world.title %>
-      <div class="badge badge-secondary text-xs break-words whitespace-normal max-w-[8rem]">
-        <%= world.category %>
+<div class="flex justify-center">
+  <div class="card bg-base-100 w-96 shadow-xl flex flex-col">
+    <figure>
+      <%= image_tag "fantasy_castle.webp", class: "w-full", alt: "fantasy castle" %>
+    </figure>
+    <div class="card-body flex flex-col flex-1">
+      <!-- Title + Category badge -->
+      <h2 class="card-title flex flex-wrap items-center gap-2">
+        <%= world.title %>
+        <div class="badge badge-secondary text-xs break-words whitespace-normal max-w-[8rem]">
+          <%= world.category %>
+        </div>
+      </h2>
+
+      <!-- Description -->
+      <p class="flex-1"><%= world.description %></p>
+
+      <div class="divider"></div>
+
+      <!-- Aspects -->
+      <div id="aspects">
+        <h3 class="card-title tooltip tooltip-secondary tooltip-right" data-tip="Aspects are special attributes a world can have that makes it special">Aspects:</h3>
+        <div class="card-actions flex flex-wrap gap-1">
+          <% world.tags.each do |tag| %>
+            <div class="badge badge-primary"><%= tag.name %></div>
+          <% end %>
+        </div>
       </div>
-    </h2>
 
-    <!-- Description -->
-    <p class="flex-1"><%= world.description %></p>
-
-    <div class="divider"></div>
-
-    <!-- Aspects -->
-    <div id="aspects">
-      <h3 class="card-title tooltip tooltip-secondary tooltip-right" data-tip="Aspects are special attributes a world can have that makes it special">Aspects:</h3>
-      <div class="card-actions flex flex-wrap gap-1">
-        <% world.tags.each do |tag| %>
-          <div class="badge badge-primary"><%= tag.name %></div>
+      <!-- CTA buttons -->
+      <div id="world-cta-btns" class="mt-auto flex gap-2">
+        <%= link_to "See world details", world_path(world), class: "rounded-md bg-blue-600 py-2 px-4 text-center text-sm text-white shadow-md hover:shadow-lg transition-all flex-1 text-center" %>
+        <% if world.user == current_user %>
+          <%= link_to "Delete world!", world_path(world), class: "rounded-md btn btn-error py-2 px-4 text-center text-sm shadow-md hover:shadow-lg flex-1 text-center", data: { turbo_method: :delete, turbo_confirm: "Are you sure? This action is irreversible" } %>
+        <% else %>
+          <%= link_to "Book it!", new_world_booking_path(world), class: "rounded-md bg-pink-600 py-2 px-4 text-center text-sm text-white shadow-md hover:shadow-lg transition-all flex-1 text-center" %>
         <% end %>
       </div>
-    </div>
-
-    <!-- CTA buttons -->
-    <div id="world-cta-btns" class="mt-auto flex gap-2">
-      <%= link_to "See world details", world_path(world), class: "rounded-md bg-blue-600 py-2 px-4 text-center text-sm text-white shadow-md hover:shadow-lg transition-all flex-1 text-center" %>
-      <% if world.user == current_user %>
-        <%= link_to "Delete world!", world_path(world), class: "rounded-md btn btn-error py-2 px-4 text-center text-sm shadow-md hover:shadow-lg flex-1 text-center", data: { turbo_method: :delete, turbo_confirm: "Are you sure? This action is irreversible" } %>
-      <% else %>
-        <%= link_to "Book it!", new_world_booking_path(world), class: "rounded-md bg-pink-600 py-2 px-4 text-center text-sm text-white shadow-md hover:shadow-lg transition-all flex-1 text-center" %>
-      <% end %>
     </div>
   </div>
 </div>
