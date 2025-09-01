@@ -438,13 +438,42 @@ puts "#{worlds.sum { |world| world.tags.count }} tags assigned to worlds!"
 
 # puts "#{Booking.count} bookings created!"
 
-# puts "creating reviews..."
+puts "creating reviews..."
 
-# # Add some random reviews for users in random worlds
-# users.each do |user|
-#   worlds.sample(3).each do |world| # each user can review up to 3 worlds
-#     Review.create!(user: user, world: world, stars: rand(1..5), comment: Faker::Lorem.sentence)
-#   end
-# end
+world_ids = World.all.ids
+user_ids = User.all.ids
+reviews = [
+  "The tavern only served lukewarm dragon ale!",
+  "Decent quests, but the goblins kept stealing my boots.",
+  "The wizard tower view was nice, but overpriced teleport fees.",
+  "Cozy inns and friendly orcs. Would adventure again.",
+  "Best dragon fight of my life!",
+  "Got cursed at the market. Zero stars if I could.",
+  "Swamp smelled awful, but the trolls made good stew.",
+  "Three moons in the sky was cool. Wolves howling all night, less so.",
+  "Friendly necromancer fixed my back pain. Four stars.",
+  "Floating castles! 10/10 would duel again.",
+  "The portal dropped me into lava. Bad start.",
+  "Too many riddles at the gates. Took me hours to enter.",
+  "Elves were polite, bread was stale. Balanced.",
+  "Lovely crystal rivers. Nearly drowned but still nice.",
+  "Unicorn taxis everywhere! Pure magic.",
+  "My dragon companion refused to cooperate. Disappointing.",
+  "Potion shop ran out of invisibility potions mid-adventure.",
+  "The cursed forest was too spooky for my liking.",
+  "Mermaids gave excellent singing lessons, would recommend.",
+  "Giant spiders loved my hair. Not recommended.",
+  "The magical library had the best scrolls and worst chairs.",
+  "Time-traveling goblins stole my sandwich.",
+  "Friendly giants hosted a tea party.",
+  "Witch brewed a potion that turned me into a frog. Hilarious!",
+  "The enchanted maze made me late for dinner."
+]
 
-# puts "#{Review.count} reviews created!"
+world_ids.each do |world_id|
+  rand(2..5).times do   # 2–5 reviews per world
+    Review.create!(user_id: user_ids.sample, world_id: world_id, stars: rand(1..5), comment: reviews.sample)
+  end
+end
+
+puts "#{Review.count} reviews created!"
