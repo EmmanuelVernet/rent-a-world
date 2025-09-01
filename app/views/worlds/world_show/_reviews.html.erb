@@ -1,9 +1,9 @@
-<div class="card bg-base-100 shadow border border-base-200 overflow-y-auto" id="user-reviews">
+<div class="card bg-base-100 shadow border border-base-200" id="user-reviews">
   <div class="card-body p-6">
     <h3 class="text-3xl font-bold text-center text-primary">User Reviews</h3>
     <div class="divider divider-primary my-0"></div>
 
-    <div class="p-6 rounded-lg">
+    <div class="p-6 rounded-lg overflow-y-auto h-120">
       <div class="space-y-4">
         <% @world.reviews.each do |review| %>
           <div class="card border border-base-300 shadow-md hover:shadow-lg transition-shadow">
