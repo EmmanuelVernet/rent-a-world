@@ -1,68 +1,133 @@
-<div class="pt-4 pb-32">
-  <%= form_with(model: [@world, @booking], local: true,  class: "space-y-4 p-6 bg-white shadow-lg rounded-lg max-w-lg mx-auto") do |form| %>
-    <h1>Book <%= @world.title %></h1>
-    <% if @booking.errors.any? %>
-      <div class="alert alert-error">
-        <ul>
-          <% @booking.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+<div class="pt-8 pb-32 min-h-screen">
+  <div class="container mx-auto px-4">
+    <%= form_with(model: [@world, @booking], local: true, class: "card bg-base-100 shadow-xl max-w-2xl mx-auto") do |form| %>
+      <div class="card-body space-y-6">
+        <!-- Header Section -->
+        <div class="text-center border-b border-base-300 pb-6">
+          <h1 class="card-title text-3xl font-bold justify-center mb-2">
+            Book <%= @world.title %>
+          </h1>
+          <p class="text-base-content/70">Complete your booking details below</p>
+        </div>
+        <!-- Error Handling -->
+        <% if @booking.errors.any? %>
+          <div class="alert alert-error">
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div>
+              <h3 class="font-bold">Please fix the following errors:</h3>
+              <ul class="list-disc list-inside mt-2">
+                <% @booking.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+        <!-- World Owner & Availability Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="card bg-base-200 shadow-sm">
+            <div class="card-body p-4">
+              <h2 class="card-title text-lg flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                World Owner
+              </h2>
+              <p class="text-base-content/80 font-medium">
+                <%= @owner.first_name %> <%= @owner.last_name %>
+              </p>
+            </div>
+          </div>
+          <div class="card bg-base-200 shadow-sm">
+            <div class="card-body p-4">
+              <h2 class="card-title text-lg flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Availability
+              </h2>
+              <div class="flex items-center gap-2">
+                <% if @booking.status %>
+                  <div class="badge <%= @booking.status == 'confirmed' ? 'badge-success' : @booking.status == 'pending' ? 'badge-warning' : 'badge-error' %>">
+                    <%= @booking.status.capitalize %>
+                  </div>
+                <% else %>
+                  <div class="badge badge-warning">Pending</div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Date Selection Section -->
+        <div class="card border border-primary/20">
+          <div class="card-body">
+            <h2 class="card-title text-xl mb-4 flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Select Your Booking Dates
+            </h2>
+            <div data-controller="booking-price" data-booking-price-price-value="<%= @world_price %>" data-booking-price-capacity-value="<%= @capacity %>">
+              <!-- Hidden fields to pass params to POST -->
+              <%= form.hidden_field :start_date, data: { booking_price_target: "startDate" } %>
+              <%= form.hidden_field :end_date, data: { booking_price_target: "endDate" } %>
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text font-medium">Choose dates</span>
+                </label>
+              </div>
+              <div popover id="cally-popover" class="card bg-base-100 shadow-2xl border border-base-300" style="position-anchor:--cally-trigger">
+                <div class="card-body p-4">
+                  <calendar-range range 
+                                  class="cally" 
+                                  onchange="document.getElementById('cally-trigger').innerText = this.value" 
+                                  data-action="change->booking-price#bookingDates">
+                    <svg aria-label="Previous" class="fill-current size-4" slot="previous" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                      <path d="M15.75 19.5 8.25 12l7.5-7.5"></path>
+                    </svg>
+                    <svg aria-label="Next" class="fill-current size-4" slot="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                      <path d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
+                    </svg>
+                    <calendar-month></calendar-month>
+                  </calendar-range>
+                </div>
+              </div>
+              <!-- Pricing Display -->
+              <div class="mt-6">
+                <div id="booking-price" 
+                     data-booking-price-target="bookingPrice" 
+                     class="alert alert-info">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                  </svg>
+                  <span class="font-semibold">Booking price will be calculated once you select dates</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Submit Section -->
+        <div class="card bg-base-200 shadow-sm">
+          <div class="card-body p-4">
+            <div class="form-control">
+              <div class="relative">
+                <%= form.submit "Secure Your Booking", class: "btn btn-primary btn-lg w-full gap-2" %>
+                <span class="loading loading-spinner loading-md absolute left-4 top-1/2 -translate-y-1/2 hidden" id="form-spinner"></span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute right-4 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <label class="label">
+                <span class="label-text-alt text-base-content/60">
+                  Your booking will be processed securely
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
       </div>
     <% end %>
-
-    <div id="world-owner">
-      <h1>World owner</h1>
-      <%= @owner.first_name %> <%= @owner.last_name %>
-    </div>
-
-    <div id="world-availability">
-      <h1>Availability</h1>
-      <% if @booking.status %>
-        <%= @booking.status %>
-      <% else %>
-        Pending
-      <% end %>
-    </div>
-
-    <div>
-      Pick your booking days
-    </div>
-    <div data-controller="booking-price" data-booking-price-price-value="<%= @world_price %>" data-booking-price-capacity-value="<%= @capacity %>">
-    <%# hidden fields to pass params to POST %>
-    <%= form.hidden_field :start_date, data: { booking_price_target: "startDate" } %>
-    <%= form.hidden_field :end_date, data: { booking_price_target: "endDate" } %>
-      <button type="button" popovertarget="cally-popover" 
-              class="input input-border" 
-              id="cally-trigger" 
-              style="anchor-name:--cally-trigger">
-
-        <%= @booking.start_date || "Select dates" %>
-      </button>
-
-      <div popover id="cally-popover" class="dropdown bg-base-100 rounded-box shadow-lg" style="position-anchor:--cally-trigger">
-        <calendar-range range class="cally bg-base-100 border border-base-300 shadow-lg rounded-box" onchange="document.getElementById('cally-trigger').innerText = this.value" data-action="change->booking-price#bookingDates">
-        <%# <input type="hidden" name="start_date" data-booking-price-target="startDate">
-        <input type="hidden" name="end_date" data-booking-price-target="endDate"> %>
-          <svg aria-label="Previous" class="fill-current size-4" slot="previous" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M15.75 19.5 8.25 12l7.5-7.5"></path>
-          </svg>
-          <svg aria-label="Next" class="fill-current size-4" slot="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
-          </svg>
-          <calendar-month></calendar-month>
-        </calendar-range>
-      </div>
-      <div id="booking-price" 
-          data-booking-price-target="bookingPrice" 
-          class="mt-5 text-lg font-semibold text-gray-900 bg-gray-100 p-4 rounded-lg shadow-sm text-center">
-          Booking price for
-      </div>
-    </div>
-
-    <fieldset class="fieldset relative">
-      <%= form.submit "Secure booking", class: "btn btn-primary w-full" %>
-      <span class="loading loading-spinner absolute inset-y-0 left-20 m-auto" id="form-spinner"></span>
-    </fieldset>
-  <% end %>
+  </div>
 </div>
