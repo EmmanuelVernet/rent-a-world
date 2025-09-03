@@ -44,11 +44,11 @@
         <div class="bg-base-200/50 rounded-2xl p-6 border border-base-300/30">
           <h3 class="font-semibold text-base-content mb-4 flex items-center gap-2">Rate Your Experience</h3>
             <div class="rating gap-1">
-              <input type="radio" name="rating-3" class="mask mask-heart bg-red-400" aria-label="1 star" />
-              <input type="radio" name="rating-3" class="mask mask-heart bg-orange-400" aria-label="2 star" checked="checked" />
-              <input type="radio" name="rating-3" class="mask mask-heart bg-yellow-400" aria-label="3 star" />
-              <input type="radio" name="rating-3" class="mask mask-heart bg-lime-400" aria-label="4 star" />
-              <input type="radio" name="rating-3" class="mask mask-heart bg-green-400" aria-label="5 star" />
+              <%= form.radio_button :stars, "1", class: "mask mask-heart bg-red-400" %>
+              <%= form.radio_button :stars, "2", class: "mask mask-heart bg-orange-400" %>
+              <%= form.radio_button :stars, "3", class: "mask mask-heart bg-yellow-400" %>
+              <%= form.radio_button :stars, "4", class: "mask mask-heart bg-lime-400" %>
+              <%= form.radio_button :stars, "5", class: "mask mask-heart bg-green-400" %>
             </div>
           </div>
         <!-- Submit Section -->
