@@ -2,9 +2,86 @@
 <%# # Match stream tag ID in create.turbo_stream %>
 <%# # Match stream tag ID in partial rendering in show page for reviews %>
 
-<%= form_with model: [@world, @review] do |form| %>
-  <%= form.label :message, "Review this world" %>
-  <%= form.text_area :message, rows: 5, cols: 70 %>
-  <%= form.submit "Create review" %>
-<% end %>
+<div class="p-8">
+  <%= form_with model: [@world, @review], class: "space-y-6" do |form| %>
+    
+    <!-- Header Section -->
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold bg-clip-text mb-2">
+        Share Your Experience
+      </h2>
+    </div>
+
+    <!-- Review Form -->
+    <div class="form-control">
+      <%= form.label :message, class: "label" do %>
+        <span class="label-text text-lg font-semibold flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-1.586l-4 4z" />
+          </svg>
+          Your Review
+        </span>
+      <% end %>
+      
+      <div class="relative">
+        <%= form.text_area :message, 
+            rows: 6, 
+            placeholder: "What did you love about this world? Share your thoughts, experiences, and recommendations...",
+            class: "textarea textarea-bordered textarea-lg w-full bg-base-100/80 backdrop-blur-sm border-2 border-base-300/50 focus:border-primary/50 focus:bg-base-100 transition-all duration-300 rounded-2xl resize-none text-base leading-relaxed min-h-[150px]" %>
+        
+        <!-- TODO: Character counter -->
+        <!-- <div class="absolute bottom-4 right-4 text-xs text-base-content/50 bg-base-200/80 px-2 py-1 rounded-lg backdrop-blur-sm">
+          <span id="char-count">0</span> characters
+        </div> -->
+      </div>
+      
+      <label class="label">
+        <span class="label-text-alt text-base-content/60 flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Be honest and helpful - your review helps others make informed decisions
+        </span>
+      </label>
+    </div>
+
+    <!-- Rating Section (Optional Enhancement) -->
+    <div class="bg-base-200/50 rounded-2xl p-6 border border-base-300/30">
+      <h3 class="font-semibold text-base-content mb-4 flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-warning" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        Rate Your Experience
+      </h3>
+      
+      <div class="rating rating-lg">
+        <input type="radio" name="rating" class="mask mask-star-2 bg-warning" />
+        <input type="radio" name="rating" class="mask mask-star-2 bg-warning" />
+        <input type="radio" name="rating" class="mask mask-star-2 bg-warning" />
+        <input type="radio" name="rating" class="mask mask-star-2 bg-warning" />
+        <input type="radio" name="rating" class="mask mask-star-2 bg-warning" checked />
+      </div>
+    </div>
+
+    <!-- Submit Section -->
+    <div class="text-center pt-4">
+      <div class="inline-block relative group">
+        <%= form.submit "Publish Review", 
+            class: "btn btn-primary btn-lg px-8 h-14 text-lg font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group-hover:scale-105" %>
+        
+        <!-- Success Icon (hidden by default) -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-primary-content" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+        </svg>
+      </div>
+      
+      <p class="text-sm text-base-content/50 mt-4 flex items-center justify-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        Your review will be published publicly
+      </p>
+    </div>
+  <% end %>
+</div>
   
