@@ -45,7 +45,7 @@
         <%# New review %>
         <div id="review-form" class="flex justify-center">
         <%= turbo_frame_tag "create_review" do %>
-          <button class="btn btn-soft btn-secondary" onclick="create_review_modal.showModal()">Give a review spell<img src="https://static.thenounproject.com/png/6653090-512.png" alt="Potion Icon" style="width: 20px; height: 20px; margin-right: 5px;"></button>
+          <button class="btn btn-soft btn-secondary" onclick="create_review_modal.showModal()">Cast a review spell<img src="https://static.thenounproject.com/png/6653090-512.png" alt="Potion Icon" style="width: 20px; height: 20px; margin-right: 5px;"></button>
           <%= render "reviews/forms/review_form" %>
         <% end %>
         </div>
