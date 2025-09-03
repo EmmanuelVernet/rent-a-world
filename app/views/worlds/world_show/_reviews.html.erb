@@ -42,4 +42,8 @@
       </div>
     </div>
   </div>
+        <%# New review %>
+        <%= turbo_frame_tag "create_review" do %>
+          <%= render "reviews/forms/review_form" %>
+        <% end %>
 </div>

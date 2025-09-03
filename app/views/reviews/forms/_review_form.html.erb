@@ -1,0 +1,10 @@
+<%# Give it a stream tag ID %>
+<%# # Match stream tag ID in create.turbo_stream %>
+<%# # Match stream tag ID in partial rendering in show page for reviews %>
+
+<%= form_with model: [@world, @review] do |form| %>
+  <%= form.label :message, "Review this world" %>
+  <%= form.text_area :message, rows: 5, cols: 70 %>
+  <%= form.submit "Create review" %>
+<% end %>
+  
