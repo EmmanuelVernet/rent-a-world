@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
 	before_action :set_world
+	before_action :set_review, only: [:update]
 
 	# def index
 	# 	@reviews = @world.reviews.order(:created_at)
@@ -7,11 +8,22 @@ class ReviewsController < ApplicationController
 
 	def create
 		@review = @world.reviews.new(review_params)
-
+		
 		if @review.save!
 			respond_to do |format|
 				format.turbo_stream
 				format.html { redirect_to @world}
+			end
+		else
+			render "world/show", status: :unprocessable_entity
+		end
+	end
+
+	def update
+		if @review.update(review_params)
+			respond_to do |format|
+				format.turbo_stream
+				format.html { redirect_do @world}
 			end
 		else
 			render "world/show", status: :unprocessable_entity
@@ -29,7 +41,7 @@ class ReviewsController < ApplicationController
 		@world = World.find(params[:world_id])
 	end
 
-	# def set_review
-	# 	@review = Review.find(params[:id])
-	# end
+	def set_review
+		@review = Review.find(params[:id])
+	end
 end
