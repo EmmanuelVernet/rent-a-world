@@ -42,7 +42,7 @@ class WorldsController < ApplicationController
     @activities = @world.activities
     @amenities = @world.amenities
     # init review for form -> either find user
-    # @review = @world.reviews.new # @world.reviews.find_by(user: current_user) || 
+    @review = @world.reviews.new
     # @review.user = current_user
   end
 

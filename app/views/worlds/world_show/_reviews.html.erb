@@ -14,8 +14,8 @@
                   <img src="https://img.daisyui.com/images/profile/demo/5@94.webp" alt="Avatar">
                 </div>
                 <div class="ml-4">
-                  <p class="text-lg font-semibold text-gray-900"><%= review.user.full_name %></p>
-                  <p class="text-sm text-gray-600"><%= review.created_at.strftime("%d/%m/%Y") %></p>
+                  <p class="text-lg font-semibold text-gray-900"><%= review.user&.full_name %></p>
+                  <p class="text-sm text-gray-600"><%= review.created_at&.strftime("%d/%m/%Y") %></p>
                 </div>
               </div>
               <div class="divider my-0"></div>

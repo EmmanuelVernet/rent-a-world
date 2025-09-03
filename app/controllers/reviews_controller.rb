@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
 
 	def create
 		@review = @world.reviews.new(review_params)
+		@review.user = current_user
 		
 		if @review.save!
 			respond_to do |format|
@@ -23,7 +24,7 @@ class ReviewsController < ApplicationController
 		if @review.update(review_params)
 			respond_to do |format|
 				format.turbo_stream
-				format.html { redirect_do @world}
+				format.html { redirect_to @world}
 			end
 		else
 			render "world/show", status: :unprocessable_entity
