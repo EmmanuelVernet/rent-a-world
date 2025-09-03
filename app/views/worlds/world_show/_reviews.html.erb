@@ -14,8 +14,8 @@
                   <img src="https://img.daisyui.com/images/profile/demo/5@94.webp" alt="Avatar">
                 </div>
                 <div class="ml-4">
-                  <p class="text-lg font-semibold text-gray-900"><%= review.user.full_name %></p>
-                  <p class="text-sm text-gray-600"><%= review.created_at.strftime("%d/%m/%Y") %></p>
+                  <p class="text-lg font-semibold text-gray-900"><%= review.user&.full_name %></p>
+                  <p class="text-sm text-gray-600"><%= review.created_at&.strftime("%d/%m/%Y") %></p>
                 </div>
               </div>
               <div class="divider my-0"></div>
@@ -41,5 +41,13 @@
         <% end %>
       </div>
     </div>
+    <div class="divider"></div>
+        <%# New review %>
+        <div id="review-form" class="flex justify-center">
+        <%= turbo_frame_tag "create_review" do %>
+          <button class="btn btn-soft btn-secondary" onclick="create_review_modal.showModal()">Cast a review spell<img src="https://static.thenounproject.com/png/6653090-512.png" alt="Potion Icon" style="width: 20px; height: 20px; margin-right: 5px;"></button>
+          <%= render "reviews/forms/review_form" %>
+        <% end %>
+        </div>
   </div>
 </div>
