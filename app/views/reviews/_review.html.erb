@@ -19,10 +19,9 @@
         <% colors = %w[red-400 orange-400 yellow-400 lime-400 green-400] %>
         <% colors.each_with_index do |color, i| %>
           <input type="radio"
-                           name="rating-<%= review.id %>"
-                           class="mask mask-heart bg-<%= color %>"
-                           aria-label="<%= i + 1 %> star"
-                           <%= "checked" if i + 1 == review.stars %> />
+                name="rating-<%= review.id %>"
+                class="mask mask-heart bg-<%= color %>" aria-label="<%= i + 1 %> star" 
+<%= "checked" if i + 1 == review.stars %> />
         <% end %>
       </div>
     </div>

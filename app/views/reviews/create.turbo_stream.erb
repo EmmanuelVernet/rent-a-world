@@ -1,5 +1,7 @@
+<%# Add the new review to the list %>
 <%= turbo_stream.append "reviews_list", @review %>
 
+<%# Reset the form and close the modal %>
 <%= turbo_stream.update "review_form_modal" do %>
   <%= render "reviews/forms/review_form", world: @world, review: @world.reviews.new %>
 <% end %>
