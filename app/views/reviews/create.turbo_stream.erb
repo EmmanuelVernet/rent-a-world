@@ -1,6 +1,5 @@
-<%= turbo_stream.append "create_review" do %>
-  <%= render "reviews/forms/review_form" %>
-    <!-- <%= turbo_frame_tag dom_id(@review) do %>
-        <%= render "reviews/forms/review_form" %>
-    <% end %> -->
+<%= turbo_stream.append "reviews_list", @review %>
+
+<%= turbo_stream.update "review_form_modal" do %>
+  <%= render "reviews/forms/review_form", world: @world, review: @world.reviews.new %>
 <% end %>
