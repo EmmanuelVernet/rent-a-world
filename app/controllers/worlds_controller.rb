@@ -41,9 +41,8 @@ class WorldsController < ApplicationController
     # @world = World.includes(:activities).find(params[:id])  # Eager loading activities
     @activities = @world.activities
     @amenities = @world.amenities
-    # init review for form -> either find user
+    # init review for review form load
     @review = @world.reviews.new
-    # @review.user = current_user
   end
 
   def edit
