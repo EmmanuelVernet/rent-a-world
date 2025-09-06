@@ -25,7 +25,9 @@
         <% end %>
       </div>
       <div id="edit">
-        <%= link_to "edit", edit_world_review_path(@world, @review) %>
+        <% if review.persisted? %>
+          <%= link_to "edit", edit_world_review_path(world, review) %>
+        <% end %>
       </div>
     </div>
   </div>
