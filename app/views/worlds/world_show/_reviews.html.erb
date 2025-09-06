@@ -8,7 +8,7 @@
       <div id="reviews_list" class="space-y-4">
         <% @world.reviews.each do |review| %>
           <%# <%= render review %>
-          <%= render "reviews/review", review: review, world: @world %>
+          <%= render partial: "reviews/review", locals: { review: review, world: @world } %>
         <% end %>
       </div>
     <% end %>
@@ -17,11 +17,12 @@
         <%# New review %>
         <div id="review-form" class="flex justify-center">
         
-          <button class="btn btn-soft btn-secondary" onclick="review_modal.showModal()">Cast a review spell<img src="https://static.thenounproject.com/png/6653090-512.png" alt="Potion Icon" style="width: 20px; height: 20px; margin-right: 5px;"></button>
+          <button class="btn btn-soft btn-secondary" onclick="create_review_modal.showModal()">Cast a review spell<img src="https://static.thenounproject.com/png/6653090-512.png" alt="Potion Icon" style="width: 20px; height: 20px; margin-right: 5px;"></button>
           <div id="review_form_modal">
             <%= render "reviews/forms/review_form" %>
           </div>
         
         </div>
+        <div id="review_modal"></div>
   </div>
 </div>
