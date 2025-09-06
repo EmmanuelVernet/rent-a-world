@@ -42,7 +42,7 @@ class WorldsController < ApplicationController
     @activities = @world.activities
     @amenities = @world.amenities
     # init review for review form load
-    @review = @world.reviews.new
+    @review = Review.new(world: @world) 
   end
 
   def edit
@@ -66,12 +66,12 @@ class WorldsController < ApplicationController
   end
 
   private
+  
+  def world_params
+    params.require(:world).permit(:title, :category, :place, :price, :description, :capacity, :latitude, :longitude)
+  end
 
   def set_world
     @world = World.find(params[:id])
-  end
-
-  def world_params
-    params.require(:world).permit(:title, :category, :place, :price, :description, :capacity, :latitude, :longitude)
   end
 end

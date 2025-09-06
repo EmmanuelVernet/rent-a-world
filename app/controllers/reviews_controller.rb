@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
 	before_action :set_world
-	before_action :set_review, only: [:update]
+	before_action :set_review, only: [:edit, :update]
 
 	# def index
 	# 	@reviews = @world.reviews.order(:created_at)
@@ -17,6 +17,13 @@ class ReviewsController < ApplicationController
 			end
 		else
 			render "world/show", status: :unprocessable_entity
+		end
+	end
+
+	def edit
+		respond_to do |format|
+			format.turbo_stream
+			format.html
 		end
 	end
 
