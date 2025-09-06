@@ -25,8 +25,8 @@
         <% end %>
       </div>
       <div id="edit">
-        <% if review.persisted? %>
-          <%= link_to "edit", edit_world_review_path(world, review) %>
+        <% if review.user == current_user %>
+          <%= link_to "edit", edit_world_review_path(world, review), class:"btn" %>
         <% end %>
       </div>
     </div>

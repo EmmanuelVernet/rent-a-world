@@ -42,7 +42,7 @@ class WorldsController < ApplicationController
     @activities = @world.activities
     @amenities = @world.amenities
     # init review for review form load
-    @review = @world.reviews.new
+    @review = Review.new(world: @world) 
   end
 
   def edit
