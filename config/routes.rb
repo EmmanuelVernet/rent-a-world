@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     end
     
     resources :bookings, only: [ :index, :new, :create, :edit, :update, :show ] # for renter + rentee per world
-    resources :reviews, only: [ :create, :update, :destroy, :index ]
+    resources :reviews, only: [ :index , :create, :edit, :update, :destroy]
     resources :tags, only: [ :index ] # To fetch tags for a specific world
   end
 

@@ -1,0 +1,3 @@
+<%= turbo_stream.replace dom_id(@review, :form) do %>
+  <%= render "reviews/forms/review_form", review: @review %>
+<% end %>

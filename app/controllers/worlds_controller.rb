@@ -66,12 +66,12 @@ class WorldsController < ApplicationController
   end
 
   private
+  
+  def world_params
+    params.require(:world).permit(:title, :category, :place, :price, :description, :capacity, :latitude, :longitude)
+  end
 
   def set_world
     @world = World.find(params[:id])
-  end
-
-  def world_params
-    params.require(:world).permit(:title, :category, :place, :price, :description, :capacity, :latitude, :longitude)
   end
 end

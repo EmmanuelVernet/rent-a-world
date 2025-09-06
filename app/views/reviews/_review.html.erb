@@ -24,6 +24,9 @@
 <%= "checked" if i + 1 == review.stars %> />
         <% end %>
       </div>
+      <div id="edit">
+        <%= link_to "edit", edit_world_review_path(@world, @review) %>
+      </div>
     </div>
   </div>
 </div>
