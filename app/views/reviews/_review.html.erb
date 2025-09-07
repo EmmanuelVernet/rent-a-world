@@ -26,6 +26,7 @@
       </div>
       <div id="edit">
         <% if review.user == current_user %>
+          <%= link_to "delete", world_review_path(world, review), class: "badge badge-soft badge-error", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
           <%= link_to "edit", edit_world_review_path(world, review), class: "badge badge-soft badge-secondary", data: { turbo: false } %>
           <%# turbo-false to bypass the review turbo frame %>
         <% end %>
