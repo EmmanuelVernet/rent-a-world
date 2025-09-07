@@ -24,7 +24,16 @@
 <%= "checked" if i + 1 == review.stars %> />
         <% end %>
       </div>
-      
+      <div id="edit">
+        <% if review.user == current_user %>
+          <%= link_to "edit", edit_world_review_path(world, review), 
+              class: "badge badge-soft badge-secondary",
+              data: { 
+                turbo_method: :get,
+                action: "click->reviews#edit"
+              } %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

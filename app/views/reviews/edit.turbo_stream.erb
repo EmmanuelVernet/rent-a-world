@@ -1,8 +1,4 @@
-<%= turbo_stream.replace dom_id("review_modal") do %>
-  <%= render "reviews/forms/review_form", review: @review, world: @world %>
-<% end %>
-
-<%# TEST %>
-<%= turbo_stream.replace "review_modal" do %>
-  <%= render partial: "reviews/forms/review_form", locals: { review: @review, world: @world } %>
+<%# Update the modal form with the review data for editing %>
+<%= turbo_stream.update "review_form_modal" do %>
+  <%= render "reviews/forms/review_form", world: @world, review: @review %>
 <% end %>

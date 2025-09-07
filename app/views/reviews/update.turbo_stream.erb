@@ -1,5 +1,7 @@
-<%# Add the new review to the list %>
-<%= turbo_stream.append "reviews_list", @review %>
+<%# Replace the updated review in the list %>
+<%= turbo_stream.replace dom_id(@review) do %>
+  <%= render partial: "reviews/review", locals: { review: @review, world: @world } %>
+<% end %>
 
 <%# Reset the form and close the modal %>
 <%= turbo_stream.update "review_form_modal" do %>

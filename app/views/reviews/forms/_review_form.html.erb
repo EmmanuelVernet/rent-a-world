@@ -50,7 +50,7 @@
         <!-- Submit Section -->
         <div class="text-center pt-4">
           <div class="inline-block relative group">
-            <%= form.submit "Publish Review", 
+            <%= form.submit (@review.persisted? ? "Update Review" : "Publish Review"), 
             class: "btn btn-accent btn-lg px-8 h-14 text-lg font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group-hover:scale-105" %>
           </div>
           <p class="text-sm text-base-content/50 mt-4 flex items-center justify-center gap-2">
