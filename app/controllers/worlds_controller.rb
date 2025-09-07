@@ -30,7 +30,6 @@ class WorldsController < ApplicationController
       redirect_to world_path(@world), notice: "World was successfully created."
     else
       flash[:alert] = "Please correct the errors below."
-      # Rails.logger.info("Flash alert: #{flash[:alert]}")    # Log the flash message
       render :new, status: :unprocessable_entity
     end
   end

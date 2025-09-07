@@ -1,10 +1,6 @@
 class ReviewsController < ApplicationController
 	before_action :set_world
-	before_action :set_review, only: [:edit, :update]
-
-	# def index
-	# 	@reviews = @world.reviews.order(:created_at)
-	# end
+	before_action :set_review, only: [:edit, :update, :destroy]
 
 	def create
 		@review = @world.reviews.new(review_params)
@@ -31,6 +27,13 @@ class ReviewsController < ApplicationController
 		end
 	end
 	
+	def destroy
+		if @review.destroy!
+			redirect_to world_path(@world), notice: "Review deleted!"
+		else
+			redirect_to world_path(@world), alert: "Impossible to delete!"
+		end
+	end
 
 	private
 	
