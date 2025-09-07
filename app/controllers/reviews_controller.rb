@@ -21,18 +21,11 @@ class ReviewsController < ApplicationController
 	end
 
 	def edit
-		respond_to do |format|
-			format.turbo_stream
-			format.html
-		end
 	end
 
 	def update
 		if @review.update(review_params)
-			respond_to do |format|
-				format.turbo_stream
-				format.html { redirect_to @world}
-			end
+			redirect_to world_path(@world)
 		else
 			render "world/show", status: :unprocessable_entity
 		end
@@ -42,7 +35,7 @@ class ReviewsController < ApplicationController
 	private
 	
 	def review_params
-		params.require(:review).permit(:user_id, :world_id, :comment, :stars) # check if allowing user_id param is security breach
+		params.require(:review).permit(:world_id, :comment, :stars)
 	end
 
 	def set_world
