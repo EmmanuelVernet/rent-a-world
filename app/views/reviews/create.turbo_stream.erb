@@ -1,21 +1,9 @@
-<% if @review.errors.empty? %>
-  <%# Add new review to the list - PASS BOTH VARIABLES %>
-  <%= turbo_stream.prepend "reviews_list" do %>
-    <%= render "review", review: @review, world: @world %>
-  <% end %>
-  
-  <%# Show success message %>
-  <%= turbo_stream.update "flash" do %>
-    <div class="alert alert-success">Review created successfully!</div>
-  <% end %>
-<% else %>
-  <%# Keep modal open with validation errors %>
-  <%= turbo_stream.update "modal_content" do %>
-    <div class="modal-header">
-      <h2 class="text-2xl font-bold">New Review</h2>
-    </div>
-    <div class="modal-body">
-      <%= render "reviews/forms/review_form", world: @world, review: @review %>
-    </div>
-  <% end %>
+<%# Add new review to the list with both instance vars %>
+<%= turbo_stream.append "reviews_list" do %>
+  <%= render "review", review: @review, world: @world %>
+<% end %>
+
+<%# Reset the form and close the modal %>
+<%= turbo_stream.update "review_form_modal" do %>
+  <%= render "reviews/forms/review_form", world: @world, review: @world.reviews.new %>
 <% end %>

@@ -1,4 +1,4 @@
-<div class="w-full max-w-3xl">
+<div class="flex items-center justify-center w-full">
   <div class="p-8">
     <%= form_with model: [@world, @review], class: "space-y-6" do |form| %>
       <!-- Header Section -->
@@ -48,10 +48,9 @@
       </div>
       <!-- Submit Section -->
       <div class="text-center pt-4">
-        <div class="inline-block relative group">
-          <%= form.submit "Edit Review", 
+        <%= link_to "Back", world_path(@world),class: "btn btn-info btn-lg px-8 h-14 text-lg font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group-hover:scale-105 me-4"  %>
+        <%= form.submit "Edit Review", 
             class: "btn btn-accent btn-lg px-8 h-14 text-lg font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group-hover:scale-105" %>
-        </div>
         <p class="text-sm text-base-content/50 mt-4 flex items-center justify-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
