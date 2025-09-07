@@ -1,4 +1,0 @@
-<%# Update the modal form with the review data for editing %>
-<%= turbo_stream.update "review_form_modal" do %>
-  <%= render "reviews/forms/review_form", world: @world, review: @review %>
-<% end %>
