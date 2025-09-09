@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_08_094944) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_09_085306) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -55,6 +55,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_08_094944) do
     t.index ["sender_id", "recipient_id", "world_id"], name: "index_conversations_on_sender_id_and_recipient_id_and_world_id", unique: true
     t.index ["sender_id"], name: "index_conversations_on_sender_id"
     t.index ["world_id"], name: "index_conversations_on_world_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "conversation_id", null: false
+    t.bigint "sender_id", null: false
+    t.text "body", null: false
+    t.datetime "read_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
@@ -149,6 +160,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_08_094944) do
   add_foreign_key "conversations", "users", column: "recipient_id"
   add_foreign_key "conversations", "users", column: "sender_id"
   add_foreign_key "conversations", "worlds"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "worlds"
   add_foreign_key "world_activities", "activities"
