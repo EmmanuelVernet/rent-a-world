@@ -37,9 +37,6 @@ Rails.application.routes.draw do
   # Tags routes (for global tags index or CRUD)
   # resources :tags, only: [ :index ]
 
-  # WorldTag routes (for managing associations between worlds and tags)
-  # resources :world_tags, only: [ :create, :destroy ]
-
   # Bookings routes
   resources :bookings do #, only: [ :index, :show, :update, :destroy ] # for rentee’s list & admin CRUD
     member do
@@ -47,6 +44,8 @@ Rails.application.routes.draw do
       post :cancel
     end
   end
+
+  resources :conversations
 
   # Reviews routes (for global access or management)
   # resources :reviews, only: [ :index, :show, :destroy ]

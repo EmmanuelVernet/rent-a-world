@@ -1,0 +1,24 @@
+<div>
+  CONVERSATIONS
+  <div>
+    <% @conversations.each do |conv|%>
+      Title <%= conv.title %>
+      Sender <%= conv.sender.full_name %>
+      Recipient <%= conv.recipient.full_name %>
+      <div>
+        Messages <% conv.messages.each do |message| %>
+          <div>
+            <%= message.sender.full_name %>
+            <%= message.body %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="flex h-full container">
+  <!-- Left Panel - Conversations Container -->
+  <%= render "conversation_left_panel" %>
+  <!-- Right Panel - Messages Container -->
+  <%= render "conversation_right_panel" %>
+</div>
