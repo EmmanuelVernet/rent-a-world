@@ -1,5 +1,11 @@
 class MessagesController < ApplicationController
-	before_action :set_conversation, only: [:create]
+	before_action :set_conversation, only: [:index, :create]
+
+	def index
+		@messages = @conversation.messages.includes(:sender).order(:created_at)
+
+  	render partial: "messages/messages", locals: { messages: @messages }
+	end
 
 	def create
 		@message = @conversation.messages.new(message_params)

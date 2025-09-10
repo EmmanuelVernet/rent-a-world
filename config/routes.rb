@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   end
 
   resources :conversations do
-    resources :messages, only: [:create]
+    resources :messages, only: [:index, :create]
   end
 
   # Reviews routes (for global access or management)

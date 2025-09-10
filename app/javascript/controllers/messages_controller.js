@@ -2,13 +2,33 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="message"
 export default class extends Controller {
-  static targets = ["messages"]
+  static values = { url: String, interval: { type: Number, default: 3000 } }
+  static targets = ["list"]
 
   connect() {
-    console.log("controller connected")
+    this.start()
   }
 
-  refreshMessages() {
-    // fetch with interval
+  disconnect() {
+    this.stop()
+  }
+
+  start() {
+    this.timer = setInterval(() => this.refresh(), this.intervalValue)
+  }
+
+  stop() {
+    clearInterval(this.timer)
+  }
+
+  async refresh() {
+    try {
+      const response = await fetch(this.urlValue, { headers: { "Accept": "text/html" } })
+      if (response.ok) {
+        this.listTarget.innerHTML = await response.text()
+      }
+    } catch (e) {
+      console.error(e)
+    }
   }
 }

@@ -33,37 +33,14 @@
     </div>
   </div>
   <!-- Messages Area -->
-  <div class="flex-1 overflow-y-auto p-4 space-y-4 bg-base-50" data-controller="messages">
+  <div class="flex-1 overflow-y-auto p-4 space-y-4 bg-base-50" 
+  data-controller="messages" 
+  data-messages-url-value="<%= conversation_messages_path(@conversation) %>" 
+  data-messages-interval-value="3000">
     <!-- Received Message -->
-    <% @messages.each do |message| %>
-      <% if message.sender.id != current_user.id %>
-        <div class="chat chat-start">
-          <div class="chat-image avatar">
-            <div class="w-8 rounded-full bg-primary text-primary-content flex items-center justify-center text-sm font-medium">
-              JD
-            </div>
-          </div>
-          <div class="chat-header">
-            <%= message.sender.full_name %>
-            <time class="text-xs opacity-50">2:30 PM</time>
-          </div>
-          <div class="chat-bubble chat-bubble-secondary">
-            <%= message.body %>
-          </div>
-        </div>
-      <% else %>
-        <!-- Sent Message -->
-        <div class="chat chat-end">
-          <div class="chat-header">
-            You
-            <time class="text-xs opacity-50">2:32 PM</time>
-          </div>
-          <div class="chat-bubble chat-bubble-primary">
-            <%= message.body %>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+    <div data-messages-target="list">
+      <%= render "messages/messages", locals: { messages: @messages } %>
+    </div>
     <!-- Typing Indicator -->
     <div class="chat chat-start">
       <div class="chat-image avatar">
