@@ -5,11 +5,11 @@
       <div class="flex items-center gap-3">
         <div class="avatar">
           <div class="w-10 rounded-full bg-primary text-primary-content flex items-center justify-center font-medium">
-            <%= @sender.first_name[0] %><%= @sender.last_name[0] %>
+            <%= @message.sender&.first_name %><%= @message.sender&.last_name %>
           </div>
         </div>
         <div>
-          <div class="font-medium"><%= @sender.full_name %></div>
+          <div class="font-medium"><%= @message.sender&.full_name %></div>
           <div class="text-sm opacity-60 flex items-center gap-1">
             <div class="badge badge-success badge-xs"></div>
             Online
@@ -77,3 +77,5 @@
     </div>
   </div>
 </div>
+  <!-- Message form input -->
+  <%= render "messages/message_form", conversation: @conversation, message: @message %>

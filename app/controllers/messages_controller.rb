@@ -1,14 +1,14 @@
 class MessagesController < ApplicationController
-	before_action :set_conversation
+	before_action :set_conversation, only: [:create]
 
 	def create
-		@message = @conversation.messages.new
+		@message = @conversation.messages.new(message_params)
 		@message.sender = current_user
 		
 		if @message.save
 			redirect_to conversation_path(@conversation)
 		else
-			render "conversation/show", status: :unprocessable_entity
+			render "conversations/show", status: :unprocessable_entity
 		end
 	end
 
@@ -19,6 +19,6 @@ class MessagesController < ApplicationController
 	end
 
 	def set_conversation
-		@conversation = Conversation.find(params[conversation_id])
+		@conversation = Conversation.find(params[:conversation_id])
 	end
 end
