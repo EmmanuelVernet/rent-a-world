@@ -1,1 +1,10 @@
-<%= render "conversations/conversation_messages" %>
+<% if @conversation.present? %>
+  <%= render "conversations/conversation_messages" %>
+<% else %>
+  <div class="flex-1 bg-base-100 flex items-center justify-center">
+    <div class="text-center text-gray-500">
+      <h3 class="text-lg font-medium mb-2">Select a conversation</h3>
+      <p class="text-sm">Choose a conversation from the left to start messaging</p>
+    </div>
+  </div>
+<% end %>

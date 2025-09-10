@@ -3,13 +3,20 @@ class MessagesController < ApplicationController
 
 	def index
 		@messages = @conversation.messages.includes(:sender).order(:created_at)
+		@recipient = @conversation.recipient
+		@sender = @conversation.sender
+		@message = @conversation.messages.build
 
-  	# render partial: "messages/messages", locals: { messages: @messages }
-
-		respond_to do |format|
-    	format.html  # for the full page
-    	format.turbo_stream { render partial: "conversations/conversation_right_panel", locals: { conversation: @conversation, messages: @messages, message: @message } }
-  	end
+		# Handle different request types
+		if turbo_frame_request?
+			# Turbo Frame navigation from left panel clicks
+			render html: helpers.turbo_frame_tag("conversation_panel") { 
+				render_to_string(partial: "conversations/conversation_right_panel") 
+			}.html_safe
+		else
+			# Polling requests from JavaScript - just return the messages list
+			render partial: "messages/messages", locals: { messages: @messages }
+		end
 	end
 
 	def create

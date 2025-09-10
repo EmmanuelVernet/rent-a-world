@@ -3,6 +3,6 @@
   <%= render "conversation_left_panel" %>
   <!-- Right Panel - Messages Container -->
   <%= turbo_frame_tag "conversation_panel" do %>
-    <%= render "conversation_right_panel"  %>
+    <%= render "conversation_right_panel", conversations: @conversations  %>
   <% end %>
 </div>
