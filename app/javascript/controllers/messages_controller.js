@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="message"
+// Connects to data-controller="messages"
 export default class extends Controller {
   static values = { url: String, interval: { type: Number, default: 3000 } }
   static targets = ["list"]
