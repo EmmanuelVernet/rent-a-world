@@ -10,7 +10,7 @@ class ConversationsController < ApplicationController
 		# Load conv messages for view
 		@messages = @conversation.messages.includes(:sender).order(created_at: :asc)
 		@recipient = @conversation.recipient
-		# isntantiate a new message to render message form in show view
+		# instantiate a new message to render message form in show view
 		@message = @conversation.messages.build
 	end
 
