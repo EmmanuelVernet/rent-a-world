@@ -15,6 +15,22 @@ class ConversationsController < ApplicationController
 		@message = @conversation.messages.build
 	end
 
+	def create
+		@conversation = Conversation.find_or_initialize_by(
+    	sender_id: current_user.id,
+    	recipient_id: conversation_params[:recipient_id],
+    	world_id: conversation_params[:world_id]
+  	)
+		@conversation.sender = current_user
+
+		if @conversation.save
+			redirect_to conversations_path
+		else
+			# render :new, status: :unprocessable_entity
+			redirect_to conversations_path, notice: "Could not create conversation."
+		end
+	end
+
 	private
 
 	def conversation_params

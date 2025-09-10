@@ -7,14 +7,11 @@ class MessagesController < ApplicationController
 		@sender = @conversation.sender
 		@message = @conversation.messages.build
 
-		# Handle different request types
+		# Handle turbo frame request
 		if turbo_frame_request?
-			# Turbo Frame navigation from left panel clicks
-			render html: helpers.turbo_frame_tag("conversation_panel") { 
-				render_to_string(partial: "conversations/conversation_right_panel") 
-			}.html_safe
+			render partial: "conversations/conversation_panel"
 		else
-			# Polling requests from JavaScript - just return the messages list
+			# Polling requests from JavaScript - returns the messages list
 			render partial: "messages/messages", locals: { messages: @messages }
 		end
 	end
@@ -24,9 +21,12 @@ class MessagesController < ApplicationController
 		@message.sender = current_user
 		
 		if @message.save
-			redirect_to conversation_path(@conversation)
+			redirect_to conversation_messages_path(@conversation)
 		else
-			render "conversations/show", status: :unprocessable_entity
+			@messages = @conversation.messages.includes(:sender).order(:created_at)
+			@recipient = @conversation.recipient
+			@sender = @conversation.sender
+			render partial: "conversations/conversation_panel", status: :unprocessable_entity
 		end
 	end
 
