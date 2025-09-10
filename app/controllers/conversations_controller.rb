@@ -9,8 +9,10 @@ class ConversationsController < ApplicationController
 	def show
 		# Load conv messages for view
 		@messages = @conversation.messages.includes(:sender).order(created_at: :asc)
-		@sender = @conversation.sender
 		@recipient = @conversation.recipient
+		@sender = @conversation.sender
+		# instantiate a new message to render message form in show view
+		@message = @conversation.messages.build
 	end
 
 	private

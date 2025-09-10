@@ -1,0 +1,31 @@
+<div class="overflow-y-auto">
+<% @messages.each do |message| %>
+  <% if message.sender.id != current_user.id %>
+    <div class="chat chat-start">
+      <div class="chat-image avatar">
+        <div class="w-8 rounded-full bg-primary text-primary-content flex items-center justify-center text-sm font-medium">
+          JD
+        </div>
+      </div>
+      <div class="chat-header">
+        <%= message.sender.full_name %>
+        <time class="text-xs opacity-50">2:30 PM</time>
+      </div>
+      <div class="chat-bubble chat-bubble-secondary">
+        <%= message.body %>
+      </div>
+    </div>
+  <% else %>
+    <!-- Sent Message -->
+    <div class="chat chat-end">
+      <div class="chat-header">
+        You
+        <time class="text-xs opacity-50">2:32 PM</time>
+      </div>
+      <div class="chat-bubble chat-bubble-primary">
+        <%= message.body %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+</div>

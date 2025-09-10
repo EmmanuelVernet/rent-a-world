@@ -16,23 +16,27 @@
   <div class="flex-1 overflow-y-auto">
     <ul class="p-0">
       <% @conversations.each do |conv|%>
-        <li>
-          <a class="flex items-center gap-3 p-4 hover:bg-base-200 active:bg-primary active:text-primary-content">
-            <div class="avatar">
-              <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-medium">
-                <%= conv.sender.first_name[0] %><%= conv.sender.last_name[0] %>
+        <%= link_to conversation_messages_path(conv),
+        data: { turbo_frame: "conversation_panel" },
+        class: "block p-4 hover:bg-gray-100" do %>
+          <li>
+            <div class="flex items-center gap-3 p-4 hover:bg-base-200 active:bg-primary active:text-primary-content">
+              <div class="avatar">
+                <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-medium">
+                  <%= conv.sender.first_name[0] %><%= conv.sender.last_name[0] %>
+                </div>
               </div>
-            </div>
-            <div class="flex-1 min-w-0">
-              <div class="flex justify-between items-baseline">
-                <div class="font-medium truncate"><%= conv.sender.full_name %></div>
-                <div class="text-xs opacity-60">2m</div>
+              <div class="flex-1 min-w-0">
+                <div class="flex justify-between items-baseline">
+                  <div class="font-medium truncate"><%= conv.sender.full_name %></div>
+                  <div class="text-xs opacity-60">2m</div>
+                </div>
+                <div class="text-sm opacity-60 truncate">Hey, how are you doing?</div>
               </div>
-              <div class="text-sm opacity-60 truncate">Hey, how are you doing?</div>
+              <div class="badge badge-primary badge-sm">2</div>
             </div>
-            <div class="badge badge-primary badge-sm">2</div>
-          </a>
-        </li>
+          </li>
+        <% end %>
       <% end %>
     </ul>
   </div>
