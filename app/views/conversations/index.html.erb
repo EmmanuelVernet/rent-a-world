@@ -2,5 +2,7 @@
   <!-- Left Panel - Conversations Container -->
   <%= render "conversation_left_panel" %>
   <!-- Right Panel - Messages Container -->
-  <%= render "conversation_right_panel" %>
+  <%= turbo_frame_tag "conversation_panel" do %>
+    <%= render "conversation_right_panel"  %>
+  <% end %>
 </div>

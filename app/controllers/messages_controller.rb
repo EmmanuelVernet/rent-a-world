@@ -4,7 +4,12 @@ class MessagesController < ApplicationController
 	def index
 		@messages = @conversation.messages.includes(:sender).order(:created_at)
 
-  	render partial: "messages/messages", locals: { messages: @messages }
+  	# render partial: "messages/messages", locals: { messages: @messages }
+
+		respond_to do |format|
+    	format.html  # for the full page
+    	format.turbo_stream { render partial: "conversations/conversation_right_panel", locals: { conversation: @conversation, messages: @messages, message: @message } }
+  	end
 	end
 
 	def create
