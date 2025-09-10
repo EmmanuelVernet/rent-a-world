@@ -1,8 +1,8 @@
-<div class="flex h-full container">
+<div class="flex h-full">
   <!-- Left Panel - Conversations Container -->
   <%= render "conversation_left_panel" %>
   <!-- Right Panel - Messages Container -->
-  <%= turbo_frame_tag "conversation_panel" do %>
+  <%= turbo_frame_tag "conversation_panel", class: "flex-1 overflow-hidden" do %>
     <%= render "conversation_right_panel", conversations: @conversations  %>
   <% end %>
 </div>
