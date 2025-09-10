@@ -42,7 +42,10 @@
       <div class="alert alert-info alert-soft">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
         <span class="text-sm">Additional information available on demand. Please contact the renter directly.</span>
-        <button class="btn btn-soft btn-primary">Contact host</button>
+        <%= link_to "Contact host", 
+        conversations_path(conversation: { recipient_id: @world.user.id, world_id: @world.id, title: "New chat with #{@world.user.full_name}" }), 
+        data: { turbo_method: :post }, 
+        class: "btn btn-soft btn-primary" %>
       </div>
     </div>
   </div>
