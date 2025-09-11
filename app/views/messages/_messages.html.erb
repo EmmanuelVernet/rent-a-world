@@ -9,10 +9,10 @@
       </div>
       <div class="chat-header">
         <%= message.sender.full_name %>
-        <time class="text-xs opacity-50">2:30 PM</time>
+        <time class="text-xs opacity-50"><%= message.created_at.strftime("%H:%M %p") %></time>
       </div>
       <div class="chat-bubble chat-bubble-secondary">
-        <%= message.body %>
+        <%= message.body.html_safe %>
       </div>
     </div>
   <% else %>
@@ -20,10 +20,10 @@
     <div class="chat chat-end">
       <div class="chat-header">
         You
-        <time class="text-xs opacity-50">2:32 PM</time>
+        <time class="text-xs opacity-50"><%= message.created_at.strftime("%H:%M %p") %></time>
       </div>
       <div class="chat-bubble chat-bubble-primary">
-        <%= message.body %>
+        <%= message.body.html_safe %>
       </div>
     </div>
   <% end %>

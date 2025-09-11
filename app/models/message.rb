@@ -3,4 +3,5 @@ class Message < ApplicationRecord
   belongs_to :sender, class_name: "User"
 
   validates :body, presence: true
+  has_rich_text :message
 end
