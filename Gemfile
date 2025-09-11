@@ -67,6 +67,9 @@ gem "pg_search"
 # Notifications
 # gem "noticed"
 
+# Rich text
+gem 'lexxy', '~> 0.1.4.beta' # pre-release version
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
