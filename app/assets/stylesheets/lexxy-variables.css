@@ -1,0 +1,51 @@
+:root {
+  /* Colors */
+  --lexxy-color-ink: oklch(20% 0 0);
+  --lexxy-color-ink-medium: oklch(40% 0 0);
+  --lexxy-color-ink-light: oklch(60% 0 0);
+  --lexxy-color-ink-lighter: oklch(85% 0 0);
+  --lexxy-color-ink-lightest: oklch(96% 0 0);
+  --lexxy-color-ink-inverted: white;
+
+  --lexxy-color-accent-dark: oklch(57% 0.19 260);
+  --lexxy-color-accent-medium: oklch(66% 0.196 258);
+  --lexxy-color-accent-lightest: oklch(92% 0.026 254);
+
+  --lexxy-color-red: oklch(60% 0.15 27);
+  --lexxy-color-green: oklch(60% 0.15 145);
+  --lexxy-color-blue: oklch(66% 0.196 258);
+  --lexxy-color-purple: oklch(60% 0.15 305);
+
+  --lexxy-color-code-token-att: #d73a49;
+  --lexxy-color-code-token-comment: #6a737d;
+  --lexxy-color-code-token-function: #6f42c1;
+  --lexxy-color-code-token-operator: #d73a49;
+  --lexxy-color-code-token-property: #005cc5;
+  --lexxy-color-code-token-punctuation: #24292e;
+  --lexxy-color-code-token-selector: #22863a;
+  --lexxy-color-code-token-variable: #e36209;
+
+  --lexxy-color-canvas: var(--lexxy-color-ink-inverted);
+  --lexxy-color-text: var(--lexxy-color-ink);
+  --lexxy-color-text-subtle: var(--lexxy-color-ink-medium);
+  --lexxy-color-link: var(--lexxy-color-accent-dark);
+  --lexxy-color-selected: var(--lexxy-color-accent-lightest);
+  --lexxy-color-selected-dark: var(--lexxy-color-blue-medium);
+  --lexxy-color-code-bg: var(--lexxy-color-ink-lightest);
+
+  /* Typography */
+  --lexxy-font-base: system-ui, sans-serif;
+  --lexxy-font-mono: ui-monospace, "Menlo", "Monaco", Consolas, monospace;
+  --lexxy-text-small: 0.875rem;
+  --lexxy-content-margin: 1rem;
+
+  /* Focus ring */
+  --lexxy-focus-ring-color: var(--lexxy-color-accent-dark);
+  --lexxy-focus-ring-offset: 2px;
+  --lexxy-focus-ring-size: 2px;
+
+  /* Misc */
+  --lexxy-radius: 0.5ch;
+  --lexxy-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --lexxy-z-popup: 1000;
+}
