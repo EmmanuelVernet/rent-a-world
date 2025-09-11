@@ -2,11 +2,7 @@
   <div class="flex gap-2">
     <%= form_with(model: [@conversation, @message], class: "w-full gap-2") do |form| %>
       <%= form.rich_text_area :body, 
-        placeholder: "Type your message here..."
-         %>
-      <!-- <%= form.text_field :body, 
-        placeholder: "Type your message here...",
-        class: "input input-bordered flex-1" %> -->
+          placeholder: "Type your message here..." %>
       <%= form.button type: "submit", class: "btn btn-primary w-full mt-2" do %>
         Send
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
