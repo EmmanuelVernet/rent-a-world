@@ -3,3 +3,6 @@ import "@hotwired/turbo-rails"
 import "controllers"
 // rich text
 import "lexxy"
+
+import "trix"
+import "@rails/actiontext"
