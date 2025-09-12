@@ -30,8 +30,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new
     @capacity = @world.capacity
     @world_price = @world.price
-    # @booking_days = params[:end_date].to_date-params[:start_date].to_date
-    # @total_price = @world.price * @capacity * @booking_days
+    @unavailability = @world.bookings if @world.bookings.any?
   end
 
   def create
