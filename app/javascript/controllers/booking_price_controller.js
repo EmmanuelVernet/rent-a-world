@@ -22,7 +22,7 @@ export default class extends Controller {
     
     if (!calendar) return;
     
-    // disallow dates if unavailabilities range include calendar dates
+    // Cally disallow dates if unavailabilities range include calendar dates
     calendar.isDateDisallowed = (date) => {
       // convert to date object to String then split
       const str = date.toISOString().split("T")[0];
