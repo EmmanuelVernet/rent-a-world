@@ -5,7 +5,8 @@ export default class extends Controller {
   static targets = ["startDate", "endDate", "bookingPrice"]
   static values = {
     price: Number,
-    capacity: Number
+    capacity: Number,
+    unavailabilities: Array
   }
 
   connect() {
@@ -13,8 +14,20 @@ export default class extends Controller {
     console.log("connected", {
       priceValue: this.priceValue,
       hasPriceValue: this.hasPriceValue,
-      dataset: this.element.dataset
+      dataset: this.element.dataset,
+      unavailabilitiesValue: this.unavailabilitiesValue
     })
+    // Target calendar-range element
+    const calendar = this.element.querySelector("calendar-range");
+    
+    if (!calendar) return;
+    
+    // disallow dates if unavailabilities range include calendar dates
+    calendar.isDateDisallowed = (date) => {
+      // convert to date object to String then split
+      const str = date.toISOString().split("T")[0];
+      return this.unavailabilitiesValue.includes(str);
+    };
   }
     
   bookingDates(event) { // change event

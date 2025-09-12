@@ -69,7 +69,7 @@
               </svg>
               Select Your Booking Dates
             </h2>
-            <div data-controller="booking-price" data-booking-price-price-value="<%= @world_price %>" data-booking-price-capacity-value="<%= @capacity %>">
+            <div data-controller="booking-price" data-booking-price-price-value="<%= @world_price %>" data-booking-price-capacity-value="<%= @capacity %>" data-booking-price-unavailabilities-value="<%= @unavailabilities.to_json %>" >
               <!-- Hidden fields to pass params to POST -->
               <%= form.hidden_field :start_date, data: { booking_price_target: "startDate" } %>
               <%= form.hidden_field :end_date, data: { booking_price_target: "endDate" } %>
@@ -81,6 +81,7 @@
               <div popover id="cally-popover" class="card bg-base-100 shadow-2xl border border-base-300" style="position-anchor:--cally-trigger">
                 <div class="card-body p-4">
                   <calendar-range range 
+                                  months="2"
                                   class="cally" 
                                   onchange="document.getElementById('cally-trigger').innerText = this.value" 
                                   data-action="change->booking-price#bookingDates">
@@ -90,7 +91,10 @@
                     <svg aria-label="Next" class="fill-current size-4" slot="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                       <path d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
                     </svg>
-                    <calendar-month></calendar-month>
+                    <div class="grid grid-cols-2 gap-4">
+                      <calendar-month></calendar-month>
+                      <calendar-month offset="1"></calendar-month>
+                    </div>
                   </calendar-range>
                 </div>
               </div>
