@@ -35,4 +35,11 @@ class World < ApplicationRecord
    using: {
       tsearch: { prefix: true } # prefix: true = partial matches
     }
+
+  def unavailable_dates
+    return [] unless bookings.exists?
+    bookings.pluck(:start_date, :end_date).flat_map do |start_date, end_date|
+      (start_date..end_date).map(&:to_s)
+    end.uniq
+  end
 end
