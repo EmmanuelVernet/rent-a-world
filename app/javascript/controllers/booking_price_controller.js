@@ -5,7 +5,8 @@ export default class extends Controller {
   static targets = ["startDate", "endDate", "bookingPrice"]
   static values = {
     price: Number,
-    capacity: Number
+    capacity: Number,
+    unavailabilities: Array
   }
 
   connect() {
@@ -13,7 +14,8 @@ export default class extends Controller {
     console.log("connected", {
       priceValue: this.priceValue,
       hasPriceValue: this.hasPriceValue,
-      dataset: this.element.dataset
+      dataset: this.element.dataset,
+      unavailabilitiesValue: this.element.unavailabilitiesValue
     })
   }
     

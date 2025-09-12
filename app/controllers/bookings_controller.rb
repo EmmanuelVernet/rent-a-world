@@ -30,7 +30,9 @@ class BookingsController < ApplicationController
     @booking = Booking.new
     @capacity = @world.capacity
     @world_price = @world.price
-    @unavailability = @world.bookings if @world.bookings.any?
+    @unavailabilities =  @world.bookings.flat_map do |b|
+      (b.start_date..b.end_date).map(&:to_s)
+    end.uniq if @world.bookings.any?
   end
 
   def create
