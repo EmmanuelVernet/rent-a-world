@@ -3,7 +3,7 @@ class BookingsController < ApplicationController
   before_action :set_world, only: [:show, :new, :edit, :create]
   before_action :set_booking, only: [:show, :edit, :update, :accept, :cancel]
 
-  # TODO: Create seperate namespaced controller for handling bookings like Admin::BookingsController, BookingsController handles both renter & rentee + adapt routes?
+  # TODO: Create seperate namespaced controller for handling bookings like Admin::BookingsController
 
   def index
     # 1. Worlds owned with incoming booking requests
@@ -26,13 +26,10 @@ class BookingsController < ApplicationController
 
   def new
     @owner = @world.user
-    # raise
     @booking = Booking.new
     @capacity = @world.capacity
     @world_price = @world.price
-    @unavailabilities =  @world.bookings.flat_map do |b|
-      (b.start_date..b.end_date).map(&:to_s)
-    end.uniq if @world.bookings.any?
+    @unavailabilities =  @world.unavailable_dates if @world.bookings.any?
   end
 
   def create
@@ -40,7 +37,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user # assign booking to current user
     @booking.world = @world
     @booking.status ||= "pending"
-    # Total price calculated in model
+    # /!\ Total price calculated in model
 
     if @booking.save
       redirect_to world_booking_path(@world, @booking), notice: "Booking created!"
