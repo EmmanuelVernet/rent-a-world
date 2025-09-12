@@ -15,8 +15,19 @@ export default class extends Controller {
       priceValue: this.priceValue,
       hasPriceValue: this.hasPriceValue,
       dataset: this.element.dataset,
-      unavailabilitiesValue: this.element.unavailabilitiesValue
+      unavailabilitiesValue: this.unavailabilitiesValue
     })
+    // Target calendar-range element
+    const calendar = this.element.querySelector("calendar-range");
+    
+    if (!calendar) return;
+    
+    // disallow dates if unavailabilities range include calendar dates
+    calendar.isDateDisallowed = (date) => {
+      // convert to date object to String then split
+      const str = date.toISOString().split("T")[0];
+      return this.unavailabilitiesValue.includes(str);
+    };
   }
     
   bookingDates(event) { // change event

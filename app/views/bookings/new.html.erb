@@ -69,7 +69,7 @@
               </svg>
               Select Your Booking Dates
             </h2>
-            <div data-controller="booking-price" data-booking-price-price-value="<%= @world_price %>" data-booking-price-capacity-value="<%= @capacity %>" data-booking-price-unvailabilities-value="<%= @unavailabilities.to_json %>" >
+            <div data-controller="booking-price" data-booking-price-price-value="<%= @world_price %>" data-booking-price-capacity-value="<%= @capacity %>" data-booking-price-unavailabilities-value="<%= @unavailabilities.to_json %>" >
               <!-- Hidden fields to pass params to POST -->
               <%= form.hidden_field :start_date, data: { booking_price_target: "startDate" } %>
               <%= form.hidden_field :end_date, data: { booking_price_target: "endDate" } %>
