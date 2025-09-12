@@ -9,7 +9,6 @@
         <%= @booking.world.category %>
       </div>
     </figure>
-    
     <div class="card-body p-4">
       <h1 class="card-title text-2xl mb-2">
         <%= @booking.world.title %>
@@ -32,108 +31,106 @@
       </div>
     </div>
   </div>
-
-  <div class="max-h-96 overflow-auto">
-    <!-- Booking Details -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
-      <div class="stat bg-base-200 rounded-lg p-3">
-        <div class="stat-title text-xs">Total Price</div>
-        <div class="stat-value text-primary text-lg">
-          <%= @booking.total_price %>€
-        </div>
-      </div>
-      <div class="stat bg-base-200 rounded-lg p-3">
-        <div class="stat-title text-xs">Capacity</div>
-        <div class="stat-value text-secondary text-lg">
-          <%= @booking.world.capacity %>
-        </div>
-      </div>
-      <div class="stat bg-base-200 rounded-lg p-3">
-        <div class="stat-title text-xs">Check-in</div>
-        <div class="stat-value text-accent text-sm font-semibold">
-          <%= @booking.start_date %>
-        </div>
-      </div>
-      <div class="stat bg-base-200 rounded-lg p-3">
-        <div class="stat-title text-xs">Check-out</div>
-        <div class="stat-value text-info text-sm font-semibold">
-          <%= @booking.end_date %>
-        </div>
+  <!-- Booking Details -->
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+    <div class="stat bg-base-200 rounded-lg p-3">
+      <div class="stat-title text-xs">Total Price</div>
+      <div class="stat-value text-primary text-lg">
+        <%= @booking.total_price %>€
       </div>
     </div>
-
-    <!-- User Details Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
-      <!-- Guest & Host -->
-      <div class="card bg-base-100 shadow-lg">
-        <div class="card-body p-4">
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <h3 class="font-semibold text-sm mb-2">Guest</h3>
-              <p class="text-base-content/80">
-                <%= @booking.user.first_name %> <%= @booking.user.last_name %>
-              </p>
-            </div>
-            <div>
-              <h3 class="font-semibold text-sm mb-2">Host</h3>
-              <p class="text-base-content/80">
-                <%= @world.user.first_name %> <%= @world.user.last_name %>
-              </p>
-            </div>
+    <div class="stat bg-base-200 rounded-lg p-3">
+      <div class="stat-title text-xs">Capacity</div>
+      <div class="stat-value text-secondary text-lg">
+        <%= @booking.world.capacity %>
+      </div>
+    </div>
+    <div class="stat bg-base-200 rounded-lg p-3">
+      <div class="stat-title text-xs">Check-in</div>
+      <div class="stat-value text-accent text-sm font-semibold">
+        <%= @booking.start_date %>
+      </div>
+    </div>
+    <div class="stat bg-base-200 rounded-lg p-3">
+      <div class="stat-title text-xs">Check-out</div>
+      <div class="stat-value text-info text-sm font-semibold">
+        <%= @booking.end_date %>
+      </div>
+    </div>
+  </div>
+  <!-- User Details Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+    <!-- Guest & Host -->
+    <div class="card bg-base-100 shadow-lg">
+      <div class="card-body p-4">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <h3 class="font-semibold text-sm mb-2">Guest</h3>
+            <p class="text-base-content/80">
+              <%= @booking.user.first_name %> <%= @booking.user.last_name %>
+            </p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-sm mb-2">Host</h3>
+            <p class="text-base-content/80">
+              <%= @world.user.first_name %> <%= @world.user.last_name %>
+            </p>
           </div>
         </div>
       </div>
-
-      <!-- Amenities -->
-      <div class="card bg-base-100 shadow-lg">
-        <div class="card-body p-4">
-          <h3 class="font-semibold text-sm mb-3">Amenities</h3>
-          <% if @booking.world.amenities.any? %>
-            <div class="space-y-2">
-              <% @booking.world.amenities.each do |amenity| %>
-                <div class="flex items-start gap-2">
-                  <div class="badge badge-primary badge-xs mt-1"></div>
-                  <div>
-                    <div class="text-sm font-medium"><%= amenity.name %></div>
-                    <% if amenity.description.present? %>
-                      <div class="text-xs text-base-content/60">
-                        <%= amenity.description %>
-                      </div>
-                    <% end %>
-                  </div>
+    </div>
+    <!-- Amenities -->
+    <div class="card bg-base-100 shadow-lg">
+      <div class="card-body p-4">
+        <h3 class="font-semibold text-sm mb-3">Amenities</h3>
+        <% if @booking.world.amenities.any? %>
+          <div class="space-y-2">
+            <% @booking.world.amenities.each do |amenity| %>
+              <div class="flex items-start gap-2">
+                <div class="badge badge-primary badge-xs mt-1"></div>
+                <div>
+                  <div class="text-sm font-medium"><%= amenity.name %></div>
+                  <% if amenity.description.present? %>
+                    <div class="text-xs text-base-content/60">
+                      <%= amenity.description %>
+                    </div>
+                  <% end %>
                 </div>
-              <% end %>
-            </div>
-          <% else %>
-            <p class="text-sm text-base-content/60">No amenities available</p>
-          <% end %>
-        </div>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <p class="text-sm text-base-content/60">No amenities available</p>
+        <% end %>
       </div>
     </div>
-
-    <!-- Map -->
-    <div class="card bg-base-100 shadow-lg mb-4">
-      <div class="card-body p-4">
-        <h3 class="font-semibold text-sm mb-3">Location</h3>
-        <div class="bg-base-200 rounded-lg p-6 text-center">
-          <svg class="w-8 h-8 mx-auto mb-2 text-base-content/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m-6 3l6-3"/>
-          </svg>
-          <p class="text-sm text-base-content/60">Map will be displayed here</p>
+  </div>
+  <!-- Map -->
+  <div class="card bg-base-100 shadow-lg mb-4">
+    <div class="card-body p-4">
+      <h3 class="font-semibold text-sm mb-3">Location</h3>
+      <div id="world-map" class="mt-4">
+        <div class="aspect-video h-64 w-full rounded-lg overflow-hidden shadow">
+          <iframe
+              width="100%"
+              height="100%"
+              frameborder="0"
+              style="border:0"
+              src="https://www.google.com/maps?q=<%= @world.latitude %>,<%= @world.longitude %>&hl=en&z=10&output=embed"
+              allowfullscreen>
+          </iframe>
         </div>
       </div>
     </div>
   </div>
   <!-- Action Buttons -->
-  <div class="flex flex-col sm:flex-row gap-2 mt-2">
+  <div class="flex flex-col sm:flex-row gap-2 mt-2 mb-20">
     <%= link_to "Back to Bookings", bookings_path, 
         class: "btn btn-outline btn-primary" %>
-    
     <% if @booking.user == current_user %>
       <%= link_to "Edit my request", edit_booking_path(@booking), 
           class: "btn btn-info" %>
     <% end %>
-    
     <% unless @booking.canceled? %>
       <%= button_to "Cancel booking", cancel_booking_path(@booking), 
           method: :post, 
