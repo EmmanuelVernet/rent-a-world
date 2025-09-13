@@ -1,6 +1,6 @@
 <div class="hero min-h-screen bg-base-200">
-  <div class="hero-content flex-col lg:flex-row-reverse">
-    <div class="card w-full max-w-sm shadow-2xl bg-base-100">
+  <div class="hero-content flex-col lg:flex-row-reverse mb-16">
+    <div class="card w-full max-w-md shadow-2xl bg-base-100">
       <div class="card-body">
         <h1 class="card-title text-3xl justify-center mb-4">
           <i class="fa-solid fa-user"></i>
@@ -24,6 +24,43 @@
             <%= f.label :password_confirmation, class:"label py-2" %><br />
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered w-full" %>
           </div>
+          <label class="form-control w-full">
+            <div class="label">
+              <span class="label-text py-2">First Name</span>
+            </div>
+            <%= f.text_field :first_name, 
+                class: "input input-bordered w-full",
+                placeholder: "Enter your first name" %>
+          </label>
+
+          <label class="form-control w-full">
+            <div class="label">
+              <span class="label-text py-2">Last Name</span>
+            </div>
+            <%= f.text_field :last_name, 
+                class: "input input-bordered w-full",
+                placeholder: "Enter your last name" %>
+          </label>
+
+          <label class="form-control w-full">
+            <div class="label">
+              <span class="label-text py-2">Address</span>
+            </div>
+            <%= f.text_field :address, 
+                class: "input input-bordered w-full",
+                placeholder: "Enter your address" %>
+          </label>
+
+          <label class="form-control w-full">
+            <div class="label">
+              <span class="label-text py-2">Description</span>
+            </div>
+            <%= f.text_area :user_description,
+                rows: 5,
+                class: "input input-bordered w-full h-24 whitespace-normal",
+                placeholder: "Enter a short description of who you are.
+                Mention any paricular powers" %>
+          </label>
           <div class="actions mt-4">
             <%= f.submit "Sign up", class: "btn btn-primary w-full" %>
           </div>
