@@ -25,7 +25,9 @@ class WorldsController < ApplicationController
 
   def create
     # Rails.logger.info("Params: #{params.inspect}")  # Debugging
-    @world = World.new(world_params) # TO DO: scope to current user
+    @world = World.new(world_params)
+    @world.user = current_user
+
     if @world.save
       redirect_to world_path(@world), notice: "World was successfully created."
     else
@@ -67,7 +69,7 @@ class WorldsController < ApplicationController
   private
   
   def world_params
-    params.require(:world).permit(:title, :category, :place, :price, :description, :capacity, :latitude, :longitude)
+    params.require(:world).permit(:title, :category, :place, :price, :description, :capacity, :latitude, :longitude, activity_ids: [], amenity_ids: [], tag_ids: [])
   end
 
   def set_world
