@@ -14,6 +14,8 @@ class User < ApplicationRecord
   validates :user_description, length: { maximum: 500 }, allow_blank: true
 
   enum :role, %i[rentee renter admin] # allows for current_user.admin?
+  
+  # set role at new user creation
   before_validation :set_default_role, on: :create
 
   # Model methods
