@@ -10,9 +10,8 @@ class User < ApplicationRecord
   # Validations
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :address, presence: true
-  validates :phone, presence: true
-  validates :user_description, presence: true
+  validates :address, length: { maximum: 255 }, allow_blank: true
+  validates :user_description, length: { maximum: 500 }, allow_blank: true
 
   enum :role, %i[rentee renter admin] # allows for current_user.admin?
   before_validation :set_default_role, on: :create
