@@ -99,7 +99,7 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    url: <%= ENV.fetch('DATABASE_URL') %>
+    url: <%= ENV.fetch('DATABASE_URL', 'postgresql://user:pass@localhost/dummy') %>
   cache:
     <<: *primary_production
     migrations_paths: db/cache_migrate
