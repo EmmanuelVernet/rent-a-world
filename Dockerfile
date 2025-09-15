@@ -129,7 +129,8 @@ RUN if [ -f "package.json" ]; then npm install; fi
 RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 DATABASE_URL=postgresql://user:pass@localhost/dummy ./bin/rails assets:precompile
+# RUN SECRET_KEY_BASE_DUMMY=1 DATABASE_URL=postgresql://user:pass@localhost/dummy ./bin/rails assets:precompile
+RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile --no-db
 
 # Final stage for app image
 FROM base
@@ -142,7 +143,6 @@ COPY --from=build /rails /rails
 RUN groupadd --system --gid 1000 rails && \
     useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
     chown -R rails:rails db log storage tmp
-USER 1000:1000
 
 # Create entrypoint script
 RUN echo '#!/bin/bash\n\
@@ -177,8 +177,10 @@ if [ "$RAILS_ENV" = "production" ]; then\n\
 fi\n\
 \n\
 exec "$@"' > /rails/bin/docker-entrypoint && \
-chmod +x /rails/bin/docker-entrypoint
+chmod +x /rails/bin/docker-entrypoint && \
+chown rails:rails /rails/bin/docker-entrypoint
 
+USER 1000:1000
 # Entrypoint prepares the database
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
