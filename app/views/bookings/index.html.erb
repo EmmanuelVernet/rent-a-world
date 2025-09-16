@@ -18,7 +18,36 @@
 
     <input type="radio" name="my_tabs_3" class="tab" aria-label="Calendar" checked="checked" />
     <div class="tab-content bg-base-100 border-base-300 p-6">
-      CALENDAR PLACEHOLDER
+      <div id="calendar" style="height: 700px">
+        <script>
+          const Calendar = tui.Calendar;
+          const calendar = new Calendar('#calendar', {
+            defaultView: 'month',
+            template: {
+              time(event) {
+                const { start, end, title } = event;
+
+                return `<span style="color: white;">${formatTime(start)}~${formatTime(end)} ${title}</span>`;
+              },
+              allday(event) {
+                return `<span style="color: gray;">${event.title}</span>`;
+              },
+            },
+            calendars: [
+              {
+                id: 'cal1',
+                name: 'Personal',
+                backgroundColor: '#03bd9e',
+              },
+              {
+                id: 'cal2',
+                name: 'Work',
+                backgroundColor: '#00a9ff',
+              },
+            ],
+          });
+        </script>
+      </div>
     </div>
 
     <input type="radio" name="my_tabs_3" class="tab" aria-label="Admin" />
