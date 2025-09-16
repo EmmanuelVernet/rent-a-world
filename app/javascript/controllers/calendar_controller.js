@@ -10,7 +10,7 @@ export default class extends Controller {
   }
 
   displayCalendar() {
-  const Calendar = tui.Calendar;
+  const Calendar = window.tui.Calendar;
   const calendar = new Calendar('#calendar', {
     defaultView: 'month',
     template: {
