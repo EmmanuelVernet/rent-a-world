@@ -7,14 +7,14 @@ class BookingsController < ApplicationController
 
   def index
     # 1. Worlds owned with incoming booking requests
-    @incoming_requests = Booking.joins(:world).where(worlds: { user_id: current_user.id }, status: "pending")
+    @incoming_requests = Booking.joins(:world).where(worlds: { user_id: current_user.id }, status: "pending").includes(world: :user)
     # joins Model where (table name) => singular then plural
 
     # 2. Bookings requested as a guest
-    @my_requests = current_user.bookings.includes(:world)
+    @my_requests = current_user.bookings.includes(world: :user)
 
     # 3. All relevant bookings (as renter OR rentee)
-    @all_requests = Booking.joins(:world).where("worlds.user_id = :id OR bookings.user_id = :id", id: current_user.id)
+    @all_requests = Booking.joins(:world).where("worlds.user_id = :id OR bookings.user_id = :id", id: current_user.id).includes(world: :user)
 
     # 4. Admin vs normal user: list all booking types
     @bookings = if current_user.admin?
@@ -118,7 +118,7 @@ class BookingsController < ApplicationController
   end
 
   def set_booking
-    @booking = Booking.find(params[:id])
+    @booking = Booking.includes(:user).find(params[:id])
   end
 
   def set_world

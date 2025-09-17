@@ -99,7 +99,7 @@ group :development, :test do
   # gem "hotwire-spark"
 
   # N+1 Query
-  # gem "bullet"
+  gem "bullet"
 
 end
 

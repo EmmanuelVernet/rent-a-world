@@ -10,12 +10,13 @@ class WorldsController < ApplicationController
       # search_by_fields method in World model
       @worlds = World.search_by_fields(params[:query])
     else
-      @worlds = World.all # TO DO: add later filtering for indexing all worlds for optimization to avoid N+1 queries
+      # @worlds = World.all # TO DO: add later filtering for indexing all worlds for optimization to avoid N+1 queries
+      @worlds = World.includes(:user, :tags)
     end
   end
 
   def my_worlds
-    @worlds = current_user.worlds
+    @worlds = current_user.worlds.includes(:tags)
     @tags = Tag.all
   end
 
@@ -73,6 +74,11 @@ class WorldsController < ApplicationController
   end
 
   def set_world
-    @world = World.find(params[:id])
+    # @world = World.find(params[:id])
+    @world = World.includes(
+    reviews: :user,
+    activities: [],
+    amenities: []
+  ).find(params[:id])
   end
 end
