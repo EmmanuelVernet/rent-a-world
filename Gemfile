@@ -76,7 +76,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
   # Speed badges on pages
-  # gem "rack-mini-profiler"
+  gem "rack-mini-profiler"
   
   gem "dotenv-rails"
   
