@@ -6,6 +6,7 @@ export default class extends Controller {
 
   connect() {
     this.displayCalendar()
+    this.loadEvents()
   }
 
   displayCalendar() {
@@ -13,18 +14,29 @@ export default class extends Controller {
 
     this.calendar = new Calendar(this.calendarTarget, {
       defaultView: "month",
-      template: {
-        time(event) {
-          const { start, end, title } = event
-          return `<span style="color: white;">${formatTime(start)}~${formatTime(end)} ${title}</span>`
-        },
-        allday(event) {
-          return `<span style="color: gray;">${event.title}</span>`
-        },
-      },
+      useDetailPopup: true,
+      useFormPopup: true,
+      // TODO: create formatTime method to prettyprint date
+      // template: {
+      //   time(event) {
+      //     const { start, end, title } = event
+      //     return `<span style="color: white;">${formatTime(start)}~${formatTime(end)} ${title}</span>`
+      //   },
+      //   allday(event) {
+      //     return `<span style="color: gray;">${event.title}</span>`
+      //   },
+      // },
     })
 
     this.updateMonthLabel()
+  }
+
+  async loadEvents() {
+    const response = await fetch("/bookings.json")
+    const events = await response.json()
+    // console.log(events)
+
+    this.calendar.createEvents(events)
   }
 
   prev() {

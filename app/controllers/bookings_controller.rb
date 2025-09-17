@@ -22,6 +22,23 @@ class BookingsController < ApplicationController
     else
       current_user.bookings.order(created_at: :desc)
     end
+
+    respond_to do |format|
+      format.html
+      format.json do
+        # All calendar events response
+        render json: @all_requests.map { |b|
+          {
+            id: b.id,
+            calendarId: "bookings",
+            title: b.world.title,
+            status: b.status,
+            start: b.start_date.iso8601,
+            end: b.end_date.iso8601,
+          }
+        }
+      end
+    end
   end
 
   def new
