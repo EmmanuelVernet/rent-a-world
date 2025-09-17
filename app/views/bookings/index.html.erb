@@ -20,9 +20,9 @@
     <div class="tab-content bg-base-100 border-base-300 p-6" data-controller="calendar">
       <div class="flex items-center justify-center mb-4">
         <div id="calendar-nav">
-          <button data-action="calendar#prev" class="btn btn-sm">Prev</button>
-          <button data-action="calendar#today" class="btn btn-sm">Today</button>
-          <button data-action="calendar#next" class="btn btn-sm">Next</button>
+          <button data-action="click->calendar#prev" class="btn btn-sm">Prev</button>
+          <button data-action="click->calendar#today" class="btn btn-sm">Today</button>
+          <button data-action="click->calendar#next" class="btn btn-sm">Next</button>
         </div> 
       <h2 data-calendar-target="monthLabel" class="font-bold text-lg mx-auto"></h2>
     </div>
