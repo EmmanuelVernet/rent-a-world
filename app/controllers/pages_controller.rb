@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
   def home
-    @worlds = World.all
+    @worlds = World.includes(:user, :tags)
   end
 end

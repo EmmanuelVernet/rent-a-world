@@ -74,6 +74,11 @@ class WorldsController < ApplicationController
   end
 
   def set_world
-    @world = World.find(params[:id])
+    # @world = World.find(params[:id])
+    @world = World.includes(
+    reviews: :user,
+    activities: [],
+    amenities: []
+  ).find(params[:id])
   end
 end
