@@ -76,22 +76,27 @@ cd rent-a-world
 ```
 ## 3. Setup Environment Variables
 ### Genereate a .env file. It needs:
+```bash
 POSTGRES_PASSWORD=postgres
 RAILS_MASTER_KEY=dev_key_here
-
+```
 ### You can generate new keys for your need, copy them and paste them into the .env file
+```bash
 docker-compose exec web bin/rails credentials:edit --environment development
 docker-compose exec web bin/rails credentials:edit --environment test
-
+```
 ## 4. Build and Start Docker Containers
+```bash
 docker-compose build web
 docker-compose up -d
-
+```
 ### Check that containers are running:
+```bash
 docker-compose ps
-
+```
 ### Run migrations and seed the database:
+```bash
 docker-compose exec web bin/rails db:create db:migrate db:seed
-
+```
 ## 5. Run the app
 http://localhost:3000
