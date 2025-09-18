@@ -38,6 +38,8 @@ Why fantasy worlds? Well, I wanted to theme the app with something more fun than
 
 ## Running the app
 
+# Dowloading the repo
+
 1.  **Prerequisites:**
     *   Ruby 3.3.5
     *   Bundler
@@ -49,5 +51,47 @@ Why fantasy worlds? Well, I wanted to theme the app with something more fun than
     *   Run the setup script: `bin/setup`
 
 3.  **Running the development server:**
-    *   Run `bin/dev` to start the Rails server and the Tailwind CSS watcher.
+    *   Run `bin/dev` and run migrations (bin/rails db:create db:migrate db:seed) to start the Rails server and the Tailwind CSS watcher.
     *   The app will be available at `http://localhost:3000`.
+
+4.  **Navigate the app and create a fake account (or use one from the seeds.rb file):**
+    *   So that you can create bookings, worlds, chat with another user...
+
+# Running the App with Docker
+
+Get the app running locally using Docker.  
+No local Ruby, Node, or PostgreSQL installation is required.
+---
+
+## 1. Prerequisites
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop) installed on your machine
+---
+
+## 2. Clone the Repository
+
+```bash
+git clone git@github.com:EmmanuelVernet/rent-a-world.git
+cd rent-a-world
+```
+## 3. Setup Environment Variables
+### Genereate a .env file. It needs:
+POSTGRES_PASSWORD=postgres
+RAILS_MASTER_KEY=dev_key_here
+
+### You can generate new keys for your need, copy them and paste them into the .env file
+docker-compose exec web bin/rails credentials:edit --environment development
+docker-compose exec web bin/rails credentials:edit --environment test
+
+## 4. Build and Start Docker Containers
+docker-compose build web
+docker-compose up -d
+
+### Check that containers are running:
+docker-compose ps
+
+### Run migrations and seed the database:
+docker-compose exec web bin/rails db:create db:migrate db:seed
+
+## 5. Run the app
+http://localhost:3000

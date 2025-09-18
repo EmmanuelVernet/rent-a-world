@@ -1,0 +1,29 @@
+# Dockerfile.dev
+FROM ruby:3.3
+
+# Install system dependencies
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y \
+    build-essential \
+    libpq-dev \
+    nodejs \
+    npm \
+    postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create app dir
+WORKDIR /rails
+
+# Install bundler
+RUN gem install bundler
+
+# Copy Gemfiles and install gems
+COPY Gemfile Gemfile.lock ./
+RUN bundle install
+
+# Copy the app (optional, since you’ll mount it with volumes in compose)
+COPY . .
+
+EXPOSE 3000
+
+CMD ["bash", "-c", "rm -f tmp/pids/server.pid && ./bin/rails server -b 0.0.0.0 -p 3000"]
