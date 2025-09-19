@@ -3,6 +3,8 @@
 This is a Ruby on Rails Air B'n'B application for renting fake fantasy worlds.
 Why fantasy worlds? Well, I wanted to theme the app with something more fun than flats. That's it!
 
+# Roadmap (more in the GitHub issues tab)
+
 ## Features
 
 *   User authentication (sign up, sign in, sign out)
