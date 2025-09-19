@@ -83,7 +83,7 @@
   </fieldset>
 
   <fieldset class="fieldset">
-    <legend class="fieldset-title">Select Amenities</legend>
+    <legend class="fieldset-title tooltip tooltip-secondary tooltip-right" data-tip="Aspects are special attributes a world can have that makes it special">Select World Aspects</legend>
     <div class="flex flex-wrap gap-2">
       <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |cb| %>
         <label class="flex items-center gap-2 cursor-pointer">
