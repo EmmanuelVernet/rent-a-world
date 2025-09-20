@@ -1,0 +1,31 @@
+<div class="pt-4 pb-32">
+  <%= form_with url: world_world_amenities_path(@world), method: :patch, local: true, class: "space-y-4 p-6 bg-white shadow-lg rounded-lg max-w-lg mx-auto" do |form|%>
+    <h1>Edit <%= @world.amenities.name %></h1>
+    <% if @world.errors.any? %>
+      <div class="alert alert-error">
+        <ul>
+          <% @world.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <fieldset class="fieldset">
+    <legend class="fieldset-title">Select Amenities</legend>
+      <div class="flex flex-wrap gap-4">
+        <% @amenities.each do |amenity| %>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <%= check_box_tag "world_amenity[id][]", amenity.id, @world.amenity_ids.include?(amenity.id), class: "checkbox checkbox-accent" %>
+            <span class="text-sm"><%= amenity.name %></span>
+          </label>
+        <% end %>
+      </div>
+    </fieldset>
+
+    <fieldset class="fieldset relative">
+      <%= form.submit "Update world amenities", class: "btn btn-primary w-full" %>
+    </fieldset>
+    <%= link_to "Back to world", world_path(@world), class: "btn btn-secondary w-full" %>
+  <% end %>
+</div>
