@@ -1,6 +1,5 @@
 class WorldAmenitiesController < ApplicationController
 	before_action :set_world, only: [:index, :edit, :update]
-	# before_action :set_world_amenity, only: [:edit]
 
   def index
     @world_amenities = @world.amenities.all
@@ -28,11 +27,6 @@ class WorldAmenitiesController < ApplicationController
   def set_world
     @world = World.find(params[:world_id])
   end
-
-  # def set_world_amenity
-  #   # join table model
-  #   @world_amenity = @world.world_amenities.find(params[:id])
-  # end
 
   def world_amenity_params
     params.require(:world_amenity).permit(id: [])
