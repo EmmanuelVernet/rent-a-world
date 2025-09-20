@@ -1,6 +1,11 @@
 <div class="card bg-base-100 shadow border border-base-200" id="amenities">
   <div class="card-body p-6">
-    <h3 class="text-3xl font-bold text-center text-primary">Amenities</h3>
+    <div class="relative">
+      <h3 class="text-3xl font-bold text-primary text-center">Amenities</h3>
+      <% if @world.user == current_user %>
+        <%= link_to "Edit", edit_world_world_amenities_path(@world), class: "absolute right-0 top-1/2 transform -translate-y-1/2 px-3 py-1 rounded-full bg-primary text-white text-sm" %>
+      <% end %>
+    </div>
     <div class="divider divider-primary my-0"></div>
     <div class="space-y-4 overflow-y-auto h-[500px]">
       <% @amenities.each do |amenity| %>
