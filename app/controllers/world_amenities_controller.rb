@@ -2,10 +2,6 @@ class WorldAmenitiesController < ApplicationController
 	before_action :set_world, only: [:edit, :update, :destroy]
 	before_action :set_world_amenity, only: [:destroy]
 
-  def index
-    @world_amenities = @world.amenities.all
-  end
-
   def edit
     # edition on all available world amenities, not by ID
     @amenities = Amenity.all
@@ -25,7 +21,6 @@ class WorldAmenitiesController < ApplicationController
   end
 
   def destroy
-    raise
     if @world_amenity.destroy!
       redirect_to world_path(@world), notice: "Removed amenity"
     else

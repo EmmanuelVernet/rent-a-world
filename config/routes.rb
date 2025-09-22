@@ -16,12 +16,7 @@ Rails.application.routes.draw do
   # APP ROUTES
 
   # User routes (optional, if you need user-specific actions)
-  # resources :users, only: [ :show ] do
-  # Nested routes for user-specific bookings and reviews
-  # resources :bookings, only: [ :index ]
-  # resources :reviews, only: [ :index ]
-  # end
-
+  
   # World routes (main resource)
   resources :worlds do
     # Nested routes for bookings, reviews, and tags
@@ -31,8 +26,12 @@ Rails.application.routes.draw do
     
     resources :bookings, only: [ :index, :new, :create, :edit, :update, :show ] # for renter + rentee per world
     resources :reviews, only: [ :index , :create, :edit, :update, :destroy]
-    resource :world_amenities, only: [ :edit, :update ] # routes for singular resources
-    resources :world_amenities, only: [:destroy]
+    resources :world_amenities, only: [:destroy] do
+      collection do
+        get  :edit
+        patch :update
+      end
+    end
     resources :tags, only: [ :index ] # To fetch tags for a specific world
   end
 
@@ -47,6 +46,7 @@ Rails.application.routes.draw do
     end
   end
 
+  # Chat routes (conversations)
   resources :conversations do
     resources :messages, only: [:index, :create]
   end

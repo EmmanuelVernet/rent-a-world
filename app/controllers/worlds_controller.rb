@@ -1,6 +1,6 @@
 class WorldsController < ApplicationController
   before_action :authenticate_user!, except: [ :index, :show ]
-  before_action :set_world, only: [ :show, :edit, :update, :destroy ] # only allow for resources using params[:id]
+  before_action :set_world, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @tags = Tag.all
@@ -10,7 +10,6 @@ class WorldsController < ApplicationController
       # search_by_fields method in World model
       @worlds = World.search_by_fields(params[:query])
     else
-      # @worlds = World.all # TO DO: add later filtering for indexing all worlds for optimization to avoid N+1 queries
       @worlds = World.includes(:user, :tags)
     end
   end
@@ -72,11 +71,8 @@ class WorldsController < ApplicationController
   end
 
   def set_world
-    # @world = World.find(params[:id])
-    @world = World.includes(
-    reviews: :user,
-    activities: [],
-    amenities: []
-  ).find(params[:id])
+    @world = World.includes(reviews: :user, activities: []).find(params[:id])
+    # preload join table amenities association
+    @world_amenities = @world.world_amenities.includes(:amenity)
   end
 end

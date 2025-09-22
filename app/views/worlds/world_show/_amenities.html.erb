@@ -8,18 +8,18 @@
     </div>
     <div class="divider divider-primary my-0"></div>
     <div class="space-y-4 overflow-y-auto h-[500px]">
-      <% @amenities.each do |amenity| %>
+      <% @world_amenities.each do |wa| %>
         <div class="card border border-base-300 shadow-md hover:shadow-lg transition-shadow mb-6">
           <div class="card-body p-6">
             <div class="flex items-center gap-3 mb-4">
-              <h4 class="card-title text-lg text-base-content"><%= amenity.name %></h4>
+              <h4 class="card-title text-lg text-base-content"><%= wa.amenity.name %></h4>
             </div>
             <div class="divider my-0"></div>
-            <% if amenity.description.present? %>
-              <div class="text-sm text-base-content/60 italic mt-1 leading-relaxed"><%= amenity.description %></div>
+            <% if wa.amenity.description.present? %>
+              <div class="text-sm text-base-content/60 italic mt-1 leading-relaxed"><%= wa.amenity.description %></div>
             <% end %>
             <% if @world.user == current_user %>
-            <%= link_to "delete", world_world_amenity_path(@world, amenity.id), class: "badge badge-soft badge-error", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
+              <%= link_to "Remove", world_world_amenity_path(@world, wa), class: "badge badge-soft badge-error", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
             <% end %>
           </div>
         </div>
