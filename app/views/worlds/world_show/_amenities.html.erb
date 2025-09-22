@@ -4,6 +4,17 @@
       <h3 class="text-3xl font-bold text-primary text-center">Amenities</h3>
       <% if @world.user == current_user %>
         <%= link_to "Edit", edit_world_world_amenities_path(@world), class: "absolute right-0 top-1/2 transform -translate-y-1/2 px-3 py-1 rounded-full bg-primary text-white text-sm" %>
+      <!-- Open the modal using ID.showModal() method -->
+      <button class="btn" onclick="edit_world_amenity.showModal()">open modal</button>
+      <dialog id="edit_world_amenity" class="modal">
+        <div class="modal-box">
+          <h3 class="text-lg font-bold">Hello!</h3>
+          <p class="py-4">Press ESC key or click outside to close</p>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
       <% end %>
     </div>
     <div class="divider divider-primary my-0"></div>
