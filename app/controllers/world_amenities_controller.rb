@@ -25,21 +25,22 @@ class WorldAmenitiesController < ApplicationController
   end
 
   def destroy
-    if @amenity.destroy!
+    raise
+    if @world_amenity.destroy!
       redirect_to world_path(@world), notice: "Removed amenity"
     else
-      redirect_to world_path(@world), alert: "Impossible to remove amenity from this list"
+      redirect_to world_path(@world), alert: "Unable to remove amenity from this list"
     end
   end
-
+  
   private
-
+  
   def set_world
     @world = World.find(params[:world_id])
   end
-
+  
   def set_world_amenity
-    @world_amenity = WorldAmenity.find(params[:id])
+    @world_amenity = @world.world_amenities.find(params[:id])
   end
 
   def world_amenity_params

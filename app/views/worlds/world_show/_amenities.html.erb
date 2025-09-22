@@ -18,6 +18,9 @@
             <% if amenity.description.present? %>
               <div class="text-sm text-base-content/60 italic mt-1 leading-relaxed"><%= amenity.description %></div>
             <% end %>
+            <% if @world.user == current_user %>
+            <%= link_to "delete", world_world_amenity_path(@world, amenity.id), class: "badge badge-soft badge-error", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
+            <% end %>
           </div>
         </div>
       <% end %>
