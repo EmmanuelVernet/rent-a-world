@@ -2,6 +2,22 @@
   <div class="card-body">
     <h3 class="text-3xl font-bold text-center text-primary">Available Activities</h3>
     <div class="divider divider-primary my-0"></div>
+    <% if @world.user == current_user %>
+    <%= link_to "Edit", edit_world_world_activities_path(@world),
+      data: { turbo_frame: "activities_modal", action:"click->modal#open" },
+      class: "absolute right-0 top-1/2 transform -translate-y-1/2 px-3 py-1 rounded-full bg-primary text-white text-sm" %>
+
+      <!-- activities edit modal -->
+      <dialog id="edit_world_activity" class="modal" data-modal-target="dialog">
+        <div class="modal-box">
+          <%= turbo_frame_tag "activities_modal" %>
+        </div>
+        <form method="dialog" class="modal-backdrop" data-action="click->modal#close">
+          <button>close</button>
+        </form>
+      </dialog>
+      <% end %>
+    </div>
     <div class="join join-vertical w-full">
       <% @activities.each do |activity| %>
         <div class="collapse collapse-plus border border-base-300 mb-2">
