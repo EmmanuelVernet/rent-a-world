@@ -1,28 +1,44 @@
 <div class="card bg-base-100 shadow border border-base-200" id="amenities">
   <div class="card-body p-6">
-    <div class="relative">
+    <div class="relative" data-controller="modal">
       <h3 class="text-3xl font-bold text-primary text-center">Amenities</h3>
       <% if @world.user == current_user %>
-        <%= link_to "Edit", edit_world_world_amenities_path(@world), class: "absolute right-0 top-1/2 transform -translate-y-1/2 px-3 py-1 rounded-full bg-primary text-white text-sm" %>
+        <%# <%= link_to "Edit", edit_world_world_amenities_path(@world), class: "absolute right-0 top-1/2 transform -translate-y-1/2 px-3 py-1 rounded-full bg-primary text-white text-sm" %>
+
+      <%= link_to "Edit", edit_world_world_amenities_path(@world),
+      data: { turbo_frame: "amenities_modal", action:"click->modal#open" },
+      class: "absolute right-0 top-1/2 transform -translate-y-1/2 px-3 py-1 rounded-full bg-primary text-white text-sm" %>
+
+      <!-- amenities edit modal -->
+      <dialog id="edit_world_amenity" class="modal" data-modal-target="dialog">
+        <div class="modal-box">
+          <%= turbo_frame_tag "amenities_modal" %>
+        </div>
+        <form method="dialog" class="modal-backdrop" data-action="click->modal#close">
+          <button>close</button>
+        </form>
+      </dialog>
       <% end %>
     </div>
     <div class="divider divider-primary my-0"></div>
     <div class="space-y-4 overflow-y-auto h-[500px]">
-      <% @world_amenities.each do |wa| %>
-        <div class="card border border-base-300 shadow-md hover:shadow-lg transition-shadow mb-6">
-          <div class="card-body p-6">
-            <div class="flex items-center gap-3 mb-4">
-              <h4 class="card-title text-lg text-base-content"><%= wa.amenity.name %></h4>
+      <%= turbo_frame_tag "amenities_list" do %>
+        <% @world_amenities.each do |wa| %>
+          <div class="card border border-base-300 shadow-md hover:shadow-lg transition-shadow mb-6">
+            <div class="card-body p-6">
+              <div class="flex items-center gap-3 mb-4">
+                <h4 class="card-title text-lg text-base-content"><%= wa.amenity.name %></h4>
+              </div>
+              <div class="divider my-0"></div>
+              <% if wa.amenity.description.present? %>
+                <div class="text-sm text-base-content/60 italic mt-1 leading-relaxed"><%= wa.amenity.description %></div>
+              <% end %>
+              <% if @world.user == current_user %>
+                <%= link_to "Remove", world_world_amenity_path(@world, wa), class: "badge badge-soft badge-error", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+              <% end %>
             </div>
-            <div class="divider my-0"></div>
-            <% if wa.amenity.description.present? %>
-              <div class="text-sm text-base-content/60 italic mt-1 leading-relaxed"><%= wa.amenity.description %></div>
-            <% end %>
-            <% if @world.user == current_user %>
-              <%= link_to "Remove", world_world_amenity_path(@world, wa), class: "badge badge-soft badge-error", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-            <% end %>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>
