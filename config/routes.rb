@@ -32,6 +32,12 @@ Rails.application.routes.draw do
         patch :update
       end
     end
+    resources :world_activities, only: [:destroy] do
+      collection do
+        get  :edit
+        patch :update
+      end
+    end
     resources :tags, only: [ :index ] # To fetch tags for a specific world
   end
 

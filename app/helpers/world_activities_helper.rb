@@ -1,0 +1,2 @@
+module WorldActivitiesHelper
+end
