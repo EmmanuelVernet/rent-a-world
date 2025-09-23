@@ -1,0 +1,2 @@
+class WorldActivitiesController < ApplicationController
+end
