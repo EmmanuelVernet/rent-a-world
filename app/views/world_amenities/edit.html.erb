@@ -25,7 +25,7 @@
     </fieldset>
 
     <fieldset class="fieldset relative">
-      <%= form.submit "Update world amenities", class: "btn btn-primary w-full", data: { action: "click->modal#close"} %>
+      <%= form.submit "Update world amenities", class: "btn btn-primary w-full", data: { turbo_frame: "amenities_list", action: "click->modal#close"} %>
     </fieldset>
     <%# <%= link_to "Back to world", world_path(@world), class: "btn btn-secondary w-full" %>
   <% end %>
