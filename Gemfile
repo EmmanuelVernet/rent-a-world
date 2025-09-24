@@ -65,7 +65,8 @@ gem "pg_search"
 # gem "ruby-llm"
 
 # Notifications
-# gem "noticed"
+gem "noticed", "~> 2.8"
+
 
 # Rich text
 gem 'lexxy', '~> 0.1.4.beta' # pre-release version
@@ -113,3 +114,4 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
