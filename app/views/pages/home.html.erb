@@ -1,26 +1,25 @@
 <div class= "">
-    <%= render "components/banner"%>
-    <div class= "container mx-auto px-4">
-      <div class="text-center text-4xl font-medium pt-10">
-        <h1>Newly Featured</h1>
-      </div>
-        <div id="short-listings" class="container mx-auto px-4 overflow-x-auto py-15">
-          <div class="flex gap-6">
-            <% @worlds.last(6).each do |world| %>
-              <div class="flex-shrink-0">
-                <%= render "worlds/world_card", world: world %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <div class="text-center text-4xl font-medium pt-10">
-        <h1>Other listings</h1>
-      </div>
-        <div class= "container mx-auto px-4 h-screen overflow-y-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 py-20">
-          <% @worlds.each do |world| %>
-            <%= render "worlds/world_card", world: world %>
-          <% end %>
-        </div>
+  <%= render "components/banner"%>
+  <div class= "container mx-auto px-4">
+    <div class="text-center text-4xl font-medium pt-10">
+      <h1>Newly Featured</h1>
     </div>
+    <div id="short-listings" class="container mx-auto px-4 overflow-x-auto py-15">
+      <div class="flex gap-6">
+        <% @worlds.last(6).each do |world| %>
+          <div class="flex-shrink-0">
+            <%= render "worlds/world_card", world: world %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="text-center text-4xl font-medium pt-10">
+    <h1>Other listings</h1>
+  </div>
+  <div class= "container mx-auto px-4 h-screen overflow-y-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 py-20">
+    <% @worlds.each do |world| %>
+      <%= render "worlds/world_card", world: world %>
+    <% end %>
+  </div>
 </div>
