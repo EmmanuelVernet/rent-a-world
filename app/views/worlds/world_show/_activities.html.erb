@@ -20,11 +20,11 @@
     <div class="divider divider-primary my-0"></div>
     <div class="join join-vertical w-full">
       <%= turbo_frame_tag "activities_list" do %>
-        <% @activities.each do |activity| %>
+        <% @world_activities.each do |wa| %>
           <div class="collapse collapse-plus border border-base-300 mb-2">
-            <input type="radio" name="my-accordion-3" <%= "checked" if activity == @activities.first %> />
+            <input type="radio" name="my-accordion-3" <%= "checked" if wa == @activities.first %> />
             <div class="collapse-title text-xl font-medium">
-              <%= activity.name %>
+              <%= wa.activity.name %>
             </div>
             <div class="collapse-content bg-base-50">
               <div class="prose prose-sm max-w-none pt-4">
@@ -32,18 +32,21 @@
                   <div class="grid grid-cols-1 gap-3">
                     <div class="alert alert-info alert-soft py-2">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                      <span class="text-sm"><%= activity.description %></span>
+                      <span class="text-sm"><%= wa.activity.description %></span>
                     </div>
                     <div class="stats bg-base-100 border-base-300 border">
                       <div class="stat py-2">
                         <div class="stat-title text-xs">Duration</div>
-                        <div class="stat-value text-lg text-primary"><%= activity.duration %> h</div>
+                        <div class="stat-value text-lg text-primary"><%= wa.activity.duration %> h</div>
                       </div>
                       <div class="stat py-2">
                         <div class="stat-title text-xs">Cost</div>
-                        <div class="stat-value text-lg text-success"><%= activity.price %> €</div>
+                        <div class="stat-value text-lg text-success"><%= wa.activity.price %> €</div>
                       </div>
                     </div>
+                    <% if @world.user == current_user %>
+                      <%= link_to "Remove", world_world_activity_path(@world, wa), class: "badge badge-soft badge-error", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                    <% end %>
                   </div>
                 </div>
               </div>

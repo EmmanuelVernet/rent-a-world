@@ -1,6 +1,6 @@
 class WorldActivitiesController < ApplicationController
-	before_action :set_world, only: [:edit, :update]
-	# before_action :set_world_activity, only: [:destroy]
+	before_action :set_world, only: [:edit, :update, :destroy]
+	before_action :set_world_activity, only: [:destroy]
 
 	def edit
 		@activities = Activity.all
@@ -20,6 +20,14 @@ class WorldActivitiesController < ApplicationController
     end
 	end
 
+	def destroy
+		if @world_activity.destroy!
+			redirect_to world_path(@world), notice: "Removed activity"
+		else
+			redirect_to world_path(@world), alert: "Unable to remove activity from this list"
+		end
+	end
+
 	private
 
 	def set_world
@@ -27,7 +35,7 @@ class WorldActivitiesController < ApplicationController
 	end
 	
 	def set_world_activity
-		@world_activity = @world.activities.find(params[:id])
+		@world_activity = @world.world_activities.find(params[:id])
 	end
 
 	def world_activity_params

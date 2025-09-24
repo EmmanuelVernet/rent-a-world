@@ -74,5 +74,6 @@ class WorldsController < ApplicationController
     @world = World.includes(reviews: :user, activities: []).find(params[:id])
     # preload join table amenities association
     @world_amenities = @world.world_amenities.includes(:amenity)
+    @world_activities = @world.world_activities.includes(:activity)
   end
 end
