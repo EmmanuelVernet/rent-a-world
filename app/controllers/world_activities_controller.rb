@@ -1,5 +1,5 @@
 class WorldActivitiesController < ApplicationController
-	before_action :set_world, only: [:edit, :update]
+	before_action :set_world, only: [:edit, :update, :destroy]
 	before_action :set_world_activity, only: [:destroy]
 
 	def edit
@@ -21,7 +21,7 @@ class WorldActivitiesController < ApplicationController
 	end
 
 	def destroy
-		if @world_activities.destroy!
+		if @world_activity.destroy!
 			redirect_to world_path(@world), notice: "Removed activity"
 		else
 			redirect_to world_path(@world), alert: "Unable to remove activity from this list"
