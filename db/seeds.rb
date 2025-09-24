@@ -10,7 +10,32 @@ puts "data destroyed"
 # TAGS
 puts "creating tags..."
 
-tag_list = [ "fantasy", "horror", "space", "video game", "magical realm", "sky", "ruins", "time travel", "shadow" ]
+tag_list = [
+  "fantasy",
+  "horror",
+  "space",
+  "video game",
+  "magical realm",
+  "sky",
+  "ruins",
+  "time travel",
+  "shadow",
+  "mythology",
+  "dark forest",
+  "cyberpunk",
+  "dystopia",
+  "parallel universe",
+  "underwater",
+  "post-apocalyptic",
+  "ancient civilization",
+  "dreamscape",
+  "steampunk",
+  "cosmic horror",
+  "enchanted artifact",
+  "wasteland",
+  "forgotten temple",
+  "celestial"
+]
 
 tag_list.each do |tag|
   Tag.create!(name: tag)
