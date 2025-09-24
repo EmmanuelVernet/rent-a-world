@@ -65,7 +65,8 @@ gem "pg_search"
 # gem "ruby-llm"
 
 # Notifications
-# gem "noticed"
+gem "noticed", "~> 2.8"
+
 
 # Rich text
 gem 'lexxy', '~> 0.1.4.beta' # pre-release version
@@ -101,6 +102,9 @@ group :development, :test do
   # N+1 Query
   gem "bullet"
 
+  # HERB parser + Reaction view (better errors)
+  gem "reactionview"
+
 end
 
 group :development do
@@ -113,3 +117,4 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
