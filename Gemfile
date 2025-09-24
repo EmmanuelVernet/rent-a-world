@@ -102,6 +102,9 @@ group :development, :test do
   # N+1 Query
   gem "bullet"
 
+  # HERB parser + Reaction view (better errors)
+  gem "reactionview"
+
 end
 
 group :development do
