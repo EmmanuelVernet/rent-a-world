@@ -44,6 +44,9 @@
                         <div class="stat-value text-lg text-success"><%= activity.price %> €</div>
                       </div>
                     </div>
+                    <% if @world.user == current_user %>
+                      <%= link_to "Remove", world_world_activity_path(@world, activity), class: "badge badge-soft badge-error", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                    <% end %>
                   </div>
                 </div>
               </div>
