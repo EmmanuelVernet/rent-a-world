@@ -1,6 +1,12 @@
 <div class="card shadow border border-base-200" id="activities">
   <div class="card-body">
-    <h3 class="text-3xl font-bold text-center text-primary">World Information</h3>
+    <div class="relative" data-controller="modal">
+      <h3 class="text-3xl font-bold text-center text-primary">World Information</h3>
+        <% if @world.user == current_user %>
+          <%= link_to "Edit", edit_world_path(@world), 
+          class: "absolute right-0 top-1/2 transform -translate-y-1/2 px-3 py-1 rounded-full bg-primary text-white text-sm" %>
+        <% end %>
+      </div>
     <div class="divider divider-primary my-0"></div>
     <div class="space-y-6 mt-2">
       <div class="flex flex-wrap gap-2">

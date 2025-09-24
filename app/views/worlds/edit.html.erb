@@ -1,40 +1,78 @@
-<div>
-  <h1>Edit world</h1>
-  <%# TO DO: Edit only for user that puts world to rent %>
-  <%= form_with model: @world, class: "space-y-4" do |f| %>
-  <div class="flex flex-col">
-    <%= f.label :title, class: "font-medium text-gray-700" %>
-    <%= f.text_field :title, class: "mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+<div class="pt-4 pb-32">
+  <%= form_with(model: @world, local: true,  class: "space-y-4 p-6 bg-white shadow-lg rounded-lg max-w-lg mx-auto") do |form| %>
+  <h1 class="text-3xl font-bold text-primary text-center">Edit <%= @world.title %></h1>
+  <% if @world.errors.any? %>
+  <div class="alert alert-error">
+    <ul>
+      <% @world.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
   </div>
+<% end %>
 
-  <div class="flex flex-col">
-    <%= f.label :category, class: "font-medium text-gray-700" %>
-    <%= f.text_field :category, class: "mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
-  </div>
+  <fieldset class="fieldset">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: "input input-bordered input-primary w-full" %>
+      <% if @world.errors[:title].any? %>
+    <p class="text-red-500 text-sm"><%= @world.errors[:title].first %></p>
+  <% end %>
+  </fieldset>
 
-  <div class="flex flex-col">
-    <%= f.label :place, class: "font-medium text-gray-700" %>
-    <%= f.text_field :place, class: "mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
-  </div>
+  <fieldset class="fieldset">
+    <%= form.label :category %>
+    <%= form.text_field :category, class: "input input-bordered input-primary w-full" %>
+    <small class="text-lg text-base-content">Enter a category name</small>
+  </fieldset>
 
-  <div class="flex flex-col">
-    <%= f.label :price, class: "font-medium text-gray-700" %>
-    <%= f.number_field :price, class: "mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
-  </div>
+  <fieldset class="fieldset">
+    <%= form.label :place %>
+    <%= form.text_field :place, class: "input input-bordered input-primary w-full" %>
+    <small class="text-gray-500">Enter the world's location name</small>
+  </fieldset>
 
-  <div class="flex flex-col">
-    <%= f.label :description, class: "font-medium text-gray-700" %>
-    <%= f.text_area :description, rows: 5, class: "mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
-  </div>
+  <fieldset class="fieldset">
+    <%= form.label :price %>
+    <%= form.number_field :price, class: "input input-bordered input-primary w-full" %>
+    <small class="text-gray-500">Enter the price in EUR/USD</small>
+  </fieldset>
 
-  <div class="flex flex-col">
-    <%= f.label :capacity, class: "font-medium text-gray-700" %>
-    <%= f.number_field :capacity, class: "mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
-  </div>
+  <fieldset class="fieldset">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: "input input-bordered input-primary w-full h-24" %>
+    <small class="text-gray-500">Enter a nice description</small>
+  </fieldset>
 
-  <div>
-    <%= f.submit "Save Changes", class: "rounded-full bg-blue-600 py-2 px-4 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
-    <%= link_to "All worlds", worlds_path(@world), class: "rounded-full bg-blue-600 py-2 px-4 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
-  </div>
+  <fieldset class="fieldset">
+    <%= form.label :capacity %>
+    <%= form.number_field :capacity, class: "input input-bordered input-primary w-full" %>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <%= form.label :latitude %>
+    <%= form.number_field :latitude, step: :any, class: "input input-bordered input-primary w-full", placeholder:"Ex: 48.864716" %>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <%= form.label :longitude %>
+    <%= form.number_field :longitude, step: :any , class: "input input-bordered input-primary w-full", placeholder:"Ex: 2.349014" %>
+  </fieldset>
+
+  <div class="divider"></div>
+  <fieldset class="fieldset">
+    <legend class="fieldset-title tooltip tooltip-secondary tooltip-right mb-2" data-tip="Aspects are special attributes a world can have that makes it special">Select World Aspects</legend>
+    <div class="flex flex-wrap gap-2">
+      <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |cb| %>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <%= cb.check_box(class: "checkbox checkbox-primary") %>
+          <span class="label-text"><%= cb.text %></span>
+        </label>
+      <% end %>
+    </div>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <%= form.submit "Edit World information", class: "btn btn-soft btn-primary" %>
+  </fieldset>
 <% end %>
 </div>
