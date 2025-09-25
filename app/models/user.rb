@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :reviews, dependent: :destroy
   ## Notifications
+  has_many :noticed_events, as: :record, dependent: :destroy, class_name: "Noticed::Event"
   has_many :notifications, as: :recipient, dependent: :destroy, class_name: "Noticed::Notification"
 
 

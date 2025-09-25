@@ -9,8 +9,8 @@ class Booking < ApplicationRecord
 
   # Associations
   ## Notifications
-  has_many :noticed_events, as: :record, dependent: :destroy, class_name: "Noticed::Event"
-  has_many :notifications, through: :noticed_events, class_name: "Noticed::Notification"
+  has_many :noticed_events, as: :record, dependent: :destroy, class_name: "Noticed::Event" # Who receives the notification
+  has_many :notifications, through: :noticed_events, class_name: "Noticed::Notification" # What the notification was about, eg: in case user is mentioned in comment, it references data about them
 
 
   ## Model methods
