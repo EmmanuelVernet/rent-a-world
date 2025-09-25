@@ -58,8 +58,8 @@ class BookingsController < ApplicationController
 
     if @booking.save
       # Notify world owner before redirect
-      NewBookingRequestNotifier.with(record: @booking).deliver(@world
-      .user)
+      # NewBookingRequestNotifier.with(record: @booking).deliver(@world.user)
+      NewBookingRequestNotifier.with(record: @booking).deliver
       redirect_to world_booking_path(@world, @booking), notice: "Booking created!"
     else
       # make values available again for view

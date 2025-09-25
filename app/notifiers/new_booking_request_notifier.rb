@@ -19,15 +19,16 @@ class NewBookingRequestNotifier < ApplicationNotifier
   # end
 
   # Add required params
-  required_param :record
+  required_params :record
   notification_methods do
     def message
-      booking = params[:record]
-      "#{booking.user.first_name} has requested a new booking for #{booking.world.title}."
+      # booking = params[:record]
+      "#{record.user.first_name} has requested a new booking for #{record.world.title}."
     end
   end
   # Compute recipients without having to pass them in
   recipients do
-    params[:record].world.user
+    # params[:record].world.user
+    record.world.user
   end
 end
