@@ -3,9 +3,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
+  # Associations
   has_many :worlds, dependent: :destroy
   has_many :bookings, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  ## Notifications
+  has_many :notifications, as: :recipient, dependent: :destroy, class_name: "Noticed::Notification"
+
 
   # Validations
   validates :first_name, presence: true
