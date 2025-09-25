@@ -21,8 +21,8 @@ class NewBookingRequestNotifier < ApplicationNotifier
   # Add required params
   notification_methods do
     def message
-      # booking = params[:record]
-      "#{record.user.first_name} has requested a new booking for #{record.world.title}."
+      # :record is a default param coming from the gem. References Booking in this case
+      "#{record.user.first_name} #{record.user.last_name} has requested a new booking for #{record.world.title}."
     end
   end
   # Compute recipients without having to pass them in

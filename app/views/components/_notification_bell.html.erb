@@ -8,7 +8,7 @@
     <div>
       <% if current_user %>
         <% current_user.notifications.each do |notification| %>
-          <%= link_to notification.message, notification.url %>
+          <%= link_to notification.message %>
         <% end %>
       <% end %>
     </div>

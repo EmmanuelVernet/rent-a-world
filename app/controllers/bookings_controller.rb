@@ -57,8 +57,7 @@ class BookingsController < ApplicationController
     # /!\ Total price calculated in model
 
     if @booking.save
-      # Notify world owner before redirect
-      # NewBookingRequestNotifier.with(record: @booking).deliver(@world.user)
+      # Notify world owner before redirect. Recipient defined in notifier
       NewBookingRequestNotifier.with(record: @booking).deliver
       redirect_to world_booking_path(@world, @booking), notice: "Booking created!"
     else
