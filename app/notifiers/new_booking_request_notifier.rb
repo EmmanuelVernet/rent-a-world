@@ -19,7 +19,6 @@ class NewBookingRequestNotifier < ApplicationNotifier
   # end
 
   # Add required params
-  required_params :record
   notification_methods do
     def message
       # booking = params[:record]
