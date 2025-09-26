@@ -3,6 +3,7 @@ class NotificationsController < ApplicationController
 
 	def mark_as_read
 		@notification.mark_as_read!
+		redirect_to request.path 
 	end
 
 	def mark_as_unread
