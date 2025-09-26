@@ -5,7 +5,7 @@
   <%# Dropdown notification info %>
   <div tabindex="0" class="mt-4 w-xl z-1 card card-compact dropdown-content bg-base-100 shadow">
     <div class="card-body"><span class="font-bold text-lg text-center"><%= current_user&.notifications&.count || 0 %> Notification(s)</span>
-    <div>
+    <div class="h-56 overflow-auto">
       <% if current_user %>
         <% current_user.notifications.each do |notification| %>
           <%= render "components/notification_info_card", notification: notification %>
