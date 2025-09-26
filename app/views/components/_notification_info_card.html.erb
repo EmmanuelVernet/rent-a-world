@@ -6,5 +6,7 @@
     <h3 class="font-bold">New notification!</h3>
     <div class="text-xs"><%= notification.message %></div>
   </div>
-  <button class="btn btn-sm">See</button>
+  <button class="btn btn-sm"><% notification.mark_as_read %>See</button>
+  <%= button_to "Mark as read", mark_as_read_notification_path(notification), class: "btn btn-sm" %>
+  <%= button_to "Mark as unread", mark_as_unread_notification_path(notification), class: "btn btn-sm" %>
 </div>
