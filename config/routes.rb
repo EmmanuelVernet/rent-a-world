@@ -57,6 +57,14 @@ Rails.application.routes.draw do
     resources :messages, only: [:index, :create]
   end
 
+  # Notifications
+  resources :notifications, only: [:index] do
+    member do
+      patch :mark_as_read
+      patch :mark_as_unread
+    end
+  end
+
   # Reviews routes (for global access or management)
   # resources :reviews, only: [ :index, :show, :destroy ]
 end
