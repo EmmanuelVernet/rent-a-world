@@ -3,7 +3,6 @@ class NotificationsController < ApplicationController
 
 	def index
 		@notifications = current_user.notifications.all
-		raise
 	end
 
 	def mark_as_read

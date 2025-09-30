@@ -1,18 +1,16 @@
 <!-- Notifications List -->
 <div class="space-y-4">
-  <!-- Unread Notification -->
   <% @notifications.each do |notification| %>
-  <%# <% if notification.unread? %>
-    <div class="card bg-base-100 shadow-sm border-l-4 <%= notification.unread ? 'border-l-primary' : 'border-l-base-300 opacity-60' %>">
+    <div class="card bg-base-100 shadow-sm border-l-4 <%= notification.unread? ? 'border-l-primary' : 'border-l-base-300 opacity-60' %>">
       <div class="card-body p-4">
         <div class="flex justify-between items-start">
           <div class="flex-1">
             <div class="flex items-center gap-2 mb-2">
-              <div class="badge badge-primary badge-xs"></div>
+              <div class="<%= notification.unread? ? 'badge badge-info badge-xs' : 'badge badge-warning badge-xs ' %>"></div>
               <span class="text-sm text-base-content/70">System</span>
               <span class="text-sm text-base-content/50">2 minutes ago</span>
             </div>
-            <h3 class="font-semibold mb-1"><%= notification.event.record.user.first_name %></h3>
+            <h3 class="font-semibold mb-1">From <%= notification.event.record.user.full_name %></h3>
             <p class="text-sm text-base-content/70"><%= notification.message %></p>
           </div>
           <div class="dropdown dropdown-end">
@@ -29,8 +27,5 @@
         </div>
       </div>
     </div>
-  <%# <% else %>
-  
   <% end %>
-<%# <% end %>
 </div>
