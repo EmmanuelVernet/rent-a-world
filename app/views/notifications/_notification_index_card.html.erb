@@ -20,7 +20,7 @@
               </svg>
             </div>
             <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-32 p-2 shadow">
-              <li><%= button_to mark_as_read_notification_path(notification), class: "btn btn-dash btn-success tooltip tooltip-bottom", data: { tip: "mark as read" } %></li>
+              <li><%= button_to "Mark as read", mark_as_read_notification_path(notification) %></li>
               <li><%= link_to "Delete", notification_path(notification), data: { turbo_method: :delete, turbo_confirm: "Are you sure? This action is irreversible" } %></li>
             </ul>
           </div>
