@@ -15,6 +15,16 @@ class NotificationsController < ApplicationController
 		redirect_to notifications_path, notice: "Notification marked as unread."
 	end
 
+	def mark_all_read
+		current_user.notifications.unread.update_all(read_at: Time.current)
+		redirect_to notifications_path, notice: "All notifications marked as read."
+	end
+
+	def mark_all_unread
+		current_user.notifications.read.update_all(read_at: nil)
+		redirect_to notifications_path, notice: "All notifications marked as unread."
+	end
+
 	def destroy
 		if @notification.destroy!
 			redirect_to notifications_path, notice: "Notification deleted!"

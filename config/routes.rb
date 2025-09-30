@@ -63,6 +63,10 @@ Rails.application.routes.draw do
       patch :mark_as_read
       patch :mark_as_unread
     end
+    collection do
+      patch :mark_all_read
+      patch :mark_all_unread
+    end
   end
 
   # Reviews routes (for global access or management)

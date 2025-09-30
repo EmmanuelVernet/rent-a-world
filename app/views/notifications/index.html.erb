@@ -8,18 +8,21 @@
       </div>
     </div>
 
-    <!-- Filter Tabs -->
-    <div class="tabs tabs-bordered mb-6">
+    <!-- TODO: Filter Tabs -->
+    <!-- <div class="tabs tabs-bordered mb-6">
       <a class="tab tab-active">All</a>
       <a class="tab">Unread</a>
       <a class="tab">Read</a>
-    </div>
+    </div> -->
 
     <!-- Actions -->
     <div class="flex justify-between items-center mb-6">
       <div class="flex gap-2">
-        <button class="btn btn-sm btn-primary">Mark All as Read</button>
-        <button class="btn btn-sm btn-ghost">Clear Read</button>
+        <% if @notifications.any?(&:unread?) %>
+          <%= link_to "Mark All as Read", mark_all_read_notifications_path, class: "btn btn-sm btn-primary", data: { turbo_method: :patch } %>
+        <% else %>
+          <%= link_to "Mark All as Unread", mark_all_unread_notifications_path, class: "btn btn-sm btn-primary", data: { turbo_method: :patch } %>
+        <% end %>
       </div>
     </div>
 
