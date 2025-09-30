@@ -24,9 +24,8 @@
     </div>
 
     <!-- Notifications List -->
-    <%= render "notifications/notification_index_card" %>
+    <%= render "notifications/notification_index_card", notification: @notification %>
   
-
     <!-- Pagination -->
     <div class="flex justify-center mt-8">
       <div class="join">
@@ -38,5 +37,3 @@
       </div>
     </div>
   </div>
-
-  

@@ -1,6 +1,10 @@
 class NotificationsController < ApplicationController
 	before_action :set_notification, only: [:mark_as_read, :mark_as_unread, :destroy]
 
+	def index
+		@notifications = current_user.notifications.all
+	end
+
 	def mark_as_read
 		@notification.mark_as_read!
 		redirect_to request.path 
