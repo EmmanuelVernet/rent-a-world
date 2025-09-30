@@ -58,10 +58,14 @@ Rails.application.routes.draw do
   end
 
   # Notifications
-  resources :notifications, only: [:index] do
+  resources :notifications, only: [:index, :destroy] do
     member do
       patch :mark_as_read
       patch :mark_as_unread
+    end
+    collection do
+      patch :mark_all_read
+      patch :mark_all_unread
     end
   end
 

@@ -1,22 +1,23 @@
-<div role="alert" class="<%= notification.unread? ? 'alert alert-info alert-soft': 'alert alert-warning alert-soft' %> alert-vertical sm:alert-horizontal mb-2">
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="h-6 w-6 shrink-0 stroke-current">
+<%= link_to notifications_path do %>
+<div role="alert" class="<%= notification.unread? ? 'alert alert-info alert-soft hover:bg-sky-200': 'alert alert-warning alert-soft hover:bg-yellow-100' %> alert-vertical sm:alert-horizontal mb-3 mx-4">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="h-6 w-6 shrink-0 stroke-current">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
   </svg>
   <div>
     <h3 class="font-bold"><%= notification.unread? ? "New unread notification!" : "Read notification" %></h3>
     <div class="text-xs"><%= notification.message %></div>
   </div>
-    <%= link_to "See", notifications_path, class: "btn btn-dash btn-primary" %>
-    <%= button_to mark_as_read_notification_path(notification), class: "btn btn-dash btn-success" do %>
+    <%= link_to mark_as_read_notification_path(notification), class: "btn btn-dash btn-success tooltip tooltip-bottom flex items-center justify-center", data: { tip: "mark as read", turbo_method: :patch } do %>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
           stroke-width="1.5" stroke="currentColor" class="size-6">
         <path stroke-linecap="round" stroke-linejoin="round"
               d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
       </svg>
     <% end %>
-    <%= button_to mark_as_unread_notification_path(notification), class: "btn btn-dash btn-warning" do %>
+    <%= link_to mark_as_unread_notification_path(notification), class: "btn btn-dash btn-warning tooltip tooltip-bottom flex items-center justify-center", data: { tip: "mark as unread", turbo_method: :patch } do %>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
       </svg>
     <% end %>
 </div>
+<% end %>

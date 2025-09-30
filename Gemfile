@@ -103,7 +103,7 @@ group :development, :test do
   gem "bullet"
 
   # HERB parser + Reaction view (better errors)
-  gem "reactionview"
+  # gem "reactionview"
 
 end
 
