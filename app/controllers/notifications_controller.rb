@@ -26,6 +26,6 @@ class NotificationsController < ApplicationController
 	private
 
 	def set_notification
-		@notification = Notification.find(params[:id])
+		@notification = Noticed::Notification.find(params[:id])
 	end
 end
