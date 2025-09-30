@@ -1,0 +1,56 @@
+<!-- Notifications List -->
+<div class="space-y-4">
+  <!-- Unread Notification -->
+  <div class="card bg-base-100 shadow-sm border-l-4 border-l-primary">
+    <div class="card-body p-4">
+      <div class="flex justify-between items-start">
+        <div class="flex-1">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="badge badge-primary badge-xs"></div>
+            <span class="text-sm text-base-content/70">System</span>
+            <span class="text-sm text-base-content/50">2 minutes ago</span>
+          </div>
+          <h3 class="font-semibold mb-1">Your profile has been updated</h3>
+          <p class="text-sm text-base-content/70">Your profile information has been successfully updated with the new changes.</p>
+        </div>
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-ghost btn-xs">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
+            </svg>
+          </div>
+          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-32 p-2 shadow">
+            <li><a>Mark as Read</a></li>
+            <li><a>Delete</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Read Notification -->
+  <div class="card bg-base-100 shadow-sm border-l-4 border-l-base-300 opacity-60">
+    <div class="card-body p-4">
+      <div class="flex justify-between items-start">
+        <div class="flex-1">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-sm text-base-content/70">Update</span>
+            <span class="text-sm text-base-content/50">2 days ago</span>
+          </div>
+          <h3 class="font-semibold mb-1">New feature available</h3>
+          <p class="text-sm text-base-content/70">Check out our new dashboard analytics feature in the reports section.</p>
+        </div>
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-ghost btn-xs">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
+            </svg>
+          </div>
+          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-32 p-2 shadow">
+            <li><a>Mark as Unread</a></li>
+            <li><a>Delete</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

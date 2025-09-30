@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-	before_action :set_notification, only: [:mark_as_read]
+	before_action :set_notification, only: [:mark_as_read, :mark_as_unread, :destroy]
 
 	def mark_as_read
 		@notification.mark_as_read!
@@ -8,6 +8,15 @@ class NotificationsController < ApplicationController
 
 	def mark_as_unread
 		@notification.mark_as_unread!
+		redirect_to request.path
+	end
+
+	def destroy
+		if @notification.destroy!
+			redirect_to notifications_path, notice: "Notification deleted!"
+		else
+			redirect_to notifications_path, notice: "Impossible to delete Notification!"
+		end
 	end
 
 	private
