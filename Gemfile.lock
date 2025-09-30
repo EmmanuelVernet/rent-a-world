@@ -131,9 +131,6 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    herb (0.7.3-aarch64-linux-gnu)
-    herb (0.7.3-arm64-darwin)
-    herb (0.7.3-x86_64-linux-gnu)
     htmlbeautifier (1.4.3)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
@@ -280,9 +277,6 @@ GEM
       logger
     rdoc (6.13.1)
       psych (>= 4.0.0)
-    reactionview (0.1.2)
-      actionview (>= 7.0)
-      herb (>= 0.7.0, < 1.0.0)
     regexp_parser (2.11.2)
     reline (0.6.1)
       io-console (~> 0.5)
@@ -426,7 +420,6 @@ DEPENDENCIES
   puma (>= 5.0)
   rack-mini-profiler
   rails (~> 8.0.1)
-  reactionview
   rubocop-rails-omakase
   ruby-lsp
   selenium-webdriver
