@@ -19,8 +19,12 @@
                 <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
               </svg>
             </div>
-            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-32 p-2 shadow">
-              <li><%= button_to "Mark as read", mark_as_read_notification_path(notification) %></li>
+            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-48 p-2 shadow">
+              <% if notification.unread? %>
+                <li><%= link_to "Mark as read", mark_as_read_notification_path(notification), data: { turbo_method: :patch } %></li>
+              <% else %>
+                <li><%= link_to "Mark as unread", mark_as_unread_notification_path(notification), data: { turbo_method: :patch } %></li>
+              <% end %>
               <li><%= link_to "Delete", notification_path(notification), data: { turbo_method: :delete, turbo_confirm: "Are you sure? This action is irreversible" } %></li>
             </ul>
           </div>
