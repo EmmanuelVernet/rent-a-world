@@ -7,12 +7,12 @@
     <div class="card-body"><span class="font-bold text-lg text-center"><%= current_user&.notifications&.count || 0 %> Notification(s)</span>
     <div class="h-56 overflow-auto">
       <% if current_user %>
-        <% current_user.notifications.each do |notification| %>
+        <% @notifications.each do |notification| %>
           <%= render "components/notification_info_card", notification: notification %>
         <% end %>
       <% end %>
     </div>
-      <div class="card-actions"><button class="btn btn-accent btn-block">View notifications</button></div>
+      <div class="card-actions"><%= link_to "View notifications", notifications_path, class: "btn btn-accent btn-block" %></div>
     </div>
   </div>
 </div>
