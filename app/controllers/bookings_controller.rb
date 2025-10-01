@@ -105,11 +105,15 @@ class BookingsController < ApplicationController
 
   def accept
     @booking.accept! # method in model
+    # Notify booking requester before redirect. Recipient defined in notifier
+    BookingStatusNotifier.with(record: @booking).deliver
     redirect_to booking_path(@booking), notice: "Booking confirmed."
   end
 
   def cancel
     @booking.cancel!
+    # Notify booking requester before redirect. Recipient defined in notifier
+    BookingStatusNotifier.with(record: @booking).deliver
     redirect_to bookings_path, notice: "Booking cancelled."
   end
 

@@ -27,4 +27,16 @@ class BookingStatusNotifier < ApplicationNotifier
   # recipients do
   #   params[:record].thread.all_authors
   # end
+
+  notification_methods do
+    def message
+      # :record is a default param coming from the gem. References Booking in this case
+        "#{record.user.first_name} #{record.user.last_name} your booking request ##{record.id} for #{record.world.title} is #{record.status}."
+    end
+  end
+  # Compute recipients without having to pass them in
+  recipients do
+    # params[:record].world.user
+    record.user # booking requester
+  end
 end
