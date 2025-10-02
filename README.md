@@ -13,15 +13,15 @@ Why fantasy worlds? Well, I wanted to theme the app with something more fun than
 *   Leave reviews for worlds
 *   Real-time messaging between users using JS polling instead of websockets (why? because I wanted to try)
 *   Basic search using PG gem
+*   In-app notifications with Noticed gem v2
 
 ## Missing Features
 
 *   Image uploads for worlds
 *   Fake Payment processing for bookings
-*   User profiles CRUD
-*   Categorize worlds with tags, activities and amenities - (ongoing)
+*   User profiles
+*   Categorize worlds with tags
 *   Extended Search and filtering functionality - (currently basic search against world titles and tags)
-*   In-app notifications with Noticed gem v2
 *   Admin dashboard for managing the platform
 *   LLM chatbot using RubyLLM gem
 
