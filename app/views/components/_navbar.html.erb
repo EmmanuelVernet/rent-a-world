@@ -2,9 +2,9 @@
   <div class="flex items-center gap-4">
     <%= render "components/sidebar" %>
     <%= link_to "Rent a world", root_path, class:"btn btn-ghost text-xl" %>
-    <label class="toggle text-base-content">
+    <label class="toggle text-base-content" data-controller="dark-mode">
       <%# TODO: persist theme change => currently lost if refresh or path change %>
-      <input type="checkbox" value="dim" class="theme-controller" data-controller="dark-mode">
+      <input type="checkbox" value="dim" class="theme-controller" data-dark-mode-target="checkbox" data-action="change->dark-mode#toggle">
       <svg aria-label="Sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
           <circle cx="12" cy="12" r="4"></circle>
