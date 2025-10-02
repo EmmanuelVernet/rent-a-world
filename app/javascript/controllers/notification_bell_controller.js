@@ -3,12 +3,10 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="notification-bell"
 export default class extends Controller {
   static targets = [ "counter", "list" ]
-  static values = { counterUrl: String, 
-                    interval: { 
-                      type: Number, 
-                      default: 3000 
-                    } 
-                  }
+  static values = { 
+    counterUrl: String, 
+    interval: { type: Number, default: 3000 } 
+    }
 
   connect() {
     this.refresh()
@@ -33,11 +31,4 @@ export default class extends Controller {
       console.error(error.message);
     }
   }
-
-  // async updateNotificationsList () {
-  //   try {
-  //     const response = await fetch()
-  //   }
-
-  // }
 }
