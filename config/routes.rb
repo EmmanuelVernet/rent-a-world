@@ -59,13 +59,14 @@ Rails.application.routes.draw do
 
   # Notifications
   resources :notifications, only: [:index, :destroy] do
-    member do
+    member do # required ID
       patch :mark_as_read
       patch :mark_as_unread
     end
-    collection do
+    collection do # no IDs required
       patch :mark_all_read
       patch :mark_all_unread
+      get :counter
     end
   end
 

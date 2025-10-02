@@ -25,6 +25,10 @@ class NotificationsController < ApplicationController
 		redirect_to notifications_path, notice: "All notifications marked as unread."
 	end
 
+	def counter
+  	render json: { count: current_user.notifications.unread.count }
+	end
+
 	def destroy
 		if @notification.destroy!
 			redirect_to notifications_path, notice: "Notification deleted!"
