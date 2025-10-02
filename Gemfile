@@ -67,7 +67,6 @@ gem "pg_search"
 # Notifications
 gem "noticed", "~> 2.8"
 
-
 # Rich text
 gem 'lexxy', '~> 0.1.4.beta' # pre-release version
 
@@ -100,7 +99,7 @@ group :development, :test do
   # gem "hotwire-spark"
 
   # N+1 Query
-  gem "bullet"
+  # gem "bullet"
 
   # HERB parser + Reaction view (better errors)
   # gem "reactionview"

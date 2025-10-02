@@ -40,6 +40,10 @@ Why fantasy worlds? Well, I wanted to theme the app with something more fun than
 
 ## Running the app
 
+# Gems
+* Note that if you want to run reactionview or bullet, you will need to uncomment them in the gemfile.
+* You will also need to uncomment the appropriate code in development.rb & reactionview.rb
+
 # Dowloading the repo
 
 1.  **Prerequisites:**
