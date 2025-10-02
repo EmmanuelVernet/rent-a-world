@@ -2,8 +2,8 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="notification-bell"
 export default class extends Controller {
-  static targets = [ "counter" ]
-  static values = { url: String, 
+  static targets = [ "counter", "list" ]
+  static values = { counterUrl: String, 
                     interval: { 
                       type: Number, 
                       default: 3000 
@@ -11,11 +11,15 @@ export default class extends Controller {
                   }
 
   connect() {
-    this.updateNotificationCounter()
+    this.refresh()
+  }
+
+  refresh () {
+    setInterval(() => this.updateNotificationsCounter(), this.intervalValue)
   }
   
-  async updateNotificationCounter() {
-    const url = this.urlValue;
+  async updateNotificationsCounter() {
+    const url = this.counterUrlValue;
     try {
       const response = await fetch(url,{ headers: { "Accept": "application/json" }});
       if (!response.ok) {
@@ -23,9 +27,17 @@ export default class extends Controller {
       }
 
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
+      this.counterTarget.textContent = result.count
     } catch (error) {
       console.error(error.message);
     }
   }
+
+  // async updateNotificationsList () {
+  //   try {
+  //     const response = await fetch()
+  //   }
+
+  // }
 }
