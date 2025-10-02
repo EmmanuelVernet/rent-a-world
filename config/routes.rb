@@ -67,6 +67,7 @@ Rails.application.routes.draw do
       patch :mark_all_read
       patch :mark_all_unread
       get :counter
+      get :list
     end
   end
 
