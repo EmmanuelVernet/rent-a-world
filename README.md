@@ -1,7 +1,8 @@
 # Rent a World
 
-This is a Ruby on Rails Air B'n'B application for renting fake fantasy worlds.
-Why fantasy worlds? Well, I wanted to theme the app with something more fun than flats. That's it!
+"Rent a World" — an AirBnB-style booking app for fantasy universes. Built with Rails 8, Hotwire, Tailwind, and live chat — everything from authentication to real-time messaging and notifications.
+
+Why a fantasy world theme? Well, I wanted to theme the app with something more fun than flats. That's it!
 
 # Roadmap (more in the GitHub issues tab)
 
