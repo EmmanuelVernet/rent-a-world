@@ -71,6 +71,9 @@ Rails.application.routes.draw do
     end
   end
 
+  mount RubberDuck::Engine => '/rubber_duck'
+
+
   # Reviews routes (for global access or management)
   # resources :reviews, only: [ :index, :show, :destroy ]
 end

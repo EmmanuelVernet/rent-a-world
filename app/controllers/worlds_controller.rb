@@ -3,7 +3,7 @@ class WorldsController < ApplicationController
   before_action :set_world, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @tags = Tag.all
+    @tags = Tag
 
     # World pg_search querying
     if params[:query].present?

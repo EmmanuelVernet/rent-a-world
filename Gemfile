@@ -104,6 +104,9 @@ group :development, :test do
   # HERB parser + Reaction view (better errors)
   # gem "reactionview"
 
+  # test gem for Rubber duck
+  gem "rubber_duck", path: "../rubber_duck"
+
 end
 
 group :development do
